@@ -1,0 +1,4 @@
+interface:
+  display_name: "Production Dashboard UI/UX Skill"
+  short_description: "Production-grade dashboard UI/UX design and QA"
+  default_prompt: "Use $production-dashboard-ui-ux-skill to design or redesign this dashboard as a production-ready responsive RTL/LTR product interface."
