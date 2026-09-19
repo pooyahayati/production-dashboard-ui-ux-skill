@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "production-dashboard-ui-ux-skill",
-  "version": "1.0.0",
-  "description": "Production-grade dashboard UI/UX design workflow with design discovery, responsive layouts, Persian RTL, English LTR, Light/Dark themes, local fonts, branding, accessibility, and visual QA.",
+  "version": "1.1.0",
+  "description": "Production-grade dashboard UI/UX design and existing-product improvement workflow with audit, redesign, RTL/LTR, responsive layouts, branding, theming, accessibility, and visual QA.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://github.com/pooyahayati"
@@ -25,12 +25,13 @@
       "interface": {
         "displayName": "Production Dashboard UI/UX Skill",
         "shortDescription": "Production-grade dashboard UI/UX design and QA",
-        "longDescription": "Design, audit, redesign, and implement production-quality dashboards and operational product interfaces with design discovery, RTL/LTR architecture, responsive behavior, Light/Dark themes, local fonts, branding, accessibility, and visual QA.",
+        "longDescription": "Design, audit, improve, redesign, and implement production-quality dashboards and existing product interfaces, including UX review, visual-system refinement, palette and brand treatment, RTL/LTR architecture, responsive behavior, Light/Dark themes, local fonts, accessibility, and regression-aware visual QA.",
         "developerName": "Pooya Hayati",
         "websiteURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
         "defaultPrompt": [
-          "Use Production Dashboard UI/UX Skill to audit and redesign this dashboard as a production-ready product interface.",
-          "Use Production Dashboard UI/UX Skill to establish a design profile before implementing this dashboard."
+          "Use Production Dashboard UI/UX Skill to audit this existing dashboard, prioritize UI/UX issues, implement safe improvements, and validate the result without breaking business logic.",
+          "Use Production Dashboard UI/UX Skill to redesign this dashboard as a production-ready product interface.",
+          "Use Production Dashboard UI/UX Skill to review and improve the current palette, typography, logo treatment, responsive behavior, and design-system consistency."
         ],
         "privacyPolicyURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/PRIVACY.md",
         "termsOfServiceURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.md"
