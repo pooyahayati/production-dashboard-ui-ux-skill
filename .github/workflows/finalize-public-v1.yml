@@ -1,0 +1,55 @@
+name: Finalize public v1.0.0
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove one-time workflow, retag, and update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          WORKFLOW_PATH=".github/workflows/finalize-public-v1.yml"
+          FILE_SHA="$(gh api "repos/$GITHUB_REPOSITORY/contents/$WORKFLOW_PATH?ref=main" --jq .sha)"
+
+          NEW_SHA="$(gh api             --method DELETE             "repos/$GITHUB_REPOSITORY/contents/$WORKFLOW_PATH"             -f message="Remove one-time public release finalizer"             -f sha="$FILE_SHA"             -f branch="main"             --jq '.commit.sha')"
+
+          git init repo
+          cd repo
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch origin "$NEW_SHA"
+          git tag -f v1.0.0 "$NEW_SHA"
+          git push origin refs/tags/v1.0.0 --force
+
+          cat > "$RUNNER_TEMP/release-notes.md" <<'EOF'
+          # Production Dashboard UI/UX Skill v1.0.0
+
+          Initial public release of the Production Dashboard UI/UX Skill.
+
+          Highlights:
+          - Production-focused dashboard UI/UX workflow
+          - Design Discovery Wizard and persistent design profiles
+          - Minimal, Professional, Executive, Data-Dense, Modern SaaS, Premium, and Technical design directions
+          - Persian RTL, English LTR, and bilingual UI architecture
+          - Local self-hosted font support
+          - Logo, favicon, and brand-asset workflow
+          - Light and Dark theme architecture
+          - Responsive design from large desktop to mobile
+          - Dashboard, table, form, filter, chart, CRM, settings, authentication, and system-page patterns
+          - Accessibility and final visual/UX QA
+          - Standalone Agent Skill packaging
+          - Portable Agent Plugin packaging via plugin.json + skills/
+          - Privacy, Terms, Support, and public submission test materials
+          - Automated GitHub Actions validation
+          EOF
+
+          gh release edit v1.0.0             --repo "$GITHUB_REPOSITORY"             --title "Production Dashboard UI/UX Skill v1.0.0"             --notes-file "$RUNNER_TEMP/release-notes.md"
