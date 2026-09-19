@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for **Production Dashboard UI/UX Skill v1.0.0**.
+Prepared for **Production Dashboard UI/UX Skill v1.1.0**.
 
 ## Package
 
@@ -15,7 +15,10 @@ Prepared for **Production Dashboard UI/UX Skill v1.0.0**.
 - [x] Privacy policy
 - [x] Terms of use
 - [x] Support URL
-- [x] Five positive test cases
+- [x] Existing-product audit and improvement reference
+- [x] Existing-product regression and before/after QA
+- [x] Brand/palette/logo treatment improvement rules
+- [x] Seven positive test cases
 - [x] Three negative test cases
 
 ## Suggested public listing
