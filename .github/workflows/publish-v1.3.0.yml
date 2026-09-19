@@ -1,0 +1,58 @@
+name: Publish v1.3.0
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout validated release commit
+        uses: actions/checkout@v4
+        with:
+          ref: dba218d102bd36665e4995d322a43188e412b6c5
+          fetch-depth: 0
+
+      - name: Revalidate
+        run: python3 scripts/validate_release.py
+
+      - name: Package
+        run: python3 scripts/package_release.py --output dist
+
+      - name: Tag and publish v1.3.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: dba218d102bd36665e4995d322a43188e412b6c5
+        run: |
+          git tag -f v1.3.0 "$TARGET_SHA"
+          git push origin refs/tags/v1.3.0 --force
+
+          cat > "$RUNNER_TEMP/release-notes.md" <<'EOF'
+          # Production Dashboard UI/UX Skill v1.3.0
+
+          Product-design and runtime-governance release.
+
+          Highlights:
+          - Reusable token/configuration architecture for easier UI maintenance
+          - Optional owner-only UI/UX Control Center
+          - Typed and allowlisted runtime appearance configuration
+          - Draft → Preview → Validate → Publish lifecycle
+          - Version history, rollback, audit log, reset, import/export, and safe fallback
+          - Server-side authorization boundaries for privileged appearance settings
+          - User personalization, Saved Views, and role-aware UX
+          - Data Trust UX: freshness, timezone, filter scope, stale/partial states, metric definitions, and drill-down
+          - Expanded audit and QA for maintainability, configuration precedence, migrations, accessibility, and performance
+          - Expanded behavioral evals and submission test coverage
+          EOF
+
+          if gh release view v1.3.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release edit v1.3.0 --repo "$GITHUB_REPOSITORY" --title "Production Dashboard UI/UX Skill v1.3.0" --notes-file "$RUNNER_TEMP/release-notes.md"
+          else
+            gh release create v1.3.0 --repo "$GITHUB_REPOSITORY" --target "$TARGET_SHA" --title "Production Dashboard UI/UX Skill v1.3.0" --notes-file "$RUNNER_TEMP/release-notes.md"
+          fi
+
+          gh release upload v1.3.0 --repo "$GITHUB_REPOSITORY" --clobber dist/*.zip dist/SHA256SUMS.txt
