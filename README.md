@@ -1,5 +1,10 @@
 # Production Dashboard UI/UX Skill
 
+[![Validate Skill](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+
 A production-oriented Agent Skill for designing, auditing, redesigning, and implementing professional dashboard and product interfaces with **responsive design, Persian RTL, English LTR, bilingual UI architecture, Light/Dark themes, local fonts, brand assets, dashboard UX patterns, and visual QA**.
 
 Designed for use with **OpenAI Codex** and other tools that support the Agent Skills format.
@@ -315,6 +320,13 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 Issues, design-pattern improvements, RTL/LTR edge cases, accessibility improvements, and production dashboard examples are welcome.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Community and security
+
+- Report bugs and feature requests using the GitHub issue templates.
+- See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes.
+- See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for participation expectations.
+- See [SECURITY.md](SECURITY.md) for security reporting guidance.
 
 ## License
 
