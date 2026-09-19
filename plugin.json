@@ -31,7 +31,9 @@
         "defaultPrompt": [
           "Use Production Dashboard UI/UX Skill to audit and redesign this dashboard as a production-ready product interface.",
           "Use Production Dashboard UI/UX Skill to establish a design profile before implementing this dashboard."
-        ]
+        ],
+        "privacyPolicyURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.md"
       }
     }
   }
