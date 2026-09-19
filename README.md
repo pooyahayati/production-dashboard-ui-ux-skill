@@ -157,6 +157,7 @@ The skill requires review of:
 
 ```text
 production-dashboard-ui-ux-skill/
+├── plugin.json
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml
@@ -167,6 +168,17 @@ production-dashboard-ui-ux-skill/
 │   ├── qa-checklist.md
 │   ├── rtl-ltr-typography.md
 │   └── theme-responsive-brand.md
+├── skills/
+│   └── production-dashboard-ui-ux-skill/
+│       ├── SKILL.md
+│       ├── agents/
+│       └── references/
+├── submission/
+│   ├── TEST_CASES.md
+│   └── SUBMISSION_CHECKLIST.md
+├── PRIVACY.md
+├── TERMS.md
+├── SUPPORT.md
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -174,6 +186,17 @@ production-dashboard-ui-ux-skill/
 ```
 
 `SKILL.md` contains the core workflow and routes the agent to detailed references only when they are relevant. This keeps context usage lower than a single monolithic instruction file.
+
+## Availability
+
+The repository supports two distribution modes:
+
+- **Standalone Agent Skill** — usable from supported local skill environments such as ChatGPT Desktop, Codex CLI, and the Codex IDE extension.
+- **Portable Agent Plugin package** — the repository also contains a root `plugin.json` and the mirrored skill under `skills/`, following the Agent Plugins package layout.
+
+The GitHub repository is public, so anyone can inspect, fork, clone, and install the standalone skill.
+
+Public discovery inside the universal ChatGPT + Codex Plugin Directory is a separate OpenAI review/publishing step. Submission materials are prepared under `submission/`.
 
 ## Installation
 
@@ -190,22 +213,39 @@ Codex's skill installer supports installing skills from GitHub repositories.
 
 ### Manual installation
 
-Clone the repository into your Codex skills directory:
+Clone the repository into your user-level Agent Skills directory:
 
 ```bash
 git clone https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
-  "${CODEX_HOME:-$HOME/.codex}/skills/production-dashboard-ui-ux-skill"
+  "$HOME/.agents/skills/production-dashboard-ui-ux-skill"
 ```
 
-The default Codex skill directory is:
+The current recommended user-level skill directory is:
 
 ```text
-~/.codex/skills/
+~/.agents/skills/
 ```
 
-when `CODEX_HOME` is not configured.
+For repository-specific use, Agent Skills can also live under:
+
+```text
+<repo>/.agents/skills/
+```
+
+You can also ask Codex's skill installer to install the skill directly from this GitHub repository.
 
 Restart or start a new Codex session after installation.
+
+### Portable plugin package
+
+The same repository is also packaged as a portable skills-only Agent Plugin:
+
+```text
+plugin.json
+skills/production-dashboard-ui-ux-skill/
+```
+
+This package is prepared for local plugin testing and public Plugin Directory submission.
 
 ## Usage
 
@@ -327,6 +367,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 - See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes.
 - See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for participation expectations.
 - See [SECURITY.md](SECURITY.md) for security reporting guidance.
+- See [PRIVACY.md](PRIVACY.md) for privacy information.
+- See [TERMS.md](TERMS.md) for terms of use.
+- See [SUPPORT.md](SUPPORT.md) for support channels.
 
 ## License
 
