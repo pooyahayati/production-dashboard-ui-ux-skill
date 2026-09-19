@@ -1,11 +1,11 @@
 # Production Dashboard UI/UX Skill
 
 [![Validate Skill](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 
-A production-oriented Agent Skill for designing, auditing, redesigning, and implementing professional dashboard and product interfaces with **responsive design, Persian RTL, English LTR, bilingual UI architecture, Light/Dark themes, local fonts, brand assets, dashboard UX patterns, and visual QA**.
+A production-oriented Agent Skill for designing, auditing, improving, redesigning, and implementing professional dashboard and product interfaces with **responsive design, Persian RTL, English LTR, bilingual UI architecture, Light/Dark themes, local fonts, brand assets, dashboard UX patterns, and visual QA**.
 
 Designed for use with **OpenAI Codex**, **Claude Code**, **Claude.ai / Claude Desktop**, and other tools that support the Agent Skills format.
 
@@ -57,7 +57,7 @@ Use the Production Dashboard UI/UX Skill to redesign this dashboard.
 
 ### Claude.ai / Claude Desktop
 
-1. Download the Claude-ready ZIP: [production-dashboard-ui-ux-skill-claude-v1.0.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.0.0/production-dashboard-ui-ux-skill-claude-v1.0.0.zip)
+1. Download the Claude-ready ZIP: [production-dashboard-ui-ux-skill-claude-v1.1.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.1.0/production-dashboard-ui-ux-skill-claude-v1.1.0.zip)
 2. In Claude, make sure **Code execution and file creation** is enabled.
 3. Open **Customize → Skills**.
 4. Click **+ → Create skill → Upload a skill**.
@@ -71,6 +71,38 @@ Use the Production Dashboard UI/UX Skill to redesign this dashboard.
 ```
 
 For a new dashboard or a major redesign, the skill inspects the project, establishes a Design Profile, and then applies the approved UI/UX direction.
+
+### Existing projects: audit and improve
+
+The skill is also designed for completed or already-running products. It can inspect the current implementation, identify UI/UX problems, prioritize them, implement low-risk improvements, and validate that working product behavior is preserved.
+
+Example:
+
+```text
+Use $production-dashboard-ui-ux-skill to audit this existing dashboard.
+Review the current UX, visual design, responsive behavior, RTL/LTR,
+accessibility, colors, typography, logo treatment, and design-system consistency.
+Fix safe issues, preserve business logic, and propose any major redesign or
+brand changes before applying them broadly.
+```
+
+For an existing product without `design-profile.md`, the skill first infers an **Observed Baseline** instead of forcing a full discovery interview. Full or partial discovery is used only when strategic design decisions need to change.
+
+It can improve existing:
+
+- UX flows and information architecture
+- visual hierarchy and layout
+- colors and semantic palette
+- typography and local-font usage
+- logo placement, sizing, variants, and brand treatment
+- approved logo/identity redesign when explicitly requested
+- Light/Dark themes
+- navigation
+- tables, forms, filters, charts, and states
+- responsive behavior
+- Persian RTL / English LTR
+- accessibility
+- component consistency and design tokens
 
 ## Why this skill exists
 
@@ -228,6 +260,7 @@ production-dashboard-ui-ux-skill/
 │   ├── dashboard-patterns.md
 │   ├── design-presets.md
 │   ├── discovery-and-profile.md
+│   ├── existing-product-audit.md
 │   ├── qa-checklist.md
 │   ├── rtl-ltr-typography.md
 │   └── theme-responsive-brand.md
@@ -313,7 +346,7 @@ Claude Code can use the skill automatically when relevant, or you can invoke it 
 
 Custom Skills can be uploaded as ZIP files.
 
-1. Download [production-dashboard-ui-ux-skill-claude-v1.0.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.0.0/production-dashboard-ui-ux-skill-claude-v1.0.0.zip) from the v1.0.0 Release.
+1. Download [production-dashboard-ui-ux-skill-claude-v1.1.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.1.0/production-dashboard-ui-ux-skill-claude-v1.1.0.zip) from the v1.1.0 Release.
 2. Enable **Code execution and file creation** in Claude if it is not already enabled.
 3. Go to **Customize → Skills**.
 4. Click **+ → Create skill → Upload a skill**.
@@ -348,6 +381,23 @@ Use $production-dashboard-ui-ux-skill for this dashboard project.
 Inspect the current frontend first, run the design discovery workflow,
 recommend the best design profile, and wait for my approval before
 implementing the new visual direction.
+```
+
+For an existing product that needs a full UI/UX audit and improvement:
+
+```text
+Use $production-dashboard-ui-ux-skill to audit and improve this existing product.
+Inspect the rendered UI and source code, establish the current baseline,
+prioritize problems, fix safe UI/UX issues, preserve business logic,
+and validate the result with regression-aware QA.
+```
+
+For an existing visual/brand refresh:
+
+```text
+Use $production-dashboard-ui-ux-skill to review and improve the current visual system.
+Audit the palette, typography, logo treatment, icons, surfaces, Light/Dark themes,
+and responsive behavior. Propose major brand or identity changes before applying them.
 ```
 
 For an existing Persian dashboard:
@@ -434,7 +484,7 @@ It is designed for Codex skill discovery and progressive loading.
 Current release:
 
 ```text
-v1.0.0
+v1.1.0
 ```
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
