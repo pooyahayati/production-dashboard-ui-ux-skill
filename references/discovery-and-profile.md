@@ -1,6 +1,30 @@
 # Design Discovery and Design Profile
 
-Use this reference when no approved `design-profile.md` exists, or when the user requests a major visual/UX change.
+Use this reference for new products, broad redesigns, brand refreshes, or major visual/UX changes that need strategic design decisions.
+
+For an existing product with no `design-profile.md`, do not automatically run full discovery for every improvement. First infer the current Observed Baseline using `references/existing-product-audit.md`. Use discovery only for unresolved strategic decisions.
+
+## Discovery Modes
+
+### Full Discovery
+Use for new products or when the existing visual system is being substantially replaced.
+
+### Partial Rediscovery
+Use for an existing product when only selected strategic fields need reconsideration, such as:
+
+- palette
+- typography
+- logo/brand direction
+- density
+- navigation
+- Light/Dark strategy
+- responsive priority
+- visual personality
+
+Keep unaffected decisions from the existing product or approved profile.
+
+### Reuse Existing Profile
+Use when `design-profile.md` exists and the requested work fits it.
 
 ## Discovery Strategy
 
@@ -99,7 +123,17 @@ Offer:
 
 Never treat `Transformative` as permission to change business logic.
 
-### 7. Brand Assets
+### 7. Brand Assets and Brand Change Scope
+
+Resolve whether the task is:
+
+- preserve existing identity and improve usage
+- refresh palette/typography/visual language
+- redesign the actual logo/identity
+- use supplied new brand assets
+- Custom
+
+For existing products, actual logo/identity replacement requires explicit approval.
 
 Resolve:
 
