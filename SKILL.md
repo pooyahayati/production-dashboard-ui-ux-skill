@@ -21,10 +21,10 @@ A successful result improves task completion, clarity, information hierarchy, op
 
 ## Non-Negotiables
 
-1. Inspect the product and existing implementation before redesigning it.
+1. Inspect the product and existing implementation before redesigning or improving it.
 2. For a new product or major redesign, establish an approved Design Profile before broad implementation.
 3. Do not force one visual style across all products.
-4. Preserve working behavior unless a change is explicitly justified.
+4. Preserve working behavior unless a change is explicitly justified. Existing visual styling is not sacred: improve or replace weak UI patterns, palette, typography, brand treatment, logo usage, and design-system decisions when the task calls for it.
 5. Do not modify business rules, permissions, validation contracts, backend behavior, or data semantics merely to simplify UI.
 6. Reuse the existing stack and components before adding dependencies.
 7. Treat Persian RTL and English LTR as native design modes, not post-processing.
@@ -35,13 +35,15 @@ A successful result improves task completion, clarity, information hierarchy, op
 12. Do not declare a major UI task complete after first-pass implementation. Perform visual, UX, responsive, directionality, accessibility, and consistency QA.
 13. Avoid generic AI-dashboard aesthetics and template-like repetition.
 14. In interactive work, stop at major approval gates before propagating design decisions across the product.
-15. The approved `design-profile.md` is the UI source of truth.
+15. The approved `design-profile.md` is the UI source of truth when it exists. For existing products without one, use an Observed Baseline until a new profile is approved.
+16. For existing products, distinguish safe corrective improvements from strategic visual, brand, navigation, or workflow changes; fix the former when requested and gate the latter appropriately.
 
 ## Reference Map
 
 Read only the references relevant to the task:
 
-- `references/discovery-and-profile.md` — mandatory for new products, major redesigns, or when no approved Design Profile exists.
+- `references/discovery-and-profile.md` — mandatory for new products, major redesigns, or when a broad new design direction must be established.
+- `references/existing-product-audit.md` — mandatory when reviewing, improving, modernizing, fixing, or redesigning an existing product.
 - `references/design-presets.md` — use when recommending or changing visual style, personality, density, or surface character.
 - `references/dashboard-patterns.md` — use for dashboards, navigation, tables, forms, filters, charts, CRM/detail pages, settings, states, authentication, and system pages.
 - `references/rtl-ltr-typography.md` — mandatory for Persian, English/Persian bilingual, mixed-direction content, localization, or local font work.
@@ -58,7 +60,25 @@ Use:
 
 Read all references relevant to the product.
 
-### B. Existing Product With Approved Profile
+### B. Existing Product — Audit and Improve
+
+Use when the user asks to review and improve an existing application, modernize it, fix UI/UX problems, or generally make the current product better.
+
+Read `references/existing-product-audit.md`.
+
+If an approved `design-profile.md` exists, read it first and preserve it unless the user approves a design-system change.
+
+If no Design Profile exists, do not block useful corrective work. Infer an Observed Baseline from the current product and use it as a temporary constraint.
+
+Use:
+
+`Baseline -> Audit -> Prioritize -> Fix Safe Issues -> Validate -> Compare -> Refine`
+
+This mode may improve or replace weak visual design, palette, typography, logo treatment, iconography, surface system, density, theme behavior, navigation presentation, and component styling when justified.
+
+For broad visual identity, navigation, or workflow changes, switch to Controlled Redesign and use the relevant approval gates.
+
+### C. Existing Product With Approved Profile
 
 Read `design-profile.md` first.
 
@@ -66,9 +86,11 @@ Do not repeat resolved discovery questions.
 
 Use:
 
-`Inspect Relevant Area -> Apply Profile -> Implement -> QA`
+`Inspect Relevant Area -> Audit Against Profile -> Implement -> QA -> Compare`
 
-### C. Targeted UI Change
+The profile is authoritative, but if the existing profile itself is causing material UX, accessibility, brand, or consistency problems, surface the issue and propose a profile revision rather than silently preserving a bad decision.
+
+### D. Targeted UI Change
 
 Examples:
 
@@ -76,18 +98,22 @@ Examples:
 - make this page more premium
 - fix mobile behavior
 - fix RTL
-- change the palette
+- improve the palette
+- refine or replace weak logo treatment
+- improve typography
 - redesign filters
+- improve Light/Dark consistency
+- modernize navigation styling
 
 Revisit only affected profile fields and relevant references.
 
 Do not run full discovery unnecessarily.
 
-### D. Audit Only
+### E. Audit Only
 
-Audit UX, UI, consistency, responsive behavior, RTL/LTR, accessibility, and implementation quality.
+Audit UX, UI, visual design, brand consistency, palette, typography, logo usage, responsive behavior, RTL/LTR, accessibility, design-system quality, and implementation quality.
 
-Do not change code unless requested.
+Do not change code or assets unless requested.
 
 ## Phase 0 — Inspect Before Asking
 
@@ -113,7 +139,9 @@ Never ask for information that can be reliably determined from the repository or
 
 ## Discovery Behavior
 
-If no approved profile exists, read `references/discovery-and-profile.md`.
+For a new product, major redesign, or broad new visual direction with no approved profile, read `references/discovery-and-profile.md`.
+
+For an existing product without a profile, first read `references/existing-product-audit.md` and infer an Observed Baseline. Run discovery only for unresolved strategic decisions that materially affect the redesign.
 
 The discovery process must be recommendation-first:
 
@@ -332,17 +360,33 @@ When supplied:
 
 For Next.js, consider `next/font/local` when appropriate.
 
-## Brand Rule
+## Brand and Visual Identity Rule
 
-Use supplied brand assets instead of recreating them.
+Inspect existing brand assets, logo usage, typography, palette, iconography, and theme treatment as part of the UI/UX audit.
 
-Preserve logo aspect ratio.
+When the existing identity is coherent and appropriate, reuse supplied brand assets and preserve logo aspect ratio.
 
-Do not stretch, crop, recolor, redraw, or distort brand assets without explicit approval.
+Do not stretch, crop, recolor, redraw, or distort an approved logo accidentally.
+
+However, when the user asks to improve the design or brand presentation, or the audit finds material visual/brand problems, the skill may recommend and implement changes to:
+
+- color palette and semantic color tokens
+- typography and font pairing
+- logo sizing, placement, clear space, contrast, and responsive variants
+- favicon and application icons
+- icon system
+- surface treatment
+- radius/elevation system
+- Light/Dark brand variants
+- visual personality and density
+
+Changing the actual logo artwork, brand mark, or core identity is a strategic brand change. Propose the direction and get approval before replacing or redrawing it. If image/design-generation tools are available and the user approves, create or edit the required brand assets; otherwise specify the required asset changes clearly.
+
+A poor existing palette or weak visual system should not be preserved merely because it already exists.
 
 Resolve favicon/app icons rather than leaving them as unrelated defaults.
 
-If a required asset is missing, surface it clearly instead of inventing a random identity.
+If a required asset is missing, surface the gap. For ordinary UI work, do not invent a random identity; for an explicitly approved brand refresh, propose a coherent replacement direction.
 
 ## Theme Rule
 
@@ -451,6 +495,8 @@ During UI work:
 - maintain accessibility semantics
 
 A UI redesign must not become an uncontrolled architecture rewrite.
+
+Existing code and business behavior deserve preservation; weak visual design does not. Refactor or replace presentation-layer patterns when the UX/design benefit is clear and regression risk is controlled.
 
 ## Visual QA Loop
 
