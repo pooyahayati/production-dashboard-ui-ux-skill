@@ -1,0 +1,50 @@
+name: Publish v1.0.0
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check existing release
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create v1.0.0 release
+        if: steps.check.outputs.exists != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > "$RUNNER_TEMP/release-notes.md" <<'EOF'
+          # Production Dashboard UI/UX Skill v1.0.0
+
+          Initial public release.
+
+          Highlights:
+          - Production-focused dashboard UI/UX workflow
+          - Design Discovery Wizard and persistent design profiles
+          - Minimal, Professional, Executive, Data-Dense, Modern SaaS, Premium, and Technical design directions
+          - Persian RTL, English LTR, and bilingual UI architecture
+          - Local self-hosted font support
+          - Logo, favicon, and brand-asset workflow
+          - Light and Dark theme architecture
+          - Responsive design from large desktop to mobile
+          - Dashboard, table, form, filter, chart, CRM, settings, authentication, and system-page patterns
+          - Accessibility and final visual/UX QA
+          - GitHub Actions skill validation
+          EOF
+
+          gh release create v1.0.0             --repo "$GITHUB_REPOSITORY"             --target "$GITHUB_SHA"             --title "Production Dashboard UI/UX Skill v1.0.0"             --notes-file "$RUNNER_TEMP/release-notes.md"
