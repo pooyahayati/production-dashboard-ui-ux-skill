@@ -2,7 +2,7 @@
 name: production-dashboard-ui-ux-skill
 description: Designs and audits production dashboards and product UI with design discovery, responsive layouts, RTL/LTR, Light/Dark themes, local fonts, accessibility, and visual QA.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Production Dashboard UI/UX Skill
