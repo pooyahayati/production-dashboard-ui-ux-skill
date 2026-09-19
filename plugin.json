@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "production-dashboard-ui-ux-skill",
+  "version": "1.0.0",
+  "description": "Production-grade dashboard UI/UX design workflow with design discovery, responsive layouts, Persian RTL, English LTR, Light/Dark themes, local fonts, branding, accessibility, and visual QA.",
+  "author": {
+    "name": "Pooya Hayati",
+    "url": "https://github.com/pooyahayati"
+  },
+  "homepage": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
+  "repository": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
+  "license": "MIT",
+  "keywords": [
+    "dashboard",
+    "ui",
+    "ux",
+    "design-system",
+    "rtl",
+    "responsive-design",
+    "codex",
+    "agent-skill"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Production Dashboard UI/UX Skill",
+        "shortDescription": "Production-grade dashboard UI/UX design and QA",
+        "longDescription": "Design, audit, redesign, and implement production-quality dashboards and operational product interfaces with design discovery, RTL/LTR architecture, responsive behavior, Light/Dark themes, local fonts, branding, accessibility, and visual QA.",
+        "developerName": "Pooya Hayati",
+        "websiteURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
+        "defaultPrompt": [
+          "Use Production Dashboard UI/UX Skill to audit and redesign this dashboard as a production-ready product interface.",
+          "Use Production Dashboard UI/UX Skill to establish a design profile before implementing this dashboard."
+        ]
+      }
+    }
+  }
+}
