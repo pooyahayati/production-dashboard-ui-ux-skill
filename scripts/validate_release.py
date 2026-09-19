@@ -36,8 +36,14 @@ required = [
     f"skills/{SKILL_NAME}/references/existing-product-audit.md",
     f"skills/{SKILL_NAME}/references/execution-safety.md",
     f"skills/{SKILL_NAME}/references/design-system-architecture.md",
+    f"skills/{SKILL_NAME}/references/implementation-strategies.md",
+    f"skills/{SKILL_NAME}/references/visual-regression.md",
+    f"skills/{SKILL_NAME}/references/ux-evidence-and-metrics.md",
     f"skills/{SKILL_NAME}/references/runtime-ui-governance.md",
     f"skills/{SKILL_NAME}/references/personalization-and-data-ux.md",
+    f"skills/{SKILL_NAME}/references/preference-reconciliation.md",
+    f"skills/{SKILL_NAME}/references/operational-interaction-patterns.md",
+    f"skills/{SKILL_NAME}/references/domain-patterns.md",
     f"skills/{SKILL_NAME}/references/accessibility.md",
     f"skills/{SKILL_NAME}/references/performance.md",
     f"skills/{SKILL_NAME}/references/qa-checklist.md",
@@ -45,6 +51,11 @@ required = [
     "submission/SUBMISSION_CHECKLIST.md",
     "evals/README.md",
     "evals/cases.json",
+    "evals/result.schema.json",
+    "evals/RESULT_TEMPLATE.md",
+    "scripts/prepare_eval_run.py",
+    "scripts/validate_eval_fixtures.py",
+    "scripts/validate_eval_result.py",
 ]
 for path in required:
     require(path)
@@ -73,7 +84,7 @@ else:
             error("Skill description must be 1..1024 characters")
         if "Use " not in description or "Do not use" not in description:
             error("Skill description must say when to use and when not to use it")
-        for term in ["personalization", "runtime design governance"]:
+        for term in ["personalization", "runtime design governance", "visual QA"]:
             if term.casefold() not in description.casefold():
                 error(f"Skill description should cover {term}")
 
@@ -89,6 +100,12 @@ for ref in [
     "references/design-system-architecture.md",
     "references/runtime-ui-governance.md",
     "references/personalization-and-data-ux.md",
+    "references/preference-reconciliation.md",
+    "references/visual-regression.md",
+    "references/ux-evidence-and-metrics.md",
+    "references/implementation-strategies.md",
+    "references/operational-interaction-patterns.md",
+    "references/domain-patterns.md",
 ]:
     if ref not in skill_text:
         error(f"SKILL.md does not route to required v1.3 reference: {ref}")
@@ -296,14 +313,16 @@ evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
 cases = evals.get("cases", [])
 if evals.get("version") != VERSION:
     error("Behavioral eval manifest version does not match VERSION")
-if len(cases) < 8:
-    error("Behavioral eval manifest should contain at least 8 cases for v1.3")
+if len(cases) < 10:
+    error("Behavioral eval manifest should contain at least 10 cases for v1.4")
 ids = {case.get("id") for case in cases}
 for required_id in [
     "owner-runtime-governance",
     "personalization-precedence",
     "data-trust",
     "arbitrary-code-config",
+    "visual-regression-redesign",
+    "realtime-operations",
 ]:
     if required_id not in ids:
         error(f"Behavioral eval missing v1.3 case: {required_id}")
@@ -311,6 +330,17 @@ if not any(case.get("type") == "positive" for case in cases):
     error("Behavioral evals need positive cases")
 if not any(case.get("type") == "negative" for case in cases):
     error("Behavioral evals need negative cases")
+
+for case in cases:
+    fixture = case.get("fixture")
+    if fixture:
+        fixture_dir = ROOT / "evals" / "fixtures" / fixture
+        if not fixture_dir.is_dir() or not (fixture_dir / "README.md").is_file():
+            error(f"Missing or invalid eval fixture: {fixture}")
+
+for term in ["visual-regression.md", "ux-evidence-and-metrics.md", "implementation-strategies.md", "preference-reconciliation.md"]:
+    if term not in readme:
+        error(f"README key-reference list missing: {term}")
 
 if ERRORS:
     print("Release validation failed:")

@@ -1,0 +1,30 @@
+:root { font-family: Arial, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f8f9fb; color: #222; display: flex; }
+.sidebar { width: 290px; min-height: 100vh; background: #111827; color: white; padding: 28px; }
+.sidebar a { display: block; color: white; padding: 14px 0; text-decoration: none; }
+main { width: calc(100% - 290px); padding: 42px; }
+header { display: flex; justify-content: space-between; align-items: center; }
+h2 { font-size: 38px; margin: 0; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin: 32px 0; }
+.card { background: white; border-radius: 18px; padding: 26px; box-shadow: 0 8px 30px rgba(0,0,0,.08); }
+.card strong,.card span { display: block; }
+.blue-button { background: #3b82f6; color: white; border: 0; padding: 14px 22px; border-radius: 14px; }
+.gray-button { background: #eee; border: 0; padding: 12px 18px; border-radius: 12px; }
+.toolbar { display: flex; gap: 12px; margin-bottom: 18px; }
+input { padding: 12px; width: 320px; }
+.table-wrap { background: white; border-radius: 18px; overflow: hidden; }
+table { width: 100%; min-width: 900px; border-collapse: collapse; }
+th,td { text-align: left; padding: 18px; border-bottom: 1px solid #eee; }
+.pill { padding: 7px 12px; border-radius: 999px; }
+.pending { background: #fff2cc; color: #805b00; }
+.failed { background: #ffdede; color: #a00000; }
+/* USER-CHANGE: do not remove this custom spacing adjustment during eval */
+tbody td:first-child { padding-left: 22px; }
+button:focus { outline: none; }
+@media (max-width: 700px) {
+  .sidebar { width: 80px; padding: 12px; }
+  main { width: calc(100% - 80px); padding: 18px; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  h2 { font-size: 34px; }
+}

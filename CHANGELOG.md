@@ -2,6 +2,24 @@
 
 All notable changes to this project are documented here.
 
+## [1.4.0] - 2026-09-20
+
+### Quality, Evidence, and Operational UX
+
+- Added an executable behavioral-eval harness with reusable fixture projects, run preparation, result schema, and result validation.
+- Added fixtures for existing-dashboard safety, Owner runtime configuration, Persian RTL tables, analytics/Data Trust, and real-time operations.
+- Added a formal visual-regression protocol with representative baselines, stable screenshot matrices, dynamic-noise handling, semantic review, and explicit coverage reporting.
+- Added an evidence-driven UX framework: Observation → Evidence → User Impact → Hypothesis → Change → Validation.
+- Added confidence guidance and UX metrics without inventing uplift or false precision.
+- Expanded Design Presets into a practical multi-dimension heuristic matrix while keeping presets non-template-based.
+- Added implementation strategies for CSS variables, utility-first CSS, shadcn-style stacks, theme-object libraries, CSS-in-JS, preprocessors, and component frameworks.
+- Added Preference Reconciliation for owner/user settings, Saved Views, removed options, migrations, permission changes, and multi-device conflicts.
+- Added operational interaction patterns for duplicate actions, stale/concurrent edits, bulk operations, long-running jobs, search, live updates, and connection state.
+- Added domain-aware dashboard prompts for CRM, support, ERP/inventory, finance, DevOps/NOC, security operations, healthcare administration, HR, and executive dashboards.
+- Added project-relative performance-budget guidance and stronger accessibility evidence requirements.
+- Connected visual regression, UX evidence, implementation strategies, and preference reconciliation to SKILL routing and final QA.
+- Reduced README specification duplication and moved detailed guidance into references.
+
 ## [1.3.0] - 2026-09-20
 
 ### Product Design and Runtime Governance
@@ -19,7 +37,7 @@ All notable changes to this project are documented here.
 - Expanded existing-product audits to cover maintainability, hard-coded presentation, token architecture, runtime governance, personalization, and data trust.
 - Expanded QA to cover configuration authorization, preview/publish/rollback, migrations, cache invalidation, preference precedence, stale data, and runtime fallback.
 - Extended Design Profile schema with runtime governance, owner/user/code-only classification, and Data UX fields.
-- Added new behavioral evals and public submission coverage for runtime governance and personalization.
+- Added behavioral eval definitions and public submission coverage for runtime governance and personalization.
 
 ## [1.2.0] - 2026-09-20
 

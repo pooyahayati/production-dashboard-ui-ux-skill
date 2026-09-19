@@ -59,6 +59,8 @@ Clarify permission to create, share, edit, and delete shared views.
 
 ## Preference resilience
 
+When owner constraints or schemas can change, read `preference-reconciliation.md`.
+
 Preferences should:
 - survive normal navigation/reloads
 - degrade safely when fields/columns are removed

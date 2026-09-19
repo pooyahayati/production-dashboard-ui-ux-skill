@@ -1,10 +1,8 @@
 # Behavioral Eval Result
 
-Use one copy of this template per candidate release/session.
-
 ## Candidate
 
-- Skill version:
+- Skill version: 1.4.0
 - Host: Codex / Claude Code / Claude.ai
 - Model:
 - Date:
@@ -13,34 +11,35 @@ Use one copy of this template per candidate release/session.
 
 ## Results
 
-| Case | Explicit or implicit trigger | Result | Notes |
+| Case | Trigger | Result | Evidence / notes |
 | --- | --- | --- | --- |
-| existing-safe-improvement | | Pass / Partial / Fail / Not testable | |
-| owner-runtime-governance | | Pass / Partial / Fail / Not testable | |
-| personalization-precedence | | Pass / Partial / Fail / Not testable | |
-| data-trust | | Pass / Partial / Fail / Not testable | |
-| brand-refresh-boundary | | Pass / Partial / Fail / Not testable | |
-| rtl-localization | | Pass / Partial / Fail / Not testable | |
-| backend-non-trigger | | Pass / Partial / Fail / Not testable | |
-| auth-boundary | | Pass / Partial / Fail / Not testable | |
-| arbitrary-code-config | | Pass / Partial / Fail / Not testable | |
+| existing-safe-improvement | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| visual-regression-redesign | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| owner-runtime-governance | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| personalization-precedence | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| data-trust | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| rtl-localization | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| realtime-operations | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| backend-non-trigger | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| auth-boundary | explicit / implicit | Pass / Partial / Fail / Not testable | |
+| arbitrary-code-config | explicit / implicit | Pass / Partial / Fail / Not testable | |
 
 ## Critical release gates
-
-Confirm:
 
 - [ ] Business logic preserved
 - [ ] Working-tree safety preserved
 - [ ] Authorization/security boundaries preserved
 - [ ] No arbitrary executable runtime customization introduced
-- [ ] Owner/user config precedence correct
-- [ ] Runtime config has safe fallback
+- [ ] Owner/user configuration precedence correct
+- [ ] Invalid/missing runtime configuration has a safe fallback
+- [ ] Stored preferences reconcile safely when constraints change
 - [ ] Identity-redesign boundary respected
+- [ ] Visual-validation claims have rendered evidence or explicit limitations
 - [ ] Trigger boundary behaves as expected
 
 ## Regressions
 
-List any behavior that became worse than the previous released Skill.
+List behavior worse than the previous release.
 
 ## Decision
 

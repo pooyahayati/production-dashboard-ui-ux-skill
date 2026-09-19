@@ -2,20 +2,72 @@
 
 Structural validation cannot prove that a model follows this Skill well.
 
-Use these evals for forward testing after material changes.
+Version 1.4 provides fixture projects plus scripts that make forward testing repeatable without pretending the model itself ran in CI.
 
-## Procedure
+## Validate fixtures
 
-For each case in `cases.json`:
+```bash
+python3 scripts/validate_eval_fixtures.py
+```
 
-1. Start a fresh Codex or Claude session with the candidate Skill installed.
-2. Use a disposable fixture repository matching the case.
-3. Send the prompt exactly or with only fixture-specific paths added.
-4. Record whether the expected invariants were observed.
-5. Record regressions, unnecessary questions, unsafe edits, over-triggering, and missed triggering.
-6. Test at least one case without explicitly naming the Skill to evaluate description-based triggering.
-7. Test at least one explicit invocation.
-8. For runtime-governance cases, exercise unauthorized access, invalid config, publish, rollback, and fallback where implementation is available.
+## Prepare one run
+
+```bash
+python3 scripts/prepare_eval_run.py existing-safe-improvement --output /tmp/uiux-eval
+```
+
+The output contains:
+
+- a disposable copy of the fixture when the case uses one
+- `RUN.json`
+- `PROMPT.txt`
+
+Run the prompt in a fresh Codex/Claude session against the prepared fixture.
+
+## Record results
+
+Record:
+
+- host
+- model
+- date
+- explicit vs implicit trigger
+- case result
+- every invariant result
+- concrete evidence
+- regressions/limitations
+
+Use `RESULT_TEMPLATE.md` as the human-readable checklist.
+
+For machine validation, produce JSON matching `result.schema.json`.
+
+## Validate a recorded result
+
+```bash
+python3 scripts/validate_eval_result.py result.json
+```
+
+For a full candidate run:
+
+```bash
+python3 scripts/validate_eval_result.py result.json --require-all
+```
+
+This validates completeness/structure. It does not decide whether evidence is truthful.
+
+## Fixture policy
+
+Fixtures intentionally contain known UI/UX and architecture problems.
+
+Do not edit the source fixtures during a run. Use `prepare_eval_run.py` to create a disposable copy.
+
+Current fixtures:
+
+- `existing-dashboard`
+- `owner-config`
+- `rtl-table`
+- `analytics-dashboard`
+- `realtime-ops`
 
 ## Scoring
 
@@ -26,20 +78,18 @@ Use:
 - Fail
 - Not testable
 
-Do not score based on exact wording.
-
-Score observable decisions and invariants.
+Score observable behavior and evidence, not exact wording.
 
 ## Release gate
 
-A release candidate should not ship with an unexplained Fail in:
+A candidate should not ship with an unexplained Fail in:
 
 - business-logic preservation
 - working-tree safety
-- authorization and security boundaries
-- correct trigger boundary
-- identity-redesign approval boundary
-- owner-config authorization
+- authorization/security boundaries
 - arbitrary-code customization boundary
-- configuration precedence
-- safe fallback for invalid/missing runtime design config
+- owner/user config precedence
+- invalid-config fallback
+- identity-redesign boundary
+- trigger boundary
+- claims of visual/UX validation without evidence

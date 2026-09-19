@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Operations Dashboard Fixture</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h1>Ops</h1>
+    <a href="#">Dashboard</a>
+    <a href="#">Orders</a>
+    <a href="#">Customers</a>
+  </aside>
+  <main>
+    <header>
+      <div>
+        <h2>Orders</h2>
+        <p>Manage recent orders</p>
+      </div>
+      <button class="blue-button" data-permission="orders.create" data-api="POST /api/orders">Create order</button>
+    </header>
+    <section class="cards">
+      <div class="card"><strong>1,249</strong><span>Orders</span></div>
+      <div class="card"><strong>84</strong><span>Pending</span></div>
+      <div class="card"><strong>17</strong><span>Failed</span></div>
+      <div class="card"><strong>$91k</strong><span>Revenue</span></div>
+    </section>
+    <div class="toolbar">
+      <input aria-label="Search orders" placeholder="Search">
+      <button class="gray-button">Filters</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Customer</th><th>Status</th><th>Total</th><th>Created</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>#1024</td><td>Acme Corp</td><td><span class="pill pending">Pending</span></td><td>$1,240</td><td>Today 09:40</td><td><button data-permission="orders.edit" data-api="PATCH /api/orders/1024">Edit</button></td></tr>
+          <tr><td>#1023</td><td>Northwind</td><td><span class="pill failed">Failed</span></td><td>$420</td><td>Today 08:15</td><td><button data-permission="orders.edit" data-api="PATCH /api/orders/1023">Edit</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

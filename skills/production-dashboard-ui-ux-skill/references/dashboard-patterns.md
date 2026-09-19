@@ -1,5 +1,9 @@
 # Dashboard and Product UI Patterns
 
+Read `operational-interaction-patterns.md` for search, real-time updates, concurrency, bulk operations, and long-running jobs.
+
+Read `domain-patterns.md` when domain-specific workflow context materially affects the design.
+
 ## Dashboard philosophy
 
 A dashboard should answer:

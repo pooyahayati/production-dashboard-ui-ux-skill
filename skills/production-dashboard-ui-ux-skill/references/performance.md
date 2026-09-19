@@ -73,6 +73,29 @@ Useful evidence can include:
 
 Use project performance budgets when they exist.
 
+## Performance budget
+
+Prefer an existing project performance budget when one exists.
+
+If no budget exists, do not invent universal thresholds. Instead establish:
+
+- baseline measurement
+- the surfaces/routes affected by the UI change
+- project-specific risk tolerance
+- acceptable before/after delta
+- any regression that requires explanation
+
+Useful budget dimensions can include:
+
+- JavaScript/CSS transfer or bundle delta
+- render/interaction cost
+- Core Web Vitals where applicable
+- table/chart update cost
+- request count/waterfall
+- memory growth in long-running operational sessions
+
+A visual redesign should not introduce a meaningful unexplained performance regression.
+
 ## Perceived performance
 
 UX performance includes:

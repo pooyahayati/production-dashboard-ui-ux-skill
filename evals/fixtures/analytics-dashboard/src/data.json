@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-09-20T12:00:00Z",
+  "timezone": "UTC",
+  "isPartial": true,
+  "failedSources": ["warehouse-eu-2"],
+  "dateRange": {"start": "2026-09-01", "end": "2026-09-20"},
+  "comparison": "previous-period",
+  "revenue": 42520
+}

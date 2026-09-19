@@ -66,12 +66,13 @@ Run:
 
 ```bash
 python3 scripts/validate_release.py
+python3 scripts/validate_eval_fixtures.py
 python3 scripts/package_release.py --output dist
 ```
 
 CI also runs OpenAI's current Skill quick validator.
 
-For material behavior changes, run forward tests from `evals/`.
+For material behavior changes, prepare and run forward tests from `evals/` using `scripts/prepare_eval_run.py`, then validate recorded JSON results with `scripts/validate_eval_result.py`.
 
 ## Pull requests
 

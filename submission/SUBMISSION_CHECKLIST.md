@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for Production Dashboard UI/UX Skill v1.3.0.
+Prepared for Production Dashboard UI/UX Skill v1.4.0.
 
 ## Package
 
@@ -22,11 +22,16 @@ Prepared for Production Dashboard UI/UX Skill v1.3.0.
 - [x] Expected result format for every submission test
 - [x] Fixture and test-data requirements for every submission test
 - [x] Existing-product audit and regression guidance
-- [x] Design-system architecture and changeability guidance
+- [x] Visual-regression protocol
+- [x] UX evidence/metrics framework
+- [x] Design-system implementation strategies
 - [x] Runtime owner UI governance guidance
-- [x] Personalization and Data Trust UX guidance
-- [x] Safe runtime-config boundaries that prohibit arbitrary executable customization
+- [x] Preference reconciliation guidance
+- [x] Operational real-time/search/concurrency patterns
+- [x] Domain-aware dashboard patterns
 - [x] Behavioral eval definitions
+- [x] Behavioral eval fixture projects
+- [x] Eval run preparation/result-validation scripts
 - [ ] Forward behavioral eval run recorded against the final candidate in Codex/Claude
 - [x] Automated structural validation
 - [x] Official OpenAI Skill quick validation in CI

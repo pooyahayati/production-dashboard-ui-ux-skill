@@ -103,3 +103,31 @@ If owners or users can change appearance:
 - keep status meaning available beyond color across configurable palettes
 
 Do not allow an appearance setting to publish a known accessibility blocker merely because a privileged user selected it.
+
+
+## Acceptance evidence
+
+When making an accessibility claim, distinguish:
+
+- inspected
+- automatically checked
+- manually tested
+- measured against a defined criterion
+
+Prefer the project's existing WCAG 2.2 AA acceptance criteria.
+
+Where tooling permits, record actual evidence for:
+
+- text/non-text contrast
+- focus visibility
+- keyboard reachability
+- zoom/reflow
+- target size/spacing where applicable
+- accessible name/role/value
+- error association
+- reduced motion
+- screen-reader structure for representative workflows
+
+Component-specific patterns such as dialogs, menus, tabs, comboboxes, grids, date pickers, and toasts should follow the established accessible interaction pattern used by the project/component library.
+
+Do not claim full WCAG conformance from automated scans alone.

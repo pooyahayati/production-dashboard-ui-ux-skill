@@ -72,6 +72,9 @@ Inspect repository and assets before asking questions.
 - which fields are owner-configurable
 - which fields are user-configurable
 - which fields must remain code-only or locked
+- validation/evidence expectations for major redesigns
+- whether visual-regression capture is available
+- domain-specific risk/workflow constraints when they materially affect UI
 
 ## Runtime governance decision
 
@@ -116,8 +119,8 @@ Use a concise Markdown or YAML-like structure. Include provenance so future work
 Example:
 
 ```yaml
-profile_version: 2
-skill_version: 1.3.0
+profile_version: 3
+skill_version: 1.4.0
 status: approved
 updated_at: 2026-09-20
 
@@ -177,6 +180,11 @@ data_ux:
   show_filter_scope: true
   timezone: product-locale
   saved_views: true
+
+validation:
+  visual_regression: representative
+  ux_evidence: use-when-available
+  performance_budget: existing-or-baseline-delta
 
 decisions:
   - field: visual.density
@@ -238,3 +246,5 @@ Before major UI work:
 - preserve provenance
 - update `skill_version` when materially revising the profile with a newer Skill
 - migrate runtime-governance fields carefully when the schema changes
+- reconcile stored preferences/saved views when owner or schema constraints change
+- update validation/evidence expectations when the redesign scope changes

@@ -4,6 +4,10 @@ Use for completed, legacy, live, or partially redesigned products.
 
 Goal: improve UI/UX without breaking working product behavior.
 
+Use `ux-evidence-and-metrics.md` to ground significant findings when research, analytics, support, or measurable workflow evidence is available.
+
+Use `visual-regression.md` for broad visual changes when rendered capture tooling is available.
+
 ## Modes
 
 ### Audit only
@@ -45,6 +49,8 @@ Inspect enough to understand:
 - owner/system appearance settings when present
 - whether visual values are centralized or hard-coded
 - available tests, browser, and preview tooling
+- available UX evidence, telemetry, support feedback, or research
+- existing screenshot/visual-regression baselines
 
 For large products, sample representative surfaces.
 
@@ -100,6 +106,7 @@ Check:
 - destructive-action safety
 - mismatch with user mental model
 - role-specific needs and repeated work
+- search, bulk-action, concurrency, long-running-job, and real-time behavior where relevant
 
 ### Visual hierarchy
 

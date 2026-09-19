@@ -4,6 +4,8 @@ Use this reference when implementing or auditing a product UI that must remain e
 
 The goal is controlled changeability, not unlimited theming.
 
+Read `implementation-strategies.md` when mapping this architecture into an existing framework or styling stack.
+
 ## Architecture principle
 
 Prefer this flow:

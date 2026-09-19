@@ -19,9 +19,24 @@ Record what was actually checked:
 | Runtime owner config | tested / not applicable / not tested |
 | Rendered inspection | yes/no |
 | Automated checks | list |
+| Visual baseline/diff | captured / existing / unavailable / not applicable |
+| UX evidence | measured / observed / user-provided / inferred / unavailable |
 | Not checked | list |
 
 Do not imply coverage that was not performed.
+
+## Visual regression
+
+For broad visual changes, read `visual-regression.md`.
+
+Verify where applicable:
+
+- representative baseline exists or its absence is reported
+- before/after captures use stable states/viewports
+- dynamic noise is controlled without hiding relevant behavior
+- pixel diffs are reviewed semantically
+- intentional changes are distinguished from regressions
+- uncaptured surfaces are listed
 
 ## Existing-product regression
 
@@ -33,6 +48,18 @@ Do not imply coverage that was not performed.
 - routing and deep links preserved
 - saved preferences preserved/migrated
 - before/after comparison performed where meaningful
+
+## UX evidence and validation
+
+For significant UX findings, read `ux-evidence-and-metrics.md`.
+
+Verify:
+
+- evidence source is stated when available
+- confidence matches evidence strength
+- measured claims have a baseline/source
+- no fabricated uplift, time saving, or compliance percentage
+- validation method matches the hypothesis
 
 ## Product and UX
 
@@ -109,6 +136,7 @@ Verify:
 - reset to defaults
 - migration when fields/options change
 - removed columns/filters degrade safely
+- `preference-reconciliation.md` rules are followed when owner/schema constraints change
 - shared-view permissions
 - user setting cannot grant permission/capability
 - mobile/RTL/LTR behavior
@@ -195,6 +223,8 @@ Run available:
 - authorization tests for owner settings
 - accessibility tooling
 - performance tooling where relevant
+- existing visual-regression tooling where relevant
+- behavioral eval/fixture checks when changing this Skill itself
 
 Do not hide failures.
 

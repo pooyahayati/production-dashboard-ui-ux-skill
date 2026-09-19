@@ -117,6 +117,9 @@ Never modify code, configuration, or assets.
 13. Do not call a major UI task complete without QA of the rendered result when rendering/browser access is available.
 14. Report what was actually inspected and what was not.
 15. Do not claim improvement merely because the interface looks newer.
+16. Base significant UX findings on evidence and confidence; do not fabricate metrics or research.
+17. For broad visual changes, capture or report the absence of a rendered baseline when screenshot/browser tooling is available.
+18. Preserve valid user preferences across schema/config changes and reconcile invalid preferences safely.
 
 ## Reference routing
 
@@ -126,8 +129,14 @@ Read references only when relevant.
 - `references/existing-product-audit.md` — existing-product baseline, audit matrix, severity, safe vs strategic fixes
 - `references/execution-safety.md` — git/working-tree safety, data/privacy boundaries, scoped implementation
 - `references/design-system-architecture.md` — token layers, configuration boundaries, maintainability, implementation architecture
+- `references/implementation-strategies.md` — mapping the architecture into existing CSS/framework/theme systems
 - `references/runtime-ui-governance.md` — owner-only appearance controls, preview/publish/version/rollback/audit
 - `references/personalization-and-data-ux.md` — user preferences, saved views, role-aware UX, data trust/freshness
+- `references/preference-reconciliation.md` — migration/conflict rules for stored preferences and saved views
+- `references/ux-evidence-and-metrics.md` — evidence chain, confidence, UX metrics, validation
+- `references/visual-regression.md` — screenshot baselines, rendered evidence, visual regression protocol
+- `references/operational-interaction-patterns.md` — search, real-time updates, concurrency, bulk/long-running operations
+- `references/domain-patterns.md` — domain-aware prompts for CRM, support, ERP, finance, operations, security, and more
 - `references/design-presets.md` — style vocabulary and visual-direction options
 - `references/dashboard-patterns.md` — dashboard, navigation, table, form, filter, chart, state, auth, system-page patterns
 - `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
@@ -152,6 +161,9 @@ Before broad changes, determine enough of the current product to understand:
 - personalization and saved-view behavior where present
 - whether presentation values are centralized or hard-coded
 - tests and available visual/browser tooling
+- available UX evidence such as support issues, analytics, user feedback, or task data
+- existing visual-regression tooling/baselines
+- real-time, concurrency, search, and bulk-operation behavior where relevant
 
 For large products, sample representative surfaces first. Record audit coverage rather than implying the whole application was inspected.
 
@@ -186,6 +198,8 @@ If justified, read:
 - `references/design-system-architecture.md`
 - `references/runtime-ui-governance.md`
 - `references/personalization-and-data-ux.md`
+- `references/preference-reconciliation.md` when persisted settings can become invalid
+- `references/implementation-strategies.md` when mapping the design architecture into the existing stack
 
 Prefer:
 
@@ -244,6 +258,8 @@ For existing products, preserve functional contracts while improving the present
 
 For configurable products, prefer a token/configuration architecture over scattered page-level values.
 
+When implementing that architecture, read `references/implementation-strategies.md` and adapt to the existing framework rather than forcing a migration.
+
 ## Final validation
 
 Before completion:
@@ -251,8 +267,9 @@ Before completion:
 2. inspect the rendered UI when possible
 3. test representative viewports, themes, directions, and states
 4. run available tests, lint, type checks, accessibility checks, and relevant performance checks
-5. compare meaningful redesigns against the baseline
+5. compare meaningful redesigns against the baseline; read `references/visual-regression.md` for broad visual changes
 6. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
-7. report coverage, limitations, changes made, preserved behavior, and remaining approval items
+7. validate significant UX claims with `references/ux-evidence-and-metrics.md` when evidence is available
+8. report coverage, limitations, changes made, preserved behavior, and remaining approval items
 
 If rendered inspection or a required check cannot be performed, say so explicitly.

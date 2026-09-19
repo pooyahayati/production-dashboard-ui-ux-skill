@@ -242,6 +242,8 @@ Owners define product defaults and allowed ranges.
 
 Users can personalize only explicitly permitted fields.
 
+When owner constraints can invalidate stored user settings or saved views, apply `preference-reconciliation.md`.
+
 Example:
 
 Owner permits:

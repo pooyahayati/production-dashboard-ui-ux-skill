@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "production-dashboard-ui-ux",
-  "version": "1.3.0",
-  "description": "Production dashboard UI/UX design, audit, runtime design governance, personalization, accessibility, performance, responsive behavior, and RTL/LTR workflows.",
+  "version": "1.4.0",
+  "description": "Production dashboard UI/UX design, audit, visual regression, UX evidence, design systems, runtime governance, personalization, accessibility, performance, and RTL/LTR workflows.",
   "author": {
     "name": "Pooya Hayati",
     "url": "https://pooyahayati.com"
@@ -15,6 +15,8 @@
     "ui",
     "ux",
     "design-system",
+    "visual-regression",
+    "ux-research",
     "rtl",
     "responsive-design",
     "personalization",
@@ -27,24 +29,24 @@
       "interface": {
         "displayName": "Production Dashboard UI/UX",
         "shortDescription": "Production dashboard UI/UX",
-        "longDescription": "Design, audit, improve, and redesign production dashboards and operational product interfaces. Includes existing-product UX review, reusable design-system architecture, safe owner-controlled runtime appearance settings, user personalization and saved views, Data Trust UX, responsive behavior, Persian RTL and English LTR, Light/Dark themes, branding, accessibility, performance, tables, forms, navigation, and regression-aware visual QA.",
+        "longDescription": "Design, audit, improve, and redesign production dashboards and operational product interfaces. Includes evidence-driven UX audits, visual regression, existing-product safety, reusable design-system architecture, implementation strategies, owner-controlled runtime appearance settings, preference reconciliation, user personalization and saved views, Data Trust UX, real-time operational patterns, responsive behavior, Persian RTL and English LTR, branding, accessibility, performance, and regression-aware QA.",
         "developerName": "Pooya Hayati",
         "category": "Developer Tools",
         "capabilities": [
           "Audit existing dashboard UI/UX",
+          "Validate redesigns with visual evidence",
           "Design reusable token-based UI systems",
           "Design safe owner appearance controls",
-          "Improve personalization and Data Trust UX",
-          "Improve RTL/LTR and responsive behavior"
+          "Improve personalization and operational UX"
         ],
         "websiteURL": "https://pooyahayati.com",
         "supportURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues",
         "privacyPolicyURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/PRIVACY.md",
         "termsOfServiceURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.md",
         "defaultPrompt": [
-          "Audit this dashboard, fix safe UI/UX issues, preserve behavior, and report remaining risks.",
-          "Design a safe owner UI/UX control center with preview, validation, publish, rollback, and audit history.",
-          "Improve this dashboard's personalization, saved views, data trust, RTL/LTR, accessibility, and responsiveness."
+          "Audit this dashboard, fix safe UI/UX issues, preserve behavior, and validate the result with evidence.",
+          "Redesign this dashboard and provide representative before/after visual-regression evidence.",
+          "Improve this operational UI with reusable design tokens, personalization, data trust, and safe runtime settings."
         ],
         "brandColor": "#0F766E",
         "brandColorDark": "#5EEAD4",
