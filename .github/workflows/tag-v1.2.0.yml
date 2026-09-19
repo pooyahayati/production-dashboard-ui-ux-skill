@@ -1,0 +1,24 @@
+name: Tag v1.2.0
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create v1.2.0 tag on clean release commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: f5f383993a1d1aa1f90b8236d74594501f1e2991
+        run: |
+          git init repo
+          cd repo
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch origin "$TARGET_SHA"
+          git tag -f v1.2.0 "$TARGET_SHA"
+          git push origin refs/tags/v1.2.0 --force
