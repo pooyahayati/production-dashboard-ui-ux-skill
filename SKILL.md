@@ -1,6 +1,6 @@
 ---
 name: production-dashboard-ui-ux-skill
-description: Designs, audits, redesigns, and implements production-quality dashboards, admin panels, SaaS interfaces, CRM systems, operational tools, analytics screens, authentication flows, and related product UI. Use for new dashboard UI, major UI/UX redesigns, design-system work, responsive product interfaces, Persian RTL interfaces, English LTR interfaces, bilingual products, and visual QA of existing frontend applications.
+description: Designs and audits production dashboards and product UI with design discovery, responsive layouts, RTL/LTR, Light/Dark themes, local fonts, accessibility, and visual QA.
 metadata:
   version: "1.0.0"
 ---
