@@ -1,0 +1,25 @@
+name: Finalize v1.0.0 tag
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  retag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move v1.0.0 to clean release commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CLEAN_SHA: 05c08964dd29bbfb8efad4e594c700695222e133
+        run: |
+          git init repo
+          cd repo
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags origin "${CLEAN_SHA}"
+          git tag -f v1.0.0 "${CLEAN_SHA}"
+          git push origin refs/tags/v1.0.0 --force
