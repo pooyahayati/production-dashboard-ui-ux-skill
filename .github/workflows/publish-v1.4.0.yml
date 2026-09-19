@@ -1,0 +1,65 @@
+name: Publish v1.4.0
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout validated release commit
+        uses: actions/checkout@v4
+        with:
+          ref: ddc0684e8ad663a5a40da0e6f36e8fa7549696c5
+          fetch-depth: 0
+
+      - name: Revalidate
+        run: |
+          python3 scripts/validate_release.py
+          python3 scripts/validate_eval_fixtures.py
+
+      - name: Eval harness smoke test
+        run: |
+          python3 scripts/prepare_eval_run.py existing-safe-improvement --output "$RUNNER_TEMP/uiux-eval"
+          test -f "$RUNNER_TEMP/uiux-eval/RUN.json"
+
+      - name: Package
+        run: python3 scripts/package_release.py --output dist
+
+      - name: Tag and publish v1.4.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: ddc0684e8ad663a5a40da0e6f36e8fa7549696c5
+        run: |
+          git tag -f v1.4.0 "$TARGET_SHA"
+          git push origin refs/tags/v1.4.0 --force
+
+          cat > "$RUNNER_TEMP/release-notes.md" <<'EOF'
+          # Production Dashboard UI/UX Skill v1.4.0
+
+          Quality, evidence, and operational-UX release.
+
+          Highlights:
+          - Executable behavioral-eval harness with reusable fixture projects
+          - Visual-regression baseline and before/after evidence protocol
+          - Evidence-driven UX findings and validation metrics
+          - Expanded non-template Design Preset matrix
+          - Framework-aware design-system implementation strategies
+          - Preference reconciliation for owner/user settings and Saved Views
+          - Real-time, search, bulk-action, concurrency, and long-running-job UX patterns
+          - Domain-aware dashboard reasoning for CRM, support, ERP, finance, operations, security, healthcare admin, and HR
+          - Project-relative performance budgets and stronger accessibility evidence
+          - Slimmer README with detailed guidance moved into references
+          EOF
+
+          if gh release view v1.4.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release edit v1.4.0 --repo "$GITHUB_REPOSITORY" --title "Production Dashboard UI/UX Skill v1.4.0" --notes-file "$RUNNER_TEMP/release-notes.md"
+          else
+            gh release create v1.4.0 --repo "$GITHUB_REPOSITORY" --target "$TARGET_SHA" --title "Production Dashboard UI/UX Skill v1.4.0" --notes-file "$RUNNER_TEMP/release-notes.md"
+          fi
+
+          gh release upload v1.4.0 --repo "$GITHUB_REPOSITORY" --clobber dist/*.zip dist/SHA256SUMS.txt
