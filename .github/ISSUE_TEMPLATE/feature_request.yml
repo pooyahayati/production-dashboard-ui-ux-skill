@@ -1,0 +1,48 @@
+name: Feature request
+description: Propose a new production UI/UX rule, pattern, or capability
+title: "[Feature]: "
+labels: []
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or gap
+      description: What production dashboard problem is not covered well today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Best location
+      options:
+        - Core SKILL.md
+        - Discovery and Design Profile
+        - Design presets
+        - Dashboard patterns
+        - RTL / LTR / typography
+        - Theme / responsive / brand
+        - QA checklist
+        - Documentation
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Production example or rationale
+      description: Explain the real-world use case, failure mode, or benefit.
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Contribution principles
+      options:
+        - label: This proposal is a reusable principle rather than a one-off styling preference.
+          required: true
+        - label: This proposal does not require exposing private project data.
+          required: true
