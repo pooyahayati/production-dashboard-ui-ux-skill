@@ -364,6 +364,78 @@ skills/production-dashboard-ui-ux-skill/
 
 This package is prepared for local plugin testing and public Plugin Directory submission.
 
+## Updating to the latest version
+
+### OpenAI Codex — installed with `$skill-installer`
+
+If the skill was installed with Codex's skill installer, ask Codex to replace the installed copy with the latest version from GitHub:
+
+```text
+Update $production-dashboard-ui-ux-skill to the latest version from:
+
+https://github.com/pooyahayati/production-dashboard-ui-ux-skill
+
+Remove the currently installed copy if necessary, then reinstall the latest version using $skill-installer.
+```
+
+A more explicit version is:
+
+```text
+Remove the currently installed production-dashboard-ui-ux-skill,
+then use $skill-installer to install the latest version from:
+
+https://github.com/pooyahayati/production-dashboard-ui-ux-skill
+```
+
+After updating, you can verify the installed version with:
+
+```text
+Check the installed version of $production-dashboard-ui-ux-skill.
+```
+
+If Codex does not immediately recognize the updated skill, restart Codex or start a new session.
+
+### OpenAI Codex — manually cloned with Git
+
+If you installed the skill manually with `git clone` and the installed folder is still a Git repository, update it with:
+
+```bash
+git -C "$HOME/.agents/skills/production-dashboard-ui-ux-skill" pull --ff-only
+```
+
+For a repository-local installation:
+
+```bash
+git -C ".agents/skills/production-dashboard-ui-ux-skill" pull --ff-only
+```
+
+If your installation lives in a different directory, replace the path with the actual skill directory.
+
+### Claude Code — manually cloned with Git
+
+For a global Claude Code installation:
+
+```bash
+git -C "$HOME/.claude/skills/production-dashboard-ui-ux-skill" pull --ff-only
+```
+
+For a project-local Claude Code installation:
+
+```bash
+git -C ".claude/skills/production-dashboard-ui-ux-skill" pull --ff-only
+```
+
+### Claude.ai / Claude Desktop
+
+Custom uploaded Skills are ZIP-based. To update:
+
+1. Download the latest Claude-ready ZIP from the newest GitHub Release.
+2. Open **Customize → Skills**.
+3. Replace or remove the older uploaded version as needed.
+4. Upload the new ZIP and enable it.
+
+Always use the ZIP that matches the latest release version.
+
 ## Usage
 
 Codex may discover the skill automatically when the request matches its description.
