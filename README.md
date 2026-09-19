@@ -7,9 +7,11 @@
 
 A production-oriented Agent Skill for designing, auditing, redesigning, and implementing professional dashboard and product interfaces with **responsive design, Persian RTL, English LTR, bilingual UI architecture, Light/Dark themes, local fonts, brand assets, dashboard UX patterns, and visual QA**.
 
-Designed for use with **OpenAI Codex** and other tools that support the Agent Skills format.
+Designed for use with **OpenAI Codex**, **Claude Code**, **Claude.ai / Claude Desktop**, and other tools that support the Agent Skills format.
 
 ## Quick start
+
+### OpenAI Codex
 
 The fastest way to install and use the skill with Codex is:
 
@@ -19,13 +21,57 @@ https://github.com/pooyahayati/production-dashboard-ui-ux-skill
 Use $production-dashboard-ui-ux-skill to redesign this dashboard.
 ```
 
-After installation, you can invoke it explicitly in any dashboard-related task with:
+After installation, invoke it explicitly with:
 
 ```text
 Use $production-dashboard-ui-ux-skill ...
 ```
 
-For a new dashboard or a major redesign, the skill will inspect the project, establish a Design Profile, and then apply the approved UI/UX direction.
+### Claude Code
+
+Install the skill globally for all Claude Code projects:
+
+```bash
+git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
+  "$HOME/.claude/skills/production-dashboard-ui-ux-skill"
+```
+
+Or install it only for the current project:
+
+```bash
+git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
+  ".claude/skills/production-dashboard-ui-ux-skill"
+```
+
+Then invoke it directly in Claude Code:
+
+```text
+/production-dashboard-ui-ux-skill
+```
+
+Or describe the task naturally, for example:
+
+```text
+Use the Production Dashboard UI/UX Skill to redesign this dashboard.
+```
+
+### Claude.ai / Claude Desktop
+
+1. Download the Claude-ready ZIP from the latest GitHub Release:
+   `production-dashboard-ui-ux-skill-claude-v1.0.0.zip`
+2. In Claude, make sure **Code execution and file creation** is enabled.
+3. Open **Customize → Skills**.
+4. Click **+ → Create skill → Upload a skill**.
+5. Upload the ZIP and enable the skill.
+6. Ask Claude to use it for your dashboard task.
+
+Example:
+
+```text
+Use the Production Dashboard UI/UX Skill to redesign this dashboard.
+```
+
+For a new dashboard or a major redesign, the skill inspects the project, establishes a Design Profile, and then applies the approved UI/UX direction.
 
 ## Why this skill exists
 
@@ -218,45 +264,66 @@ Public discovery inside the universal ChatGPT + Codex Plugin Directory is a sepa
 
 ## Installation
 
-### Ask Codex to install from GitHub
+### OpenAI Codex
 
-Once the repository is public, you can ask Codex:
+Ask Codex to install directly from GitHub:
 
 ```text
-Install the skill from:
+Use $skill-installer to install this skill from:
 https://github.com/pooyahayati/production-dashboard-ui-ux-skill
 ```
 
-Codex's skill installer supports installing skills from GitHub repositories.
-
-### Manual installation
-
-Clone the repository into your user-level Agent Skills directory:
+Manual user-level installation:
 
 ```bash
 git clone https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
   "$HOME/.agents/skills/production-dashboard-ui-ux-skill"
 ```
 
-The current recommended user-level skill directory is:
+For repository-specific use:
 
 ```text
-~/.agents/skills/
+<repo>/.agents/skills/production-dashboard-ui-ux-skill/
 ```
 
-For repository-specific use, Agent Skills can also live under:
+### Claude Code
+
+Claude Code discovers filesystem-based Skills automatically.
+
+Personal installation for all projects:
+
+```bash
+git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
+  "$HOME/.claude/skills/production-dashboard-ui-ux-skill"
+```
+
+Project-only installation:
+
+```bash
+git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
+  ".claude/skills/production-dashboard-ui-ux-skill"
+```
+
+Claude Code can use the skill automatically when relevant, or you can invoke it directly:
 
 ```text
-<repo>/.agents/skills/
+/production-dashboard-ui-ux-skill
 ```
 
-You can also ask Codex's skill installer to install the skill directly from this GitHub repository.
+### Claude.ai / Claude Desktop
 
-Restart or start a new Codex session after installation.
+Custom Skills can be uploaded as ZIP files.
 
-### Portable plugin package
+1. Download `production-dashboard-ui-ux-skill-claude-v1.0.0.zip` from the [v1.0.0 Release](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/tag/v1.0.0).
+2. Enable **Code execution and file creation** in Claude if it is not already enabled.
+3. Go to **Customize → Skills**.
+4. Click **+ → Create skill → Upload a skill**.
+5. Upload the ZIP.
+6. Enable the skill and use it naturally in your conversations.
 
-The same repository is also packaged as a portable skills-only Agent Plugin:
+### Portable Agent Plugin package
+
+The repository is also packaged as a portable skills-only Agent Plugin:
 
 ```text
 plugin.json
@@ -395,4 +462,8 @@ MIT License. See [LICENSE](LICENSE).
 
 ## Author
 
-Created and maintained by **Pooya Hayati**.
+Created and maintained by:
+
+**Pooya Hayati | پویا حیاتی**
+
+[Pooyahayati.com](https://pooyahayati.com)
