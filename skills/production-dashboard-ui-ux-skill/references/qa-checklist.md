@@ -2,6 +2,17 @@
 
 Use before declaring a major UI task complete.
 
+## Existing Product Baseline and Regression
+
+For existing-product work:
+
+- [ ] A baseline was inspected before meaningful changes.
+- [ ] Representative existing workflows were identified.
+- [ ] Business logic, permissions, validation, routing, and data semantics remain intact unless explicitly approved.
+- [ ] Before/after comparison was performed for meaningful redesign work.
+- [ ] Available tests, type checks, linters, and regression checks were run where practical.
+- [ ] Any checks that could not be run are stated explicitly.
+
 ## Product and UX
 
 - [ ] Screen purpose and primary action are clear.
@@ -18,8 +29,11 @@ Use before declaring a major UI task complete.
 
 ## Brand and Typography
 
+- [ ] Existing logo/brand treatment was audited rather than blindly preserved.
 - [ ] Logo and favicon integration are correct.
-- [ ] Relevant logo variants work across enabled themes.
+- [ ] Relevant logo variants work across enabled themes and responsive contexts.
+- [ ] Palette changes improve contrast, semantic clarity, and brand consistency.
+- [ ] Strategic brand/identity changes were explicitly approved before broad rollout.
 - [ ] Supplied local font files are self-hosted and optimized.
 - [ ] Persian, Latin, and mixed-script text are readable when applicable.
 
@@ -70,4 +84,19 @@ If rendered visual inspection is unavailable, state that clearly and complete co
 
 ## Redesign Comparison
 
-For redesigns, confirm improvement in clarity, discoverability, hierarchy, workflow efficiency, responsive behavior, RTL/LTR quality, and maintainability.
+For redesigns and audit+improve work, confirm improvement against the actual baseline in:
+
+- clarity
+- action discoverability
+- hierarchy
+- workflow efficiency
+- scanability
+- table/form efficiency
+- responsive behavior
+- RTL/LTR quality
+- accessibility
+- brand/palette coherence
+- visual consistency
+- maintainability
+
+Do not use "looks newer" as evidence of improvement.
