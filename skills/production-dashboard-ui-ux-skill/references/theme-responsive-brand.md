@@ -1,255 +1,149 @@
 # Theme, Responsive, Brand, Icons, and Motion
 
-## Existing Brand Audit
+## Brand audit
 
-For existing products, do not assume the current brand treatment is correct simply because it already exists.
+For existing products inspect:
 
-Audit:
-
-- logo legibility and quality
-- size, placement, clear space, and alignment
-- contrast across Light/Dark surfaces
-- responsive logo variants
-- favicon/app icons
-- palette quality and accessibility
+- logo quality and legibility
+- size, placement, and clear space
+- Light/Dark variants
+- responsive and collapsed variants
+- favicon and app icons
+- palette quality
 - semantic color mapping
-- typography/brand fit
-- iconography consistency
-- visual personality and product fit
+- typography fit
+- icon consistency
+- visual personality
 
-Classify changes as:
+Classify:
 
-- **Treatment fix** — preserve the identity; improve usage. May proceed when the user requested improvement.
-- **Brand refresh** — change palette, typography, surface language, icon direction, or visual personality. Propose and approve before broad rollout.
-- **Identity redesign** — alter/replace/redraw the actual logo or core mark. Requires explicit approval.
+- treatment fix
+- brand refresh
+- identity redesign
 
-## Brand Assets
+Do not accidentally stretch, crop, recolor, or redraw an approved logo.
 
-Inspect available variants:
+Actual identity replacement requires explicit user intent.
 
-- primary logo
-- horizontal
-- compact
-- symbol-only
-- light-background
-- dark-background
-- monochrome
+## Third-party asset licensing
 
-Use only needed variants.
+Before committing or shipping external fonts, icons, illustrations, or brand assets:
 
-Validate logo in:
+- identify the source
+- confirm redistribution and use terms
+- prefer supplied or already licensed assets
+- record attribution when required
+- avoid copying protected brand material from unrelated products
 
-- sidebar
-- collapsed navigation
-- top bar
-- authentication
-- mobile header
-- Light
-- Dark
+## Palette
 
-Preserve aspect ratio.
+Audit whether colors:
 
-Do not accidentally stretch, crop, recolor, redraw, or distort an approved asset.
+- meet contrast needs
+- separate interactive, neutral, and semantic roles
+- work across enabled themes
+- avoid unrelated accents
+- remain understandable in tables, charts, and forms
+- fit the intended product personality
 
-If the existing logo file is low quality, poorly suited to the interface, missing required variants, or the user explicitly requests a brand/identity improvement, recommend the needed correction.
+Correct low-risk semantic-token problems directly when improvement was requested.
 
-Changing logo placement, size, clear space, theme variant, or responsive treatment is not the same as changing the identity and may be fixed as part of UI work.
+For a broad palette refresh, follow the selected autonomy mode.
 
-Changing the actual logo artwork or core brand mark requires explicit approval before replacement.
+Use semantic tokens instead of scattered raw colors.
 
-## Favicon and App Icons
+## Theme
 
-Prefer existing/supplied brand assets.
+For new products and major redesigns, recommend Light + Dark unless product constraints justify one mode.
 
-Where applicable configure:
-
-- `favicon.ico`
-- SVG/PNG favicon
-- Apple touch icon
-- PWA/app icons
-
-If missing, surface the gap instead of inventing unrelated branding.
-
-## Color and Palette Improvement
-
-For existing products, audit whether the palette:
-
-- provides sufficient contrast
-- distinguishes interactive, neutral, and semantic roles
-- works in both enabled themes
-- avoids excessive unrelated accent colors
-- supports charts/tables/forms without ambiguity
-- aligns with the intended brand personality
-
-Do not preserve a weak palette solely because it is existing code.
-
-When the user asks for improvement:
-- correct unsafe/inconsistent semantic colors directly when low risk
-- for a global palette refresh, propose 2–3 directions and get approval
-- migrate approved colors into semantic tokens rather than spreading new raw values
-
-## Theme Architecture
-
-New/major redesign default:
-
-`Light + Dark`
-
-Use semantic tokens such as:
-
-- background
-- surface
-- surface-muted
-- text-primary
-- text-secondary
-- border-default
-- action-primary
-- action-hover
-- focus-ring
-- status-success
-- status-warning
-- status-danger
-- status-info
-
-Do not spread raw brand hex values through components.
-
-## Light QA
-
-Review:
-
-- background/surface hierarchy
-- text contrast
-- borders
-- shadows/elevation
-- status colors
-- charts
-- tables
-- forms
-- hover/focus/selected/disabled
-
-## Dark QA
+Do not create Dark mode through simple inversion.
 
 Review independently:
 
-- background/surface hierarchy
-- border visibility
-- text and muted text
-- brand/semantic colors
+- backgrounds and surfaces
+- text
+- borders
+- focus
+- hover, selected, and disabled
+- status colors
 - charts
-- tables
-- forms
-- dialogs/tooltips
-- hover/focus/selected/disabled
-- logo variant
+- tables and forms
+- dialogs and tooltips
+- logo variants
 
-Do not create Dark mode by simple inversion.
-
-Avoid pure black everywhere unless intentionally required.
-
-## Responsive Strategy
-
-Responsive design is mandatory.
+## Responsive
 
 Review:
 
-- Large Desktop
-- Desktop
-- Laptop
-- Tablet
-- Mobile
+- large desktop
+- desktop
+- laptop
+- tablet
+- mobile
 
 Use existing breakpoints where sensible.
 
-Responsive changes may include:
+Responsive changes may affect:
 
 - navigation
-- grid/columns
-- visible table fields
-- filter presentation
+- grid and columns
+- table fields
+- filters
 - actions
 - forms
-- chart layout
+- charts
 - secondary panels
 - sticky regions
 - dialogs
 - information priority
 
-Do not merely shrink desktop UI.
+Do not solve mobile by only shrinking fonts.
 
-## Responsive Priority
-
-A discovery choice such as `Desktop-first` means priority, not exclusive support.
-
-Even desktop-heavy products require intentional tablet/mobile behavior.
-
-## Mobile Tables
+## Mobile tables
 
 Choose based on task:
 
 - priority columns
 - expandable rows
-- summary/detail
+- summary and detail
 - horizontal scroll
 - dedicated record view
 
-When column comparison is essential, horizontal scrolling can be superior to cards.
-
-## Mobile Filters
-
-Desktop filter bars may become:
-
-- filter drawer
-- bottom sheet
-- dedicated filter screen
+Horizontal scroll can be superior when cross-column comparison matters.
 
 ## Navigation
 
-Choose based on destination count, depth, frequency, expertise, and width:
+Choose based on destination count, depth, frequency, expertise, and viewport:
 
-- Sidebar
-- Compact Sidebar
-- Top Navigation
-- Hybrid
+- sidebar
+- compact sidebar
+- top navigation
+- hybrid
 
-Mobile navigation may adapt.
+Adapt intentionally on mobile.
 
-## Icon System
+## Icons
 
 Prefer one coherent family.
 
-Use the existing icon set when suitable.
+Do not mix outline, filled, emoji, and multiple libraries without a deliberate system.
 
-Avoid mixing outline, filled, emoji, and multiple libraries without a deliberate system.
-
-Icons should improve recognition, not replace critical labels.
+Icons should assist recognition, not replace critical labels.
 
 ## Motion
 
-Use motion to communicate state, hierarchy, continuity, or feedback.
+Use motion for state, hierarchy, continuity, or feedback.
 
-For operational products normally use subtle motion.
-
-Avoid decorative animation that delays access.
+Keep operational UI subtle.
 
 Respect reduced-motion preferences.
 
-## Surface and Radius
+Avoid animation that delays access.
 
-Use a controlled system.
+## Surface and radius
 
-Possible surface characters:
+Use controlled tokens.
 
-- Flat
-- Soft
-- Bordered
-- Refined
+Prefer hierarchy and borders before heavy shadows.
 
-Possible radius characters:
-
-- Sharp
-- Subtle
-- Rounded
-- Soft
-
-Avoid excessive radius and heavy static-card shadows.
-
-Use shadow mainly for genuinely elevated/floating layers.
+Reserve elevation for genuinely floating layers.

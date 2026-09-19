@@ -1,96 +1,62 @@
 # Design Presets and Variation System
 
-Presets are starting points, not rigid templates.
+Presets are vocabulary and starting points, not templates.
 
-The final visual language must emerge from:
+Never make two unrelated products look the same merely because they selected the same preset.
 
-`Product Context + User Type + Usage Frequency + Density + Style + Personality + Brand + Typography + Palette + Surface + Theme + Direction + Device Priority`
+Combine product context, users, frequency, density, brand, typography, palette, surface, direction, theme, and device priority.
 
 ## Minimal
 
-- low visual noise
-- flat/lightly bordered surfaces
-- limited color
-- restrained controls
-- controlled whitespace
-- minimal decoration
+Use restraint, strong typography, few surfaces, low decoration, and clear whitespace.
+
+Avoid becoming sparse at the expense of operational efficiency.
 
 ## Professional
 
-- balanced density
-- clear hierarchy
-- restrained surfaces
-- strong table/form usability
-- neutral foundation + brand accent
-- precise operational behavior
+Use balanced density, restrained brand expression, clear hierarchy, stable patterns, and moderate surfaces.
 
 ## Executive
 
-- summary-first
-- lower density
-- stronger metric hierarchy
-- more whitespace
-- analytical visualization
-- reduced operational detail
+Emphasize summary, change, exceptions, decisions, and high-level comparison.
+
+Do not hide important caveats behind visual polish.
 
 ## Data-Dense
 
-- high information density
-- compact controls and tables
-- persistent filters
-- visible metadata
-- minimal decoration
-- smaller spacing
-- faster repeated work
+Optimize scanability, compact controls, table quality, shortcuts, and information throughput.
+
+Do not confuse density with clutter.
 
 ## Modern SaaS
 
-- modern typography
-- polished surfaces
-- moderate whitespace
-- subtle motion
-- clean navigation
-- refined empty states
-- restrained brand expression
+Use contemporary but restrained product patterns, compact hierarchy, and flexible responsive behavior.
 
-Avoid generic, template-like SaaS styling.
+Avoid generic template aesthetics.
 
 ## Premium
 
-- refined typography
-- precise spacing
-- restrained palette
-- high-quality iconography
-- controlled motion
-- fewer, better-defined elements
+Use refined typography, spacing, surface treatment, and brand expression.
 
-Premium should remain restrained rather than relying on decorative effects.
+Avoid decorative luxury that slows work.
 
 ## Technical
 
-- high density
-- strong status hierarchy
-- compact data presentation
-- technical metadata visibility
-- optional monospace accents
-- minimal decoration
+Favor precision, system status, explicit state, compact data, and low ambiguity.
 
-## Variation Parameters
+## Variation dimensions
 
-A preset must be further shaped by:
+A preset must influence more than color:
 
-- `Visual Personality`: Calm / Serious / Corporate / Friendly / Bold / Premium / Technical
-- `Density`: Low / Balanced / High
-- `Surface`: Flat / Soft / Bordered / Refined
-- `Radius`: Sharp / Subtle / Rounded / Soft
-- `Color Strategy`: Neutral / Brand-led / Monochrome / Semantic-rich
-- `Navigation`: Sidebar / Compact Sidebar / Top / Hybrid
-- `Content Width`: Compact / Standard / Wide
-- `Motion`: None / Subtle / Expressive
-- `Visualization`: Minimal / Operational / Analytical / Executive
+- typography
+- spacing
+- density
+- navigation
+- border and surface treatment
+- radius and elevation
+- icon behavior
+- chart treatment
+- motion
+- card usage
 
-Changing style must affect more than color.
-
-It may change typography scale, density, spacing, surface treatment, border use, radius, navigation weight, icon treatment, chart emphasis, motion, and card usage.
-
-Do not let a preset override usability.
+Reference screenshots or supplied brand systems may override preset assumptions when they better express the user's intended direction.

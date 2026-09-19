@@ -1,4 +1,9 @@
 interface:
-  display_name: "Production Dashboard UI/UX Skill"
-  short_description: "Production dashboard UI/UX design, audit, improvement, and QA"
-  default_prompt: "Use $production-dashboard-ui-ux-skill to design, audit, improve, or redesign this dashboard as a production-ready responsive RTL/LTR product interface while preserving working product behavior."
+  display_name: "Production Dashboard UI/UX"
+  short_description: "Dashboard UI/UX audit & design"
+  default_prompt: "Audit or improve this dashboard UI/UX while preserving working product behavior."
+policy:
+  products:
+    - CHAT
+    - CODEX
+  allow_implicit_invocation: true

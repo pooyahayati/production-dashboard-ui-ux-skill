@@ -1,102 +1,160 @@
 # Final QA Checklist
 
-Use before declaring a major UI task complete.
+Use before declaring major UI work complete.
 
-## Existing Product Baseline and Regression
+## Coverage report
 
-For existing-product work:
+Record what was actually checked:
 
-- [ ] A baseline was inspected before meaningful changes.
-- [ ] Representative existing workflows were identified.
-- [ ] Business logic, permissions, validation, routing, and data semantics remain intact unless explicitly approved.
-- [ ] Before/after comparison was performed for meaningful redesign work.
-- [ ] Available tests, type checks, linters, and regression checks were run where practical.
-- [ ] Any checks that could not be run are stated explicitly.
+| Dimension | Coverage |
+| --- | --- |
+| Routes/screens | list |
+| Workflows | list |
+| Viewports | desktop/tablet/mobile/etc |
+| Themes | Light/Dark |
+| Direction | RTL/LTR |
+| Roles | list or not tested |
+| States | default/loading/empty/error/etc |
+| Rendered inspection | yes/no |
+| Automated checks | list |
+| Not checked | list |
+
+Do not imply coverage that was not performed.
+
+## Existing-product regression
+
+- baseline inspected
+- working tree and user changes protected
+- business logic preserved
+- permissions preserved
+- validation and data meaning preserved
+- routing and deep links preserved
+- before/after comparison performed where meaningful
 
 ## Product and UX
 
-- [ ] Screen purpose and primary action are clear.
-- [ ] Critical information has appropriate visual priority.
-- [ ] Common workflows are efficient.
-- [ ] Empty, loading, and error states are useful.
-- [ ] User feedback is visible for asynchronous operations.
+- screen purpose is clear
+- primary action is discoverable
+- hierarchy matches importance
+- unnecessary steps and controls reduced
+- empty, error, and permission states are useful
+- destructive actions communicate consequence
 
-## Design System
+## Design system
 
-- [ ] Typography, spacing, colors, borders, radius, and elevation are consistent.
-- [ ] Existing components and patterns are reused where appropriate.
-- [ ] Generic dashboard styling has been reduced.
+- semantic tokens used
+- component states consistent
+- uncontrolled variants reduced
+- icon family coherent
+- spacing, radius, and elevation intentional
+- no unjustified AI-dashboard clichés
 
-## Brand and Typography
+## Brand and typography
 
-- [ ] Existing logo/brand treatment was audited rather than blindly preserved.
-- [ ] Logo and favicon integration are correct.
-- [ ] Relevant logo variants work across enabled themes and responsive contexts.
-- [ ] Palette changes improve contrast, semantic clarity, and brand consistency.
-- [ ] Strategic brand/identity changes were explicitly approved before broad rollout.
-- [ ] Supplied local font files are self-hosted and optimized.
-- [ ] Persian, Latin, and mixed-script text are readable when applicable.
+- logo treatment audited
+- correct variants used
+- palette semantics and contrast improved
+- typography works at real sizes
+- local fonts load correctly
+- strategic identity changes were authorized
+- third-party asset licensing checked when relevant
 
 ## Theme
 
-- [ ] Light theme is reviewed.
-- [ ] Dark theme is reviewed unless explicitly out of scope.
-- [ ] Forms, tables, charts, dialogs, and semantic colors work in enabled themes.
+For each supported theme:
+
+- surface hierarchy
+- text and border contrast
+- status colors
+- focus, hover, selected, and disabled
+- forms, tables, and charts
+- overlays, tooltips, and dialogs
+- logo variant
 
 ## Responsive
 
-- [ ] Desktop, laptop, tablet, and mobile behavior are reviewed.
-- [ ] Navigation, tables, filters, forms, and dialogs adapt intentionally.
-- [ ] Important content is not clipped or hidden unintentionally.
+At representative widths:
 
-## RTL / LTR
+- navigation
+- primary actions
+- tables
+- filters
+- forms
+- dialogs
+- charts
+- sticky regions
+- overflow
+- touch targets
 
-- [ ] Persian RTL is reviewed when applicable.
-- [ ] English LTR is reviewed when applicable.
-- [ ] Mixed-direction values remain readable.
-- [ ] Directional icons, tables, pagination, breadcrumbs, and drawers behave correctly.
-- [ ] Mobile RTL is reviewed independently when applicable.
+## RTL/LTR and localization
+
+Where applicable:
+
+- document lang and dir
+- logical CSS
+- mixed-direction isolation
+- table, pagination, and breadcrumb behavior
+- directional icons
+- chart semantics
+- dates, numbers, currency, and timezone
+- text expansion and truncation
+- mobile direction
 
 ## Accessibility
 
-- [ ] Contrast and focus visibility are acceptable.
-- [ ] Keyboard interaction remains usable.
-- [ ] Form labels and accessible names are meaningful.
-- [ ] Semantic document order is preserved.
+Read `accessibility.md`.
+
+Record automated and manual checks separately.
+
+## Performance
+
+Read `performance.md` when relevant.
+
+Record measurements or inspection evidence rather than unsupported claims.
 
 ## Engineering
 
-- [ ] Existing application architecture is respected.
-- [ ] No unnecessary dependency was introduced.
-- [ ] Implementation remains maintainable.
+Run available:
 
-## Visual Review
+- unit and integration tests
+- lint
+- type check
+- build
+- visual or regression tests
+- accessibility tooling
+- performance tooling where relevant
 
-When a browser, preview, or screenshot capability is available:
+Do not hide failures.
 
-- [ ] Inspect the actual rendered interface.
-- [ ] Review representative screens and states.
-- [ ] Review enabled themes and directions.
-- [ ] Review desktop, tablet, and mobile layouts.
-- [ ] Complete at least one refinement pass.
+## Visual review
 
-If rendered visual inspection is unavailable, state that clearly and complete code-based review.
+When browser, preview, or screenshot tools are available:
 
-## Redesign Comparison
+1. render representative pages
+2. inspect real content
+3. inspect themes, directions, viewports, and states
+4. fix issues
+5. inspect again
 
-For redesigns and audit+improve work, confirm improvement against the actual baseline in:
+If rendered QA is unavailable, say so.
 
-- clarity
-- action discoverability
+## Final comparison
+
+For redesigns compare baseline vs result on:
+
+- task clarity
+- discoverability
+- steps
 - hierarchy
-- workflow efficiency
 - scanability
-- table/form efficiency
-- responsive behavior
-- RTL/LTR quality
+- form and table efficiency
+- error prevention
+- feedback
+- responsiveness
+- RTL/LTR
 - accessibility
-- brand/palette coherence
-- visual consistency
+- performance where relevant
+- brand coherence
 - maintainability
 
-Do not use "looks newer" as evidence of improvement.
+"Looks newer" is not a success criterion.

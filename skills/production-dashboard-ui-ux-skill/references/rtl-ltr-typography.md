@@ -1,176 +1,117 @@
 # RTL, LTR, Localization, and Typography
 
-## Direction Architecture
+Treat Persian RTL and English LTR as first-class modes.
 
-Prefer document-level language and direction:
+## Direction architecture
 
-```html
-<html lang="fa" dir="rtl">
-<html lang="en" dir="ltr">
-```
+Use correct document `lang` and `dir`.
 
-For runtime language switching, update direction at the document/app-shell level.
+Prefer CSS logical properties over hard-coded left and right rules.
 
-Prefer one shared direction-aware component system over separate RTL and LTR component trees.
+Do not create separate duplicated design systems for RTL and LTR.
 
-## Logical CSS
+## Mixed-direction content
 
-Prefer logical properties:
-
-- `margin-inline-start/end`
-- `padding-inline-start/end`
-- `inset-inline-start/end`
-- `border-inline-start/end`
-- `text-align: start/end`
-
-Avoid hard-coded left/right when a logical property works.
-
-## Mixed-Direction Content
-
-A Persian UI often contains LTR values:
+Inside RTL UI, isolate technical LTR values such as:
 
 - email
-- URL
-- domain
-- IP
-- API key/token
-- username
-- file path
-- slug
+- URL or domain
 - version
-- model name
-- technical ID
+- token or ID
 - code
+- phone numbers where appropriate
 
-Use local isolation when needed:
+Use semantic isolation such as `dir="ltr"`, `bdi`, or `unicode-bidi: isolate` when needed.
 
-- `dir="ltr"`
-- `bdi`
-- `unicode-bidi: isolate`
+## Directional icons
 
-Do not use whitespace hacks.
+Mirror only icons whose meaning is directional.
 
-Prevent broken punctuation, parentheses, symbols, phone numbers, URLs, versions, and technical identifiers.
+Do not mirror neutral symbols simply because the document is RTL.
 
-## Directional Icons
+## Tables, forms, and navigation
 
-Usually do not mirror:
+Audit independently:
 
-- settings
-- user
-- search
-- calendar
-- bell
-- trash
-- download/upload
-- database
-
-Review semantic directional icons:
-
-- back/forward
-- previous/next
-- chevrons
-- expand/collapse direction
-
-## RTL Tables
-
-For Persian tables:
-
-- primary descriptive columns normally align to the RTL reading edge
-- technical/numeric values may use local LTR
-- sticky columns must respect direction
-- sort indicators must remain aligned
-- pagination must follow RTL interaction conventions
-- horizontal scrolling must remain understandable
-- actions must stay consistent
-
-Do not reverse data semantics.
-
-## RTL Forms
-
-Persian text inputs are usually RTL.
-
-Technical fields are usually LTR.
-
-Labels, errors, prefixes, and suffixes must remain stable.
+- alignment
+- sticky columns
+- selection controls
+- row actions
+- pagination
+- breadcrumbs
+- drawers
+- input adornments
+- error and help placement
+- mobile behavior
 
 ## Charts
 
-Localize labels, legends, tooltips, and annotations.
+Do not blindly mirror analytical axes.
 
-Do not reverse chronological axes merely because the interface is RTL.
+Preserve chronology, magnitude, and domain conventions.
 
-## Responsive Direction
+## Localization beyond direction
 
-Validate independently:
+Review:
 
-- mobile navigation
-- drawer side/direction
-- back controls
-- breadcrumbs
-- pagination
-- table overflow
-- sticky columns
-- form alignment
-- floating actions
-- modal positioning
+- locale-aware number formatting
+- currency
+- date and time
+- timezone
+- calendar system when applicable
+- digit style when required
+- pluralization
+- text expansion and contraction
+- truncation
+- long localized labels
+- sorting and search behavior
+- string concatenation that breaks translation
 
-Desktop RTL correctness does not guarantee mobile RTL correctness.
+Avoid constructing sentences from fragments when localization will make grammar unstable.
 
-## Accessibility
+## Typography
 
-Visual mirroring must not create an illogical DOM order.
+For user-supplied local fonts inspect:
 
-Keyboard navigation and screen-reader order should remain semantic.
+- family
+- weights and styles
+- WOFF2 availability
+- variable-font support
+- Persian and Arabic shaping
+- Latin glyph quality
+- digits
+- punctuation
+- UI legibility at small sizes
 
-## Local Font Strategy
+Prefer local or self-hosted font loading when requested.
 
-When user-provided font files exist:
+Load only needed weights.
 
-1. inspect family, weights, styles, formats, variable-font support
-2. evaluate Persian glyphs, Latin glyphs, digits, punctuation
-3. prefer `WOFF2`
-4. load only required weights
-5. prefer variable font when beneficial
-6. self-host locally
-7. use framework-native font loading where appropriate
-8. set useful fallbacks
-9. use `font-display: swap` or framework-equivalent behavior when relevant
+Use framework-native loading when practical.
 
-Do not load from Google Fonts/CDN unless explicitly requested.
-
-For Next.js, consider `next/font/local`.
-
-After changing font, re-evaluate:
+After a font change re-evaluate:
 
 - line height
 - type scale
 - weight mapping
-- button/control height
+- button and input height
 - table density
+- truncation
 - vertical rhythm
 
-## Bilingual Typography
+## Bilingual font strategy
 
-Choose either:
+Choose deliberately between:
 
-- one high-quality bilingual family
-- Persian family + compatible Latin companion
+- one family supporting both scripts
+- Persian family plus compatible Latin companion
 
-Match stroke density, visual scale, weights, and line height.
+Test mixed-script lines rather than judging each script separately.
 
-Do not assume a strong Persian font has equally strong Latin forms.
+## Accessibility
 
-## Digits, Dates, Calendar
+Visual mirroring must not break DOM reading order.
 
-When relevant explicitly determine:
+Keyboard order, focus order, and screen-reader structure should remain logical in both directions.
 
-- Persian / Latin / context-sensitive digits
-- Gregorian / Jalali / localized calendar
-- currency format
-- date/time format
-- thousand/decimal separators
-
-Technical values may remain Latin even inside a Persian interface.
-
-Do not mix digit systems randomly.
+Test representative mobile RTL separately from desktop RTL.

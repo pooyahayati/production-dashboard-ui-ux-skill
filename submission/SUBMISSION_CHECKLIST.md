@@ -1,43 +1,53 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for **Production Dashboard UI/UX Skill v1.1.0**.
+Prepared for Production Dashboard UI/UX Skill v1.2.0.
 
 ## Package
 
-- [x] Portable `plugin.json`
-- [x] Skill under `skills/production-dashboard-ui-ux-skill/`
-- [x] Final `SKILL.md`
-- [x] All referenced files included
+- [x] Portable root `plugin.json`
+- [x] Canonical Skill under `skills/production-dashboard-ui-ux-skill/`
+- [x] Single Skill source of truth
 - [x] Public GitHub repository
 - [x] MIT license
-- [x] Release version
-- [x] GitHub Actions validation
 - [x] Privacy policy
-- [x] Terms of use
+- [x] Terms
 - [x] Support URL
-- [x] Existing-product audit and improvement reference
-- [x] Existing-product regression and before/after QA
-- [x] Brand/palette/logo treatment improvement rules
-- [x] Seven positive test cases
+- [x] Square logo asset
+- [x] Square composer icon
+- [x] Developer Tools category
+- [x] Public-directory-safe display name and short description
+- [x] Three starter prompts within final-directory length limits
+- [x] Five positive test cases
 - [x] Three negative test cases
+- [x] Expected result format for every test
+- [x] Fixture and test-data requirements for every test
+- [x] Automated structural validation
+- [x] Official OpenAI Skill quick validation in CI
+- [x] Codex skill-installer smoke test in CI
+- [x] Deterministic release packaging
+- [x] SHA-256 release checksums
 
-## Suggested public listing
+## Listing
 
-**Name**
+**Display name**
 
-Production Dashboard UI/UX Skill
+Production Dashboard UI/UX
 
 **Short description**
 
-Production-grade dashboard UI/UX design, RTL/LTR architecture, responsive behavior, theming, branding, and visual QA.
+Production dashboard UI/UX
 
 **Developer**
 
 Pooya Hayati
 
+**Category**
+
+Developer Tools
+
 **Website**
 
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill
+https://pooyahayati.com
 
 **Support**
 
@@ -55,24 +65,14 @@ https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.
 
 Skills only
 
-**Suggested category**
-
-Developer Tools / Productivity
-
-**Availability**
-
-Select the countries/regions where you want the public plugin to be available, subject to OpenAI submission options.
-
 ## Account-side requirements
 
-The following steps must be completed by the publisher in the OpenAI Platform because they depend on account identity and organization permissions:
+These cannot be completed by repository automation:
 
-- [ ] Developer or business identity verified
-- [ ] App Management permission set to Write for the submitting role, if needed
-- [ ] Plugin draft created in the Plugin Submission Portal
-- [ ] Skill package uploaded
-- [ ] Listing details and policy URLs entered
-- [ ] Test cases entered
-- [ ] Availability selected
+- [ ] Developer or business identity verified in the submitting OpenAI organization
+- [ ] App Management write permission confirmed
+- [ ] Plugin draft created in the Submission Portal
+- [ ] Final plugin ZIP uploaded
+- [ ] Country or region availability selected
 - [ ] Compliance declarations completed
-- [ ] Submission sent for review
+- [ ] Submission sent for OpenAI review

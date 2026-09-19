@@ -1,63 +1,45 @@
 # Changelog
 
-All notable changes to **Production Dashboard UI/UX Skill** are documented here.
+All notable changes to this project are documented here.
 
-The project follows Semantic Versioning.
+## [1.2.0] - 2026-09-20
+
+### Hardening
+
+- Reduced the canonical `SKILL.md` to a route-based entrypoint with progressive disclosure.
+- Removed duplicate root Skill/reference copies; `skills/production-dashboard-ui-ux-skill/` is now the single source of truth.
+- Rewrote the trigger description to state both when to use and when not to use the Skill.
+- Added Collaborative, Delegated, and Audit-only autonomy modes.
+- Added explicit working-tree, privacy, production-data, dependency, and asset-license safety.
+- Added dedicated performance and accessibility references.
+- Added audit coverage reporting and stronger before/after regression criteria.
+- Expanded localization beyond RTL/LTR to numbers, currency, dates, timezone, pluralization, text expansion, truncation, and translation-safe strings.
+- Added chart accessibility and data-alternative guidance.
+- Added Design Profile provenance, status, skill-version, decision-source, and locked-constraint fields.
+- Corrected Codex skill-installer URLs to include the required repository path.
+- Added validated public Plugin metadata, supported category/capabilities, publisher website/support links, brand colors, logo, and composer icon.
+- Shortened Plugin listing fields and starter prompts to public-directory limits.
+- Shortened the plugin package name so `plugin-name:skill-name` stays within the public identity limit.
+- Reworked submission tests to exactly five positive and three negative cases with expected result format and fixture requirements.
+- Added deterministic release packaging, checksums, permanent release workflow, official OpenAI skill validation, and Codex installer smoke testing.
+- Added machine-readable behavioral eval cases and forward-testing instructions.
 
 ## [1.1.0] - 2026-09-19
 
 ### Added
 
 - Dedicated existing-product audit and improvement workflow.
-- Explicit support for completed/live projects without an existing `design-profile.md`.
-- Observed Baseline workflow for preserving working product behavior while improving weak presentation.
-- Audit matrix covering workflows, information architecture, visual hierarchy, components, tables, forms, responsive behavior, accessibility, RTL/LTR, and brand quality.
-- Severity, impact, scope, confidence, and fix-type classification for audit findings.
-- Safe-fix vs approval-required decision rules.
-- Before/after comparison and regression review for existing products.
-- Brand and visual-identity audit for logo treatment, palette, typography, iconography, Light/Dark behavior, and product fit.
-- Controlled support for palette refresh, typography refresh, visual-language changes, and approved logo/identity redesign.
-- Partial Rediscovery mode for strategic changes to existing products.
-
-### Changed
-
-- Existing visual styling is no longer preserved by default when it is a source of poor UX or weak product quality.
-- Existing products can be audited and improved without forcing a full Design Discovery flow.
-- Global brand, palette, navigation, and workflow changes now use explicit approval gates.
-- QA now includes baseline/regression checks and brand/palette comparison.
+- Observed Baseline for completed/live products without a Design Profile.
+- Safe-fix vs strategic-change rules.
+- Brand, palette, and logo-treatment audit with controlled refresh support.
+- Regression-aware before/after QA.
 
 ## [1.0.0] - 2026-09-19
 
 ### Added
 
 - Initial public release.
-- Production-focused dashboard UI/UX workflow.
-- Mandatory Design Discovery Wizard for new products and major redesigns.
-- Persistent `design-profile.md` workflow.
-- Design presets:
-  - Minimal
-  - Professional
-  - Executive
-  - Data-Dense
-  - Modern SaaS
-  - Premium
-  - Technical
-- Visual personality and information-density system.
-- Conservative, Balanced, and Transformative redesign modes.
-- Persian RTL support.
-- English LTR support.
-- Dynamic bilingual RTL/LTR architecture.
-- Mixed-direction technical content handling.
-- Local self-hosted font workflow.
-- Persian/Latin font-pairing guidance.
-- Logo, favicon, and application-icon requirements.
-- Light/Dark theme architecture and QA.
-- Responsive design requirements from large desktop to mobile.
-- Dashboard-specific table, form, filter, KPI, chart, CRM, settings, authentication, and system-page guidance.
-- Visual anti-pattern checks for generic AI-generated dashboard styling.
-- Accessibility target based on WCAG 2.2 AA where practical.
-- Final visual, UX, directionality, responsive, theme, accessibility, and engineering QA checklist.
-- Codex UI metadata in `agents/openai.yaml`.
-- Portable Agent Plugin manifest and mirrored `skills/` package.
-- Privacy, terms, support, and public submission test materials.
-- Automated validation for standalone-skill and plugin-package consistency.
+- Design Discovery and Design Profile workflow.
+- Dashboard and product UI patterns.
+- Persian RTL, English LTR, local fonts, responsive behavior, Light/Dark themes, branding, and visual QA.
+- Codex and Claude distribution guidance.

@@ -1,590 +1,282 @@
 # Production Dashboard UI/UX Skill
 
-[![Validate Skill](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml)
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+[![Validate](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/actions/workflows/validate-skill.yml)
+![Version](https://img.shields.io/badge/version-1.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+A production-oriented Agent Skill for designing, auditing, improving, and redesigning dashboards, admin panels, CRM, analytics, and operational product interfaces.
 
-A production-oriented Agent Skill for designing, auditing, improving, redesigning, and implementing professional dashboard and product interfaces with **responsive design, Persian RTL, English LTR, bilingual UI architecture, Light/Dark themes, local fonts, brand assets, dashboard UX patterns, and visual QA**.
-
-Designed for use with **OpenAI Codex**, **Claude Code**, **Claude.ai / Claude Desktop**, and other tools that support the Agent Skills format.
+Supports OpenAI Codex, Claude Code, Claude.ai / Claude Desktop, Persian RTL, English LTR, bilingual products, responsive UI, Light/Dark themes, branding, accessibility, performance, and existing-product regression-aware improvement.
 
 ## Quick start
 
 ### OpenAI Codex
 
-The fastest way to install and use the skill with Codex is:
+Install from the canonical skill path:
 
 ```text
 Use $skill-installer to install this skill from:
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill
+https://github.com/pooyahayati/production-dashboard-ui-ux-skill/tree/main/skills/production-dashboard-ui-ux-skill
+```
+
+Then use it explicitly:
+
+```text
+Use $production-dashboard-ui-ux-skill to audit and improve this dashboard.
+```
+
+Or:
+
+```text
 Use $production-dashboard-ui-ux-skill to redesign this dashboard.
 ```
 
-After installation, invoke it explicitly with:
+Codex can also select the skill automatically when the request clearly matches its description.
+
+### Claude.ai / Claude Desktop
+
+1. Open the latest GitHub Release.
+2. Download `production-dashboard-ui-ux-skill-claude-v1.2.0.zip`.
+3. In Claude, enable **Code execution and file creation** if required.
+4. Open **Customize → Skills**.
+5. Choose **Upload a skill** and upload the ZIP.
+6. Enable it.
+
+Example:
 
 ```text
-Use $production-dashboard-ui-ux-skill ...
+Use the Production Dashboard UI/UX Skill to audit and improve this dashboard.
 ```
 
 ### Claude Code
 
-Install the skill globally for all Claude Code projects:
+Download the same Claude-ready ZIP from the latest Release and extract the contained `production-dashboard-ui-ux-skill` folder into:
 
-```bash
-git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
-  "$HOME/.claude/skills/production-dashboard-ui-ux-skill"
+```text
+~/.claude/skills/
 ```
 
-Or install it only for the current project:
+Project-local installation can use:
 
-```bash
-git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
-  ".claude/skills/production-dashboard-ui-ux-skill"
+```text
+<project>/.claude/skills/
 ```
 
-Then invoke it directly in Claude Code:
+Then invoke:
 
 ```text
 /production-dashboard-ui-ux-skill
 ```
 
-Or describe the task naturally, for example:
+## Existing projects
+
+The skill is explicitly designed for completed or live products.
+
+It can:
+
+- establish an Observed Baseline
+- audit current UI/UX
+- report audit coverage instead of claiming unverified full coverage
+- classify findings by severity, impact, scope, confidence, and fix type
+- implement safe UI/UX improvements
+- preserve business logic, permissions, validation, routing, API/data meaning, and user changes
+- improve palette, typography, logo treatment, themes, responsive behavior, RTL/LTR, tables, forms, navigation, accessibility, and performance
+- perform before/after and regression-aware QA
+- separate local treatment fixes from strategic redesign or identity changes
+
+Example:
 
 ```text
-Use the Production Dashboard UI/UX Skill to redesign this dashboard.
+Use $production-dashboard-ui-ux-skill to audit and improve this existing product.
+
+Inspect the rendered UI and source code. Review UX, visual hierarchy,
+responsive behavior, RTL/LTR, localization, accessibility, performance,
+palette, typography, logo treatment, themes, tables, forms, navigation,
+and design-system consistency.
+
+Fix safe issues, preserve working product behavior and my existing changes,
+and report audit coverage plus any remaining strategic decisions.
 ```
+
+## Brand and visual refresh
+
+The skill distinguishes:
+
+- **Treatment fix** — logo placement, sizing, spacing, contrast, variants
+- **Brand refresh** — palette, typography, iconography, surfaces, personality
+- **Identity redesign** — actual logo/mark replacement
+
+It may improve weak existing visual design. It does not preserve poor design merely because it already exists.
+
+Actual identity replacement requires explicit user intent.
+
+## Installation details
+
+### Codex via skill-installer
+
+The official Codex skill installer requires a path inside a GitHub repository. Use:
+
+```text
+https://github.com/pooyahayati/production-dashboard-ui-ux-skill/tree/main/skills/production-dashboard-ui-ux-skill
+```
+
+The installer currently installs into `$CODEX_HOME/skills` (default `~/.codex/skills`).
+
+### Codex manual discovery locations
+
+Current Codex documentation also supports user-level skills at:
+
+```text
+~/.agents/skills/
+```
+
+and repository skills at:
+
+```text
+<repo>/.agents/skills/
+```
+
+If installing manually, copy the canonical folder:
+
+```text
+skills/production-dashboard-ui-ux-skill/
+```
+
+into one of those locations.
+
+## Updating
+
+### Codex installed with $skill-installer
+
+The installer intentionally does not overwrite an existing destination.
+
+Ask Codex:
+
+```text
+Update $production-dashboard-ui-ux-skill to the latest version from:
+https://github.com/pooyahayati/production-dashboard-ui-ux-skill/tree/main/skills/production-dashboard-ui-ux-skill
+
+Remove the currently installed copy if necessary, then reinstall it with $skill-installer.
+```
+
+If doing it manually on macOS/Linux and using the installer's default destination:
+
+```bash
+rm -rf "${CODEX_HOME:-$HOME/.codex}/skills/production-dashboard-ui-ux-skill"
+```
+
+Then reinstall from the canonical GitHub path above.
+
+If you maintain a manual Git checkout elsewhere, update that checkout with `git pull --ff-only` and copy or symlink the canonical skill folder into the supported Codex/Claude skills directory.
+
+Restart Codex or start a new session if the updated skill is not immediately detected.
 
 ### Claude.ai / Claude Desktop
 
-1. Download the Claude-ready ZIP: [production-dashboard-ui-ux-skill-claude-v1.1.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.1.0/production-dashboard-ui-ux-skill-claude-v1.1.0.zip)
-2. In Claude, make sure **Code execution and file creation** is enabled.
-3. Open **Customize → Skills**.
-4. Click **+ → Create skill → Upload a skill**.
-5. Upload the ZIP and enable the skill.
-6. Ask Claude to use it for your dashboard task.
+Download the newest Claude-ready ZIP from Releases and replace the older uploaded custom skill.
 
-Example:
+### Claude Code
 
-```text
-Use the Production Dashboard UI/UX Skill to redesign this dashboard.
-```
+Replace the installed skill folder with the folder from the newest Claude-ready ZIP.
 
-For a new dashboard or a major redesign, the skill inspects the project, establishes a Design Profile, and then applies the approved UI/UX direction.
+## Usage examples
 
-### Existing projects: audit and improve
-
-The skill is also designed for completed or already-running products. It can inspect the current implementation, identify UI/UX problems, prioritize them, implement low-risk improvements, and validate that working product behavior is preserved.
-
-Example:
+### New dashboard
 
 ```text
-Use $production-dashboard-ui-ux-skill to audit this existing dashboard.
-Review the current UX, visual design, responsive behavior, RTL/LTR,
-accessibility, colors, typography, logo treatment, and design-system consistency.
-Fix safe issues, preserve business logic, and propose any major redesign or
-brand changes before applying them broadly.
+Use $production-dashboard-ui-ux-skill to design this new dashboard.
+Recommend a design direction, establish a Design Profile, then implement it.
 ```
 
-For an existing product without `design-profile.md`, the skill first infers an **Observed Baseline** instead of forcing a full discovery interview. Full or partial discovery is used only when strategic design decisions need to change.
+### Existing product — audit only
 
-It can improve existing:
+```text
+Use $production-dashboard-ui-ux-skill to audit this existing product.
+Do not modify code. Report coverage, prioritized findings, evidence, and recommendations.
+```
 
-- UX flows and information architecture
-- visual hierarchy and layout
-- colors and semantic palette
-- typography and local-font usage
-- logo placement, sizing, variants, and brand treatment
-- approved logo/identity redesign when explicitly requested
-- Light/Dark themes
-- navigation
-- tables, forms, filters, charts, and states
-- responsive behavior
-- Persian RTL / English LTR
-- accessibility
-- component consistency and design tokens
+### Existing product — delegated improvement
 
-## Why this skill exists
+```text
+Use $production-dashboard-ui-ux-skill to audit and improve this existing product.
+Make reasonable design decisions without stopping for every approval.
+Preserve business logic and report important decisions at the end.
+```
 
-Coding agents can build functional dashboards quickly, but the default result is often visually generic, overly card-based, inconsistent, or weak in production UX.
+### Persian RTL
 
-This skill adds a structured product-design workflow before and during implementation. It helps an agent decide **what the interface should be**, not only how to code it.
+```text
+Use $production-dashboard-ui-ux-skill to improve this Persian RTL dashboard.
+Audit mixed-direction technical values, tables, forms, navigation, typography,
+localization, mobile behavior, and accessibility.
+```
 
-It is intended for:
-
-- Admin panels
-- SaaS dashboards
-- CRM systems
-- Healthcare software
-- Education platforms
-- Financial and operational tools
-- Analytics dashboards
-- Monitoring systems
-- Internal business applications
-- Bilingual Persian/English products
-
-## Key capabilities
-
-### Design Discovery Wizard
-
-For a new product or major redesign, the skill first inspects the project, then resolves only the missing design decisions.
-
-It recommends options and lets the user choose or provide a custom direction.
-
-The resulting `design-profile.md` becomes the UI source of truth for later work.
-
-### Multiple design directions
-
-Built-in starting profiles:
-
-- Minimal
-- Professional
-- Executive
-- Data-Dense
-- Modern SaaS
-- Premium
-- Technical
-
-These are not fixed templates. Each can be combined with different visual personalities, information densities, surface styles, navigation patterns, palettes, and motion levels.
-
-### Persian RTL + English LTR
-
-The skill treats direction as part of the product architecture.
-
-It covers:
-
-- document-level `lang` and `dir`
-- logical CSS properties
-- mixed Persian/English content
-- LTR technical values inside RTL interfaces
-- direction-aware navigation and icons
-- RTL tables and pagination
-- responsive RTL behavior
-- bilingual typography
-- Jalali/Gregorian and digit strategies where applicable
-
-### Local fonts
-
-If font files are supplied, the skill prioritizes local self-hosting.
-
-It checks:
-
-- font family
-- available weights
-- Persian and Latin glyph quality
-- digits and punctuation
-- variable-font support
-- framework-native loading
-
-External font CDNs are not used unless explicitly requested.
-
-### Brand assets
-
-Logo, favicon, and application icons are treated as first-class product requirements.
-
-The skill validates relevant brand variants across:
-
-- Light theme
-- Dark theme
-- sidebar
-- collapsed navigation
-- authentication
-- mobile header
-
-### Light and Dark themes
-
-For new products and major redesigns, dual-theme support is the default.
-
-Themes use semantic tokens rather than component-level hard-coded colors.
-
-Dark mode is designed independently rather than generated through simple inversion.
-
-### Responsive product design
-
-The skill covers:
-
-- Large Desktop
-- Desktop
-- Laptop
-- Tablet
-- Mobile
-
-Responsive behavior may restructure navigation, filters, forms, tables, dialogs, panels, and information priority instead of merely shrinking the desktop UI.
-
-### Dashboard-specific UX
-
-Includes guidance for:
-
-- application shells
-- sidebars and navigation
-- page headers and actions
-- KPIs
-- data tables
-- search and filters
-- bulk actions
-- forms
-- charts
-- CRM detail pages
-- settings
-- empty/loading/error states
-- authentication flows
-- system pages
-
-### Visual QA
-
-A major UI task is not considered complete after the first implementation pass.
-
-The skill requires review of:
-
-- hierarchy
-- typography
-- spacing
-- density
-- brand consistency
-- Light/Dark
-- RTL/LTR
-- responsive behavior
-- accessibility
-- loading/empty/error states
-- maintainability
-
-## Structure
+## Project structure
 
 ```text
 production-dashboard-ui-ux-skill/
 ├── plugin.json
-├── SKILL.md
-├── agents/
-│   └── openai.yaml
-├── references/
-│   ├── dashboard-patterns.md
-│   ├── design-presets.md
-│   ├── discovery-and-profile.md
-│   ├── existing-product-audit.md
-│   ├── qa-checklist.md
-│   ├── rtl-ltr-typography.md
-│   └── theme-responsive-brand.md
+├── assets/
+│   ├── logo.svg
+│   └── composer-icon.svg
 ├── skills/
 │   └── production-dashboard-ui-ux-skill/
 │       ├── SKILL.md
 │       ├── agents/
+│       │   └── openai.yaml
 │       └── references/
+├── scripts/
+│   ├── validate_release.py
+│   └── package_release.py
+├── evals/
 ├── submission/
-│   ├── TEST_CASES.md
-│   └── SUBMISSION_CHECKLIST.md
-├── PRIVACY.md
-├── TERMS.md
-├── SUPPORT.md
+├── .github/workflows/
+├── README.md
 ├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── LICENSE
-└── VERSION
+├── VERSION
+└── LICENSE
 ```
 
-`SKILL.md` contains the core workflow and routes the agent to detailed references only when they are relevant. This keeps context usage lower than a single monolithic instruction file.
+The canonical Skill source exists only under `skills/production-dashboard-ui-ux-skill/`. Release packages are generated from that source.
 
-## Availability
+## Validation
 
-The repository supports two distribution modes:
-
-- **Standalone Agent Skill** — usable from supported local skill environments such as ChatGPT Desktop, Codex CLI, and the Codex IDE extension.
-- **Portable Agent Plugin package** — the repository also contains a root `plugin.json` and the mirrored skill under `skills/`, following the Agent Plugins package layout.
-
-The GitHub repository is public, so anyone can inspect, fork, clone, and install the standalone skill.
-
-Public discovery inside the universal ChatGPT + Codex Plugin Directory is a separate OpenAI review/publishing step. Submission materials are prepared under `submission/`.
-
-## Installation
-
-### OpenAI Codex
-
-Ask Codex to install directly from GitHub:
-
-```text
-Use $skill-installer to install this skill from:
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill
-```
-
-Manual user-level installation:
+Local release checks:
 
 ```bash
-git clone https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
-  "$HOME/.agents/skills/production-dashboard-ui-ux-skill"
+python3 scripts/validate_release.py
+python3 scripts/package_release.py --output dist
 ```
 
-For repository-specific use:
+CI additionally runs OpenAI's current `quick_validate.py` and a Codex installer smoke test on pushes to `main`.
 
-```text
-<repo>/.agents/skills/production-dashboard-ui-ux-skill/
-```
+Behavioral eval cases live in `evals/`. They are intentionally separate from structural validation because model behavior cannot be proven by regex or file checks.
 
-### Claude Code
+## Releases
 
-Claude Code discovers filesystem-based Skills automatically.
+Latest release: **v1.2.0**
 
-Personal installation for all projects:
+Release assets include:
 
-```bash
-git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
-  "$HOME/.claude/skills/production-dashboard-ui-ux-skill"
-```
-
-Project-only installation:
-
-```bash
-git clone --depth 1 https://github.com/pooyahayati/production-dashboard-ui-ux-skill.git \
-  ".claude/skills/production-dashboard-ui-ux-skill"
-```
-
-Claude Code can use the skill automatically when relevant, or you can invoke it directly:
-
-```text
-/production-dashboard-ui-ux-skill
-```
-
-### Claude.ai / Claude Desktop
-
-Custom Skills can be uploaded as ZIP files.
-
-1. Download [production-dashboard-ui-ux-skill-claude-v1.1.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.1.0/production-dashboard-ui-ux-skill-claude-v1.1.0.zip) from the v1.1.0 Release.
-2. Enable **Code execution and file creation** in Claude if it is not already enabled.
-3. Go to **Customize → Skills**.
-4. Click **+ → Create skill → Upload a skill**.
-5. Upload the ZIP.
-6. Enable the skill and use it naturally in your conversations.
-
-### Portable Agent Plugin package
-
-The repository is also packaged as a portable skills-only Agent Plugin:
-
-```text
-plugin.json
-skills/production-dashboard-ui-ux-skill/
-```
-
-This package is prepared for local plugin testing and public Plugin Directory submission.
-
-## Updating to the latest version
-
-### OpenAI Codex — installed with `$skill-installer`
-
-If the skill was installed with Codex's skill installer, ask Codex to replace the installed copy with the latest version from GitHub:
-
-```text
-Update $production-dashboard-ui-ux-skill to the latest version from:
-
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill
-
-Remove the currently installed copy if necessary, then reinstall the latest version using $skill-installer.
-```
-
-A more explicit version is:
-
-```text
-Remove the currently installed production-dashboard-ui-ux-skill,
-then use $skill-installer to install the latest version from:
-
-https://github.com/pooyahayati/production-dashboard-ui-ux-skill
-```
-
-After updating, you can verify the installed version with:
-
-```text
-Check the installed version of $production-dashboard-ui-ux-skill.
-```
-
-If Codex does not immediately recognize the updated skill, restart Codex or start a new session.
-
-### OpenAI Codex — manually cloned with Git
-
-If you installed the skill manually with `git clone` and the installed folder is still a Git repository, update it with:
-
-```bash
-git -C "$HOME/.agents/skills/production-dashboard-ui-ux-skill" pull --ff-only
-```
-
-For a repository-local installation:
-
-```bash
-git -C ".agents/skills/production-dashboard-ui-ux-skill" pull --ff-only
-```
-
-If your installation lives in a different directory, replace the path with the actual skill directory.
-
-### Claude Code — manually cloned with Git
-
-For a global Claude Code installation:
-
-```bash
-git -C "$HOME/.claude/skills/production-dashboard-ui-ux-skill" pull --ff-only
-```
-
-For a project-local Claude Code installation:
-
-```bash
-git -C ".claude/skills/production-dashboard-ui-ux-skill" pull --ff-only
-```
-
-### Claude.ai / Claude Desktop
-
-Custom uploaded Skills are ZIP-based. To update:
-
-1. Download the latest Claude-ready ZIP from the newest GitHub Release.
-2. Open **Customize → Skills**.
-3. Replace or remove the older uploaded version as needed.
-4. Upload the new ZIP and enable it.
-
-Always use the ZIP that matches the latest release version.
-
-## Usage
-
-Codex may discover the skill automatically when the request matches its description.
-
-You can also invoke it explicitly:
-
-```text
-Use $production-dashboard-ui-ux-skill to redesign this dashboard.
-```
-
-For a new project:
-
-```text
-Use $production-dashboard-ui-ux-skill for this dashboard project.
-Inspect the current frontend first, run the design discovery workflow,
-recommend the best design profile, and wait for my approval before
-implementing the new visual direction.
-```
-
-For an existing product that needs a full UI/UX audit and improvement:
-
-```text
-Use $production-dashboard-ui-ux-skill to audit and improve this existing product.
-Inspect the rendered UI and source code, establish the current baseline,
-prioritize problems, fix safe UI/UX issues, preserve business logic,
-and validate the result with regression-aware QA.
-```
-
-For an existing visual/brand refresh:
-
-```text
-Use $production-dashboard-ui-ux-skill to review and improve the current visual system.
-Audit the palette, typography, logo treatment, icons, surfaces, Light/Dark themes,
-and responsive behavior. Propose major brand or identity changes before applying them.
-```
-
-For an existing Persian dashboard:
-
-```text
-Use $production-dashboard-ui-ux-skill to audit and redesign this dashboard.
-The product is Persian and must be native RTL.
-Preserve the business logic and existing API contracts.
-```
-
-For a targeted improvement:
-
-```text
-Use $production-dashboard-ui-ux-skill to improve this data table and filters.
-Reuse the existing design profile and do not redesign unrelated pages.
-```
-
-## Design Profile
-
-For major design work, the skill creates or updates:
-
-```text
-design-profile.md
-```
-
-Typical fields include:
-
-```text
-Product:
-Primary Users:
-Language:
-Direction:
-Design Style:
-Visual Personality:
-Information Density:
-Design Freedom:
-Primary Font:
-Font Source:
-Color Strategy:
-Theme:
-Surface:
-Radius:
-Navigation:
-Responsive Strategy:
-Calendar:
-Digits:
-Motion:
-Logo:
-Favicon:
-Authentication Scope:
-Accessibility Target:
-```
-
-This prevents later pages from drifting into different visual systems.
-
-## Design principles
-
-The skill follows several strong defaults:
-
-- Design for the task, not for the screenshot.
-- Product usability has priority over decoration.
-- Do not default to card grids and four KPI blocks.
-- Tables are first-class productivity tools.
-- RTL is architecture, not a CSS patch.
-- Responsive design may require structural adaptation.
-- Light/Dark themes must be independently validated.
-- User-provided fonts and brand assets take priority.
-- Existing framework and business logic should be preserved unless change is justified.
-- A rendered visual QA pass is preferred whenever the environment supports it.
-
-## Compatibility
-
-The package follows the Agent Skills structure:
-
-- required `SKILL.md`
-- YAML frontmatter with `name` and `description`
-- optional `agents/openai.yaml`
-- conditional `references/`
-
-It is designed for Codex skill discovery and progressive loading.
-
-## Version
-
-Current release:
-
-```text
-v1.1.0
-```
-
-See [CHANGELOG.md](CHANGELOG.md) for release history.
-
-## Contributing
-
-Issues, design-pattern improvements, RTL/LTR edge cases, accessibility improvements, and production dashboard examples are welcome.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+- Claude-ready Skill ZIP
+- OpenAI portable Plugin ZIP
+- SHA-256 checksums
 
 ## Community and security
 
-- Report bugs and feature requests using the GitHub issue templates.
-- See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing changes.
-- See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for participation expectations.
-- See [SECURITY.md](SECURITY.md) for security reporting guidance.
-- See [PRIVACY.md](PRIVACY.md) for privacy information.
-- See [TERMS.md](TERMS.md) for terms of use.
-- See [SUPPORT.md](SUPPORT.md) for support channels.
-
-## License
-
-MIT License. See [LICENSE](LICENSE).
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- [SECURITY.md](SECURITY.md)
+- [PRIVACY.md](PRIVACY.md)
+- [TERMS.md](TERMS.md)
+- [SUPPORT.md](SUPPORT.md)
 
 ## Author
-
-Created and maintained by:
 
 **Pooya Hayati | پویا حیاتی**
 
 [Pooyahayati.com](https://pooyahayati.com)
+
+## License
+
+MIT

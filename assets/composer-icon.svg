@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Dashboard UI/UX icon">
+  <rect width="256" height="256" rx="56" fill="#0F172A"/>
+  <rect x="46" y="48" width="66" height="160" rx="17" fill="#14B8A6"/>
+  <rect x="126" y="48" width="84" height="66" rx="17" fill="#F8FAFC"/>
+  <rect x="126" y="128" width="84" height="80" rx="17" fill="#5EEAD4"/>
+</svg>

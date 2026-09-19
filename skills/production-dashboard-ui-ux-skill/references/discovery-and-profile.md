@@ -1,340 +1,164 @@
 # Design Discovery and Design Profile
 
-Use this reference for new products, broad redesigns, brand refreshes, or major visual/UX changes that need strategic design decisions.
+Use for new products, major redesigns, or strategic changes to an existing visual system.
 
-For an existing product with no `design-profile.md`, do not automatically run full discovery for every improvement. First infer the current Observed Baseline using `references/existing-product-audit.md`. Use discovery only for unresolved strategic decisions.
+Do not run full discovery when a narrow existing-product fix can be resolved from the current baseline.
 
-## Discovery Modes
+## Modes
 
 ### Full Discovery
-Use for new products or when the existing visual system is being substantially replaced.
+
+Use for new products or substantial system replacement.
 
 ### Partial Rediscovery
-Use for an existing product when only selected strategic fields need reconsideration, such as:
+
+Use when only selected strategic fields need reconsideration, such as:
 
 - palette
 - typography
-- logo/brand direction
+- logo or brand direction
 - density
 - navigation
-- Light/Dark strategy
+- theme strategy
 - responsive priority
 - visual personality
 
-Keep unaffected decisions from the existing product or approved profile.
-
 ### Reuse Existing Profile
-Use when `design-profile.md` exists and the requested work fits it.
 
-## Discovery Strategy
+Use when an approved `design-profile.md` exists and remains appropriate.
 
-Inspect first. Ask only unresolved questions.
+## Recommendation-first discovery
 
-For each meaningful choice:
+For unresolved strategic decisions:
 
-- show `Recommended`
-- give one short product-specific reason
-- show alternatives
-- include `Custom`
-- include `Use your recommendation` when appropriate
+1. recommend the strongest option
+2. give a short product-specific reason
+3. offer a small number of alternatives
+4. offer Custom
+5. accept "use your recommendation" as delegated approval where appropriate
 
-Prefer one compact batch.
+Inspect repository and assets before asking questions.
 
-## Required Questions / Decisions
+## Decisions to resolve when relevant
 
-### 1. Product Context
+- product and domain
+- user roles
+- high-frequency workflows
+- operational vs analytical usage
+- language and direction
+- visual style
+- personality
+- density
+- design freedom
+- brand and logo scope
+- font and font source
+- bilingual font strategy
+- palette
+- Light/Dark
+- surface and radius
+- icon system
+- responsive priority
+- navigation
+- date, time, digits, currency, and calendar
+- motion
+- auth and system-page scope
+- accessibility target
 
-Resolve product type, business domain, primary users/roles, key workflows, usage frequency, and operational vs analytical usage.
+## Brand change scope
 
-Useful categories:
+Explicitly distinguish:
 
-- CRM
-- Admin / Management System
-- Analytics Dashboard
-- Monitoring System
-- Healthcare
-- Education
-- Financial
-- Support
-- Content Management
-- Internal Tool
-- SaaS
-- Custom
-
-### 2. Language and Direction
-
-Offer:
-
-- Persian — RTL
-- English — LTR
-- Persian + English — Dynamic RTL/LTR
-- Other / Custom
-
-### 3. Design Style
-
-Offer:
-
-- Minimal
-- Professional
-- Executive
-- Data-Dense
-- Modern SaaS
-- Premium
-- Technical
-- Custom
-
-Recommend one based on the product.
-
-### 4. Visual Personality
-
-Offer:
-
-- Calm
-- Serious
-- Corporate
-- Friendly
-- Bold
-- Premium
-- Technical
-- Custom
-
-Style and personality are independent.
-
-### 5. Information Density
-
-Offer:
-
-- Low
-- Balanced
-- High
-- Use your recommendation
-- Custom
-
-Daily operational tools normally need more density than occasional executive views.
-
-### 6. Design Freedom
-
-Offer:
-
-- Conservative — preserve structure; improve visual quality and usability
-- Balanced — improve UX/UI while preserving core workflows
-- Transformative — allow major structural redesign when justified
-- Custom
-
-Never treat `Transformative` as permission to change business logic.
-
-### 7. Brand Assets and Brand Change Scope
-
-Resolve whether the task is:
-
-- preserve existing identity and improve usage
-- refresh palette/typography/visual language
-- redesign the actual logo/identity
+- preserve identity and improve treatment
+- refresh palette, typography, or visual language
+- redesign actual logo or identity
 - use supplied new brand assets
-- Custom
 
-For existing products, actual logo/identity replacement requires explicit approval.
+Actual identity replacement requires explicit user intent.
 
-Resolve:
+## Design Profile schema
 
-- logo availability and variants
-- favicon
-- app/PWA icons where relevant
-- brand colors
-- brand guidelines
-- custom illustrations/icons
+Use a concise Markdown or YAML-like structure. Include provenance so future work can tell what was observed vs approved.
 
-Choices may include:
+Example:
 
-- I will provide logo and favicon
-- Use existing project assets
-- Logo exists; favicon is missing
-- No brand assets yet
-- Custom
+```yaml
+profile_version: 1
+skill_version: 1.2.0
+status: approved
+updated_at: 2026-09-20
 
-### 8. Primary Font
+product:
+  type: operational-dashboard
+  users: [admin, operator]
+  primary_workflows:
+    - review queue
+    - update record
 
-Always resolve.
+direction:
+  languages: [fa, en]
+  rtl: true
+  ltr: true
 
-Offer:
+visual:
+  style: professional
+  personality: calm
+  density: high
+  freedom: balanced
 
-- I will provide local font files
-- Use existing project font
-- Recommend Persian font
-- Recommend English font
-- Use system font stack
-- Custom
+brand:
+  change_scope: treatment-only
+  logo_source: existing
+  palette: approved-semantic-tokens
+  typography: local-font
 
-For bilingual products also resolve:
+theme:
+  modes: [light, dark]
 
-- one bilingual family
-- Persian family + Latin companion
-- use your recommendation
+responsive:
+  priority: desktop-first
+  supported: [large-desktop, desktop, laptop, tablet, mobile]
 
-### 9. Color Palette
+decisions:
+  - field: visual.density
+    value: high
+    source: user-approved
+  - field: brand.logo_source
+    value: existing
+    source: observed-baseline
 
-If complete brand colors do not exist, propose 2–3 distinct palette directions.
+locked_constraints:
+  - preserve authentication flow
+  - do not change brand mark
 
-For each preview show:
-
-- primary
-- accent
-- background
-- surface
-- primary text
-
-Always include `Custom palette`.
-
-After selection, create full semantic tokens:
-
-- primary/action
-- accent
-- neutral
-- background
-- surfaces
-- border
-- text-primary
-- text-secondary
-- success
-- warning
-- danger
-- info
-- focus ring
-
-### 10. Theme
-
-Default recommendation and requirement for new/major redesign:
-
-- Light + Dark
-
-Allow single-theme only when explicitly required.
-
-### 11. Surface Character
-
-Offer:
-
-- Clean and flat
-- Soft and modern
-- Structured and bordered
-- Premium and refined
-- Use your recommendation
-- Custom
-
-Internally map to border, elevation, shadow, radius, surface hierarchy, and spacing.
-
-### 12. Responsive Priority
-
-Responsive support is mandatory. Ask only priority:
-
-- Desktop-first
-- Mobile-first
-- Balanced
-- Tablet-heavy
-- Use your recommendation
-
-### 13. Navigation
-
-Recommend:
-
-- Sidebar
-- Compact Sidebar
-- Top Navigation
-- Hybrid
-- Custom
-
-Mobile navigation may adapt independently.
-
-### 14. Localization
-
-When relevant resolve:
-
-- Gregorian / Jalali / localized calendar
-- Persian / Latin / context-sensitive digits
-- currency
-- date/time formatting
-
-Do not assume Jalali or Persian digits solely from Persian language.
-
-### 15. Motion
-
-Offer:
-
-- None
-- Subtle
-- Expressive
-- Use your recommendation
-
-Operational software normally defaults to `Subtle`.
-
-### 16. Authentication Scope
-
-Determine which exist:
-
-- Login
-- Sign Up
-- Forgot/Reset Password
-- Email Verification
-- OTP / 2FA
-- Session Expired
-- Account Locked
-- Unauthorized
-
-Do not invent flows the product does not have.
-
-## Design Profile Schema
-
-After discovery, show:
-
-```text
-DESIGN PROFILE
-
-Product:
-Primary Users:
-Usage Pattern:
-Primary Workflows:
-
-Language:
-Direction:
-Localization:
-Calendar:
-Digits:
-
-Design Style:
-Visual Personality:
-Information Density:
-Design Freedom:
-
-Primary Font:
-Font Source:
-Font Strategy:
-Available Weights:
-Latin Companion Font:
-
-Brand Assets:
-Logo:
-Favicon:
-App Icons:
-
-Color Strategy:
-Selected Palette:
-
-Theme:
-Surface:
-Radius:
-Icon System:
-Motion:
-
-Navigation:
-Responsive Strategy:
-Responsive Targets:
-
-Data Visualization:
-Accessibility Target:
-Authentication Scope:
+open_questions: []
 ```
 
-Omit irrelevant fields.
+## Status
 
-Mark inferred decisions as recommendations until approved.
+Use:
 
-After approval, write/update `design-profile.md`.
+- `draft` while strategic choices remain unresolved
+- `approved` after user approval or explicit delegated authority
+
+## Decision source
+
+Useful values:
+
+- user-provided
+- user-approved
+- delegated-recommendation
+- observed-baseline
+- existing-profile
+
+Do not represent an inferred decision as user-approved.
+
+## Updates
+
+Before major UI work:
+
+- read the profile
+- respect locked constraints
+- avoid re-asking resolved questions
+- update only affected strategic fields
+- preserve provenance
+- update `skill_version` when materially revising the profile with a newer Skill

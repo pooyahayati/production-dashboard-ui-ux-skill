@@ -1,138 +1,107 @@
 # Dashboard and Product UI Patterns
 
-## Dashboard Philosophy
+## Dashboard philosophy
 
-A dashboard must answer:
+A dashboard should answer:
 
-- What needs attention?
-- What changed?
-- What is abnormal?
-- What should the user do next?
-- What can wait?
+- what needs attention
+- what changed
+- what is abnormal
+- what should happen next
+- what can wait
 
-It is not a collection of cards and charts.
+Do not start with cards and charts. Start with user decisions.
 
-## Application Shell
+## Shell and navigation
 
-Use a stable shell where appropriate:
+Use a stable shell appropriate to destination count, hierarchy, frequency, roles, and viewport.
 
-- primary navigation
-- top bar
-- page header
-- primary content
-- optional context panel
-- global feedback layer
+Avoid:
 
-Do not duplicate the same navigation in multiple places without purpose.
+- duplicate navigation
+- excessive nesting
+- icon-only critical destinations
+- oversized sidebars
+- decorative separators
 
-## Sidebar
+Persian navigation normally originates from the right; English normally from the left.
 
-Prioritize clear labels, grouping, active state, and role-aware visibility.
-
-Avoid excessive nesting, huge logos, too many separators, overly wide sidebars, and critical icon-only navigation.
-
-Persian sidebars normally start on the right; English sidebars normally start on the left.
-
-## Page Header
-
-Normally communicate:
-
-- where the user is
-- what the page is for
-- the primary action
+## Page headers
 
 Keep operational headers compact.
 
-Normally use one visually dominant primary action.
+Communicate:
+
+- location and context
+- purpose
+- primary action
+
+Normally one action should be visually dominant.
 
 ## Metrics
 
 Do not default to four KPI cards.
 
-A prominent metric should be important and interpretable.
-
-Include comparison period when showing trend.
-
-Prefer a few high-value metrics over many equal-priority KPIs.
+A prominent metric should be important, interpretable, and contextualized with time or comparison where useful.
 
 ## Tables
 
-Before implementation define:
+Treat tables as working tools.
 
-- primary identifier
+Define:
+
+- identifier
 - operational columns
-- status/numeric fields
-- search
+- status and numeric fields
+- search scope
 - filters
 - sort
 - pagination
-- selection
-- bulk actions
+- selection and bulk actions
 - row actions
 - column priority
 - density
-- responsive strategy
 - sticky behavior
+- responsive strategy
 
 Do not expose every database field.
 
-Frequently used row actions may remain visible; move rare actions to overflow.
-
-Show selection count with bulk actions.
+Keep frequent row actions discoverable; move rare actions to overflow.
 
 Show active filters and a clear-filter action.
 
-Search copy should describe scope.
-
-Use infinite scroll cautiously; deterministic admin workflows often benefit from pagination.
+For large datasets read `performance.md`.
 
 ## Forms
 
 Treat forms as workflows.
 
-Group related fields.
+Use:
 
-Prefer one column when labels are long, validation is complex, or focus matters.
+- meaningful grouping
+- visible labels
+- explicit save behavior
+- clear validation
+- preserved valid values after errors
+- unsaved-change protection for meaningful work
 
-Use two columns only when fields are short and strongly related.
+Prefer one column for complex or long-label forms.
 
-Avoid ordinary three/four-column data entry.
-
-Labels must remain visible.
-
-Define save behavior explicitly.
-
-Preserve valid values after validation errors.
-
-Consider unsaved-change protection for meaningful work.
+Use multiple columns only when relationships and available width justify it.
 
 ## Filters
 
-Design filters around real user decisions.
+Design around user decisions, not database schema.
 
-Common types:
-
-- status
-- date range
-- owner
-- category
-- tag
-- role
-- priority
-- location
-- source
-
-Do not create filters simply because a database field exists.
-
-On mobile, use a drawer, bottom sheet, or dedicated filter view when appropriate.
+On mobile, adapt to a drawer, bottom sheet, or dedicated view when appropriate.
 
 ## Charts
 
-Before adding a chart, answer:
+Before adding a chart answer:
 
 `What question does this chart answer?`
 
-Mappings:
+Common mappings:
 
 - trend -> line
 - category comparison -> bar
@@ -141,11 +110,22 @@ Mappings:
 - goal progress -> progress indicator
 - single value -> metric
 
-Use pie/donut sparingly.
+Avoid decorative or 3D charts and excessive series or colors.
 
-Avoid decorative charts, 3D, excessive legends, and too many colors.
+Always clarify:
 
-Preserve chronology and analytical semantics in RTL.
+- unit
+- time range and timezone where relevant
+- missing or partial data
+- comparison baseline
+
+For accessibility:
+
+- do not rely on color alone
+- provide meaningful labels and summary
+- provide a data/table alternative when exact values matter
+
+Preserve chronological and analytical semantics in RTL rather than blindly mirroring.
 
 ## Status
 
@@ -157,132 +137,78 @@ Use a limited semantic palette:
 - info
 - neutral
 
-Never rely on color alone.
+Do not use color alone.
 
-Use badges for status/classification, not every ordinary value.
+Badges are for status or classification, not every ordinary value.
 
-## CRM / Detail Pages
+## Detail and CRM pages
 
-Establish record identity first.
-
-Typical structure:
+Establish:
 
 - identity
 - status
 - primary actions
 - key properties
 - related data
-- activity/history
-- secondary details
-
-Activity timelines should show what happened, who, when, and related object.
+- activity and history
+- secondary detail
 
 Do not make every section an equal-weight card.
 
 ## Settings
 
-Group settings by user mental model, not backend architecture.
-
-Examples:
-
-- General
-- Account
-- Users
-- Permissions
-- Notifications
-- Integrations
-- Billing
-- Security
-- Localization
-- Advanced
+Group by user mental model, not backend modules.
 
 Separate high-impact operations.
 
-Avoid nested tabs inside tabs where possible.
+Avoid nested tabs inside tabs.
 
-## Empty States
+## States
 
 Differentiate:
 
 - no data
 - no search result
 - no filtered result
-- no permission
+- permission denied
 - not configured
 - missing connection
 - load error
+- partial data
 
-A useful empty state explains what is empty and what the user can do next.
+Loading should preserve context.
 
-## Loading
-
-Preserve context.
-
-Use local loading for local operations.
-
-Choose skeleton, spinner, progress, optimistic update, or background status based on the task.
-
-Do not block the whole page for a small update.
-
-## Errors
-
-Communicate:
+Errors should explain:
 
 - what happened
 - what was affected
 - what the user can do
 - whether data was preserved
 
-Avoid generic error copy when better context exists.
+## High-impact actions
 
-## High-Impact Actions
-
-Protect high-impact actions appropriately.
-
-Consider:
-
-- clear consequence text
-- confirmation
-- undo
-- reversible removal
+Use consequence text, confirmation, undo, or reversible removal based on risk.
 
 Avoid confirmation fatigue.
 
-## Authentication
+## Authentication and system pages
 
-Apply the same brand, typography, palette, themes, radius, icons, RTL/LTR, and responsive rules to applicable authentication pages.
+Keep auth, 403, 404, 500, maintenance, offline, connection error, permission denied, and session expired inside the same design system.
 
-Login should prioritize clear authentication, useful errors, credential visibility control, autofill compatibility, keyboard use, accessibility, and responsive behavior.
-
-## System Pages
-
-Style applicable:
-
-- 403
-- 404
-- 500
-- Maintenance
-- Offline
-- Connection Error
-- Permission Denied
-- Session Expired
-
-Do not leave users at dead ends.
+Do not leave dead ends.
 
 ## Mobile
 
-Do not automatically convert every table to cards.
+Do not automatically convert tables to cards.
 
-Possible strategies:
+Choose among:
 
 - priority columns
 - expandable rows
-- summary + detail
+- summary and detail
 - horizontal scroll
 - dedicated detail view
 
-Choose based on the task.
-
-Large dialogs may become full-screen views, bottom sheets, or dedicated pages.
+Large dialogs may become full-screen views, sheets, or pages.
 
 Keep primary actions discoverable.

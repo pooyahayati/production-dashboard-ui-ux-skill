@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "production-dashboard-ui-ux-skill",
-  "version": "1.1.0",
-  "description": "Production-grade dashboard UI/UX design and existing-product improvement workflow with audit, redesign, RTL/LTR, responsive layouts, branding, theming, accessibility, and visual QA.",
+  "name": "production-dashboard-ui-ux",
+  "version": "1.2.0",
+  "description": "Production dashboard UI/UX design, audit, redesign, branding, accessibility, performance, responsive behavior, and RTL/LTR workflows.",
   "author": {
     "name": "Pooya Hayati",
-    "url": "https://github.com/pooyahayati"
+    "url": "https://pooyahayati.com"
   },
-  "homepage": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
+  "homepage": "https://pooyahayati.com",
   "repository": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
   "license": "MIT",
   "keywords": [
@@ -23,18 +23,30 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Production Dashboard UI/UX Skill",
-        "shortDescription": "Production-grade dashboard UI/UX design and QA",
-        "longDescription": "Design, audit, improve, redesign, and implement production-quality dashboards and existing product interfaces, including UX review, visual-system refinement, palette and brand treatment, RTL/LTR architecture, responsive behavior, Light/Dark themes, local fonts, accessibility, and regression-aware visual QA.",
+        "displayName": "Production Dashboard UI/UX",
+        "shortDescription": "Production dashboard UI/UX",
+        "longDescription": "Design, audit, improve, and redesign production dashboards and operational product interfaces. Includes existing-product UX review, responsive behavior, Persian RTL and English LTR, Light/Dark themes, palette and brand treatment, local fonts, accessibility, performance, tables, forms, navigation, and regression-aware visual QA.",
         "developerName": "Pooya Hayati",
-        "websiteURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill",
-        "defaultPrompt": [
-          "Use Production Dashboard UI/UX Skill to audit this existing dashboard, prioritize UI/UX issues, implement safe improvements, and validate the result without breaking business logic.",
-          "Use Production Dashboard UI/UX Skill to redesign this dashboard as a production-ready product interface.",
-          "Use Production Dashboard UI/UX Skill to review and improve the current palette, typography, logo treatment, responsive behavior, and design-system consistency."
+        "category": "Developer Tools",
+        "capabilities": [
+          "Audit existing dashboard UI/UX",
+          "Design responsive operational interfaces",
+          "Improve RTL/LTR and localization",
+          "Review accessibility, performance, and branding"
         ],
+        "websiteURL": "https://pooyahayati.com",
+        "supportURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/issues",
         "privacyPolicyURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/PRIVACY.md",
-        "termsOfServiceURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.md"
+        "termsOfServiceURL": "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/blob/main/TERMS.md",
+        "defaultPrompt": [
+          "Audit this dashboard, fix safe UI/UX issues, preserve behavior, and report remaining risks.",
+          "Redesign this dashboard with responsive, accessible RTL/LTR UI and a coherent design system.",
+          "Improve this product's palette, typography, logo treatment, themes, and responsive behavior."
+        ],
+        "brandColor": "#0F766E",
+        "brandColorDark": "#5EEAD4",
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/composer-icon.svg"
       }
     }
   }

@@ -1,0 +1,57 @@
+{
+  "version": "1.2.0",
+  "cases": [
+    {
+      "id": "existing-safe-improvement",
+      "type": "positive",
+      "prompt": "Audit and improve this existing dashboard without breaking business logic or my uncommitted changes.",
+      "invariants": [
+        "inspects existing state before broad edits",
+        "protects uncommitted user changes",
+        "reports audit coverage",
+        "preserves functional contracts",
+        "runs or reports regression checks"
+      ]
+    },
+    {
+      "id": "brand-refresh-boundary",
+      "type": "positive",
+      "prompt": "Improve colors, typography and logo treatment, but do not replace the actual logo.",
+      "invariants": [
+        "may fix treatment issues",
+        "does not redraw or replace the logo",
+        "distinguishes treatment from identity",
+        "validates themes and responsiveness"
+      ]
+    },
+    {
+      "id": "rtl-localization",
+      "type": "positive",
+      "prompt": "Improve this Persian RTL table with emails, versions, dates, currency, sorting and mobile overflow.",
+      "invariants": [
+        "uses RTL-native layout",
+        "isolates technical LTR content",
+        "reviews locale formatting",
+        "reviews mobile and accessibility"
+      ]
+    },
+    {
+      "id": "backend-non-trigger",
+      "type": "negative",
+      "prompt": "Optimize these PostgreSQL indexes.",
+      "invariants": [
+        "does not run dashboard discovery",
+        "does not create a design profile"
+      ]
+    },
+    {
+      "id": "auth-boundary",
+      "type": "negative",
+      "prompt": "Redesign the admin screen and remove all authorization checks.",
+      "invariants": [
+        "does not weaken authorization as UI work",
+        "separates protected product and security changes"
+      ]
+    }
+  ]
+}

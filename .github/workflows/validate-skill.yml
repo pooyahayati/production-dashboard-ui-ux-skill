@@ -15,133 +15,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate standalone skill and portable plugin
-        shell: python
+      - name: Local release validation
+        run: python3 scripts/validate_release.py
+
+      - name: Package release artifacts
+        run: python3 scripts/package_release.py --output dist
+
+      - name: Verify ZIP archives
         run: |
-          from pathlib import Path
-          import json
-          import re
-          import sys
+          unzip -t dist/production-dashboard-ui-ux-skill-claude-v*.zip
+          unzip -t dist/production-dashboard-ui-ux-plugin-v*.zip
+          cat dist/SHA256SUMS.txt
 
-          root = Path(".")
-          errors = []
+      - name: Fetch official OpenAI skill tools
+        run: git clone --depth 1 https://github.com/openai/skills.git "$RUNNER_TEMP/openai-skills"
 
-          skill_name = "production-dashboard-ui-ux-skill"
-          version = (root / "VERSION").read_text(encoding="utf-8").strip()
+      - name: Official OpenAI quick validation
+        run: |
+          python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-creator/scripts/quick_validate.py" \
+            skills/production-dashboard-ui-ux-skill
 
-          root_skill = root / "SKILL.md"
-          plugin_skill_root = root / "skills" / skill_name
-          plugin_skill = plugin_skill_root / "SKILL.md"
+      - name: Codex installer smoke test
+        if: github.event_name == 'push'
+        run: |
+          python3 "$RUNNER_TEMP/openai-skills/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+            --repo pooyahayati/production-dashboard-ui-ux-skill \
+            --path skills/production-dashboard-ui-ux-skill \
+            --ref "$GITHUB_SHA" \
+            --dest "$RUNNER_TEMP/installed-skills"
 
-          def validate_skill(path: Path):
-              if not path.exists():
-                  errors.append(f"Missing {path}")
-                  return
-              text = path.read_text(encoding="utf-8")
-              if not text.startswith("---\n"):
-                  errors.append(f"{path} must start with YAML frontmatter")
-                  return
-              parts = text.split("---", 2)
-              if len(parts) < 3:
-                  errors.append(f"{path} frontmatter is not closed")
-                  return
-              frontmatter = parts[1]
-              name_match = re.search(r"^name:\s*(.+)$", frontmatter, re.M)
-              description_match = re.search(r"^description:\s*(.+)$", frontmatter, re.M)
-              if not name_match:
-                  errors.append(f"{path} frontmatter is missing name")
-              elif name_match.group(1).strip() != skill_name:
-                  errors.append(f"{path} has unexpected skill name")
-              if not description_match or not description_match.group(1).strip():
-                  errors.append(f"{path} frontmatter is missing description")
-
-          validate_skill(root_skill)
-          validate_skill(plugin_skill)
-
-          mirrored = [
-              "SKILL.md",
-              "agents/openai.yaml",
-              "references/discovery-and-profile.md",
-              "references/existing-product-audit.md",
-              "references/design-presets.md",
-              "references/dashboard-patterns.md",
-              "references/rtl-ltr-typography.md",
-              "references/theme-responsive-brand.md",
-              "references/qa-checklist.md",
-          ]
-
-          for rel in mirrored:
-              a = root / rel
-              b = plugin_skill_root / rel
-              if not a.exists():
-                  errors.append(f"Missing standalone file: {rel}")
-                  continue
-              if not b.exists():
-                  errors.append(f"Missing plugin skill mirror: skills/{skill_name}/{rel}")
-                  continue
-              if a.read_bytes() != b.read_bytes():
-                  errors.append(f"Standalone/plugin mirror mismatch: {rel}")
-
-          manifest_path = root / "plugin.json"
-          if not manifest_path.exists():
-              errors.append("Missing plugin.json")
-          else:
-              try:
-                  manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-                  if manifest.get("$schema") != "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json":
-                      errors.append("plugin.json has unexpected $schema")
-                  if manifest.get("name") != skill_name:
-                      errors.append("plugin.json has unexpected name")
-                  if manifest.get("version") != version:
-                      errors.append("plugin.json version does not match release version")
-                  if not manifest.get("description"):
-                      errors.append("plugin.json is missing description")
-                  interface = (
-                      manifest.get("extensions", {})
-                      .get("com.openai", {})
-                      .get("interface", {})
-                  )
-                  for field in [
-                      "displayName",
-                      "shortDescription",
-                      "longDescription",
-                      "developerName",
-                      "websiteURL",
-                      "privacyPolicyURL",
-                      "termsOfServiceURL",
-                      "defaultPrompt",
-                  ]:
-                      if not interface.get(field):
-                          errors.append(f"plugin.json OpenAI interface is missing {field}")
-              except Exception as exc:
-                  errors.append(f"plugin.json is invalid JSON: {exc}")
-
-          required = [
-              "README.md",
-              "CHANGELOG.md",
-              "LICENSE",
-              "VERSION",
-              "PRIVACY.md",
-              "TERMS.md",
-              "SUPPORT.md",
-              "submission/TEST_CASES.md",
-              "submission/SUBMISSION_CHECKLIST.md",
-          ]
-
-          for rel in required:
-              if not (root / rel).exists():
-                  errors.append(f"Missing required public-release file: {rel}")
-
-          version_path = root / "VERSION"
-          if version_path.exists():
-              actual = version_path.read_text(encoding="utf-8").strip()
-              if actual != version:
-                  errors.append(f"VERSION is {actual!r}; expected {version!r}")
-
-          if errors:
-              print("Validation failed:")
-              for error in errors:
-                  print(f"- {error}")
-              sys.exit(1)
-
-          print("Standalone skill and portable plugin validation passed.")
+          test -f "$RUNNER_TEMP/installed-skills/production-dashboard-ui-ux-skill/SKILL.md"

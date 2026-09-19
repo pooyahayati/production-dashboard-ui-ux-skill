@@ -1,135 +1,102 @@
 # Existing Product Audit and Improvement
 
-Use this reference whenever the user asks to review, improve, modernize, clean up, fix, or redesign an existing interface.
+Use for completed, legacy, live, or partially redesigned products.
 
-The goal is to improve the product without destroying working workflows, introducing design drift, or turning a UI task into an uncontrolled rewrite.
+Goal: improve UI/UX without breaking working product behavior.
 
-## Existing-Product Modes
+## Modes
 
-Choose one mode from the user's intent:
+### Audit only
 
-### 1. Audit Only
+Inspect and report. Do not modify code or assets.
 
-Use when the user asks to inspect, review, critique, or report issues.
+### Audit and improve
 
-Do not modify code.
+Use:
 
-Deliver:
+`Baseline -> Audit -> Prioritize -> Fix -> Validate -> Compare -> Refine`
 
-- current-state summary
-- issue list grouped by UX, visual design, responsive, accessibility, RTL/LTR, design-system, and implementation quality
-- severity and impact
-- evidence
-- recommended remediation
-- suggested implementation order
+Proceed with low-risk fixes inside the requested scope.
 
-### 2. Audit and Improve
+### Controlled redesign
 
-Use when the user asks to improve, fix, refine, modernize, or optimize the existing UI/UX.
+Use when structure or visual language materially blocks good UX.
 
-Default workflow:
+Use representative screens before broad rollout.
 
-`Baseline -> Audit -> Prioritize -> Fix Safe Issues -> Validate -> Compare -> Refine`
+## Establish the baseline
 
-Do not require a full redesign process for ordinary improvements.
+Inspect enough to understand:
 
-### 3. Controlled Redesign
+- shell and navigation
+- user roles and primary workflows
+- representative high-frequency pages
+- components and tokens
+- typography
+- palette
+- brand/logo treatment
+- themes
+- responsive patterns
+- RTL/LTR/localization
+- forms, tables, filters, and charts
+- loading, empty, error, partial, and success states
+- auth and permission-sensitive UI
+- available tests, browser, and preview tooling
 
-Use when existing structure materially prevents good UX or when the user explicitly requests a redesign.
+For large products, sample representative surfaces.
 
-Default workflow:
+## Audit coverage
 
-`Baseline -> Audit -> Redesign Scope -> Approve Direction -> Representative Screen -> Validate -> Roll Out -> Regression QA`
+Always record what was actually inspected.
 
-Use the normal approval gates for broad structural or visual-system changes.
+Useful coverage dimensions:
 
-## Step 1 — Establish the Baseline
+- routes/screens
+- workflows
+- roles
+- desktop/tablet/mobile
+- Light/Dark
+- RTL/LTR
+- default/loading/empty/error/disabled/permission states
+- source-code only vs rendered inspection
 
-Before changing code, inspect enough of the existing product to understand the system.
+Do not imply full-product coverage from a representative sample.
 
-Determine where possible:
-
-- application shell and navigation
-- main user roles
-- high-frequency workflows
-- representative pages
-- current component library
-- reusable components
-- existing tokens and CSS variables
-- typography and fonts
-- color/theme architecture
-- responsive strategy
-- RTL/LTR/localization behavior
-- forms, tables, filters, dialogs, charts, alerts, and notifications
-- loading, empty, error, success, partial-data, permission, and disabled states
-- authentication/system pages
-- accessibility patterns
-- important business rules visible in the UI
-- current tests and visual/regression tooling
-
-If browser/preview access exists, inspect the rendered application before relying only on source code.
-
-For large products, sample representative surfaces instead of reading every page before forming a useful baseline.
-
-## Step 2 — Preserve Product Contracts
-
-Treat the existing application as a working system.
+## Preserve product contracts
 
 Do not silently change:
 
 - permissions
-- role visibility
 - business rules
-- validation semantics
+- validation
 - API contracts
 - data meaning
-- destructive-action behavior
-- authentication flows
-- routing semantics
-- keyboard behavior
-- saved user preferences
+- authentication
+- routing
+- destructive-action semantics
+- saved preferences
 - localization behavior
 
-A visual improvement must not create a functional regression.
+Read `execution-safety.md` before implementation.
 
-When a UX improvement appears to require a product-rule change, surface it separately and ask for approval.
+## Audit matrix
 
-## Step 3 — Build an Audit Matrix
-
-Review the existing product across these dimensions.
-
-### Product and Workflow
+### Workflow and information architecture
 
 Check:
 
-- screen purpose
-- primary task
+- primary task clarity
 - action discoverability
 - unnecessary steps
-- repeated work
 - confusing navigation
+- duplicated destinations
 - poor grouping
-- missing feedback
-- error recovery
-- destructive-action safety
-- information overload
 - missing context
-- mismatch between UI structure and user mental model
+- weak feedback or recovery
+- destructive-action safety
+- mismatch with user mental model
 
-### Information Architecture
-
-Check:
-
-- navigation hierarchy
-- naming consistency
-- page hierarchy
-- breadcrumbs where useful
-- tabs and sub-navigation
-- content grouping
-- settings organization
-- duplicated or competing navigation
-
-### Visual Hierarchy
+### Visual hierarchy
 
 Check:
 
@@ -138,327 +105,183 @@ Check:
 - spacing rhythm
 - alignment
 - density
-- unnecessary containers
-- card overuse
-- excessive radius/shadows/gradients
-- weak contrast between levels
-- inconsistent action hierarchy
-- oversized headers or sidebars
+- unnecessary containers/cards
+- radius/shadow/gradient excess
+- action hierarchy
+- oversized headers/sidebars
 
-### Brand and Visual Identity
+### Brand and visual identity
 
 Check:
 
-- logo quality and legibility at real interface sizes
-- logo placement, clear space, and responsive variants
+- logo quality and real-size legibility
+- placement, clear space, responsive/theme variants
 - favicon/app icon consistency
-- brand color suitability
-- palette contrast and semantic-role clarity
-- typography fit for the product and supported languages
-- visual personality alignment with product/user context
-- iconography consistency
-- Light/Dark brand behavior
-- whether legacy branding materially weakens usability or perceived quality
+- palette contrast and semantic clarity
+- typography/product fit
+- icon-family consistency
+- visual personality
+- Light/Dark behavior
 
-Distinguish between:
-- **brand treatment fixes** — sizing, placement, contrast, spacing, variants, palette/token cleanup; usually safe when requested
-- **brand refresh** — meaningful palette/typography/visual-language change; use a design approval gate
-- **identity redesign** — changing or redrawing the actual logo/mark/name; always require explicit approval before replacement
+Classify:
 
-### Components and Design System
+- treatment fix
+- brand refresh
+- identity redesign
+
+Actual logo or identity replacement requires explicit user intent.
+
+### Components and design system
 
 Check:
 
-- duplicate components
+- duplicated components
 - uncontrolled variants
-- raw colors and spacing values
-- inconsistent button/input/table behavior
-- icon-family inconsistency
+- raw color and spacing values
+- inconsistent states
 - missing semantic tokens
 - theme drift
-- inconsistent states
-- obsolete components still in use
+- obsolete components
+- inconsistent icons
 
-### Tables and Operational UI
+### Tables
 
 Check:
 
 - useful columns
 - scanability
-- sorting
-- filtering
-- search scope
-- active-filter visibility
+- sorting, filtering, and search
+- active filters
 - pagination
-- bulk actions
+- selection and bulk actions
 - row actions
 - sticky behavior
 - density
-- horizontal overflow
-- empty/loading/error states
+- overflow
 - mobile strategy
+- loading, empty, and error states
 
 ### Forms
 
 Check:
 
-- field grouping
+- field grouping and order
 - visible labels
 - validation clarity
-- error placement
-- save behavior
-- unsaved changes
+- save and unsaved behavior
 - disabled/loading state
-- field order
 - keyboard flow
 - mobile layout
-- technical fields in RTL interfaces
+- technical LTR fields inside RTL UI
 
-### Responsive Behavior
+### Responsive
 
-Check representative widths, not only breakpoints in code.
-
-Review:
+Check:
 
 - navigation adaptation
 - content priority
-- table behavior
-- filter behavior
+- tables, filters, and forms
+- dialogs and drawers
 - action placement
-- dialogs/drawers
-- forms
 - charts
 - overflow
 - sticky elements
 - touch targets
-- mobile RTL/LTR independently when applicable
+- RTL/LTR independently when relevant
 
 ### Accessibility
 
-Check:
+Read `accessibility.md`.
 
-- contrast
-- keyboard navigation
-- focus visibility
-- semantic HTML
-- accessible names
-- label associations
-- status conveyed beyond color
-- dialog/menu focus management
-- logical reading order
-- reduced motion
-- target size
+### Performance
 
-### RTL / LTR and Localization
+Read `performance.md` when UI cost or perceived latency is relevant.
 
-When applicable, check:
+### RTL/LTR and localization
 
-- document direction
-- logical CSS properties
-- mixed-direction strings
-- table alignment/sticky columns
-- pagination
-- breadcrumbs
-- drawers
-- directional icons
-- charts
-- dates/digits
-- mobile direction behavior
+Read `rtl-ltr-typography.md`.
 
-## Step 4 — Classify Findings
+## Classify findings
 
-Every meaningful finding should have:
+For meaningful findings record:
 
-- `Severity`: Critical / High / Medium / Low
-- `Impact`: task failure / error risk / slowdown / confusion / inconsistency / accessibility / visual quality / maintainability
-- `Scope`: local / component / page / workflow / system
-- `Confidence`: high / medium / low
-- `Fix Type`: safe local fix / refactor / design-system change / workflow change / product decision
+- Severity: Critical / High / Medium / Low
+- Impact: task failure / error risk / slowdown / confusion / accessibility / inconsistency / performance / visual quality / maintainability
+- Scope: local / component / page / workflow / system
+- Confidence: high / medium / low
+- Fix Type: safe local fix / refactor / design-system change / workflow change / product decision
 
-Do not assign severity based on visual dislike alone.
+Do not assign severity from personal visual taste alone.
 
-### Critical
+## Safe corrective fixes
 
-Examples:
+When improvement was requested, normally proceed with well-supported low-risk changes such as:
 
-- user cannot complete a primary task
-- destructive action is dangerously ambiguous
-- permission or identity state is misleading
-- severe accessibility blocker
-- important content becomes inaccessible on common viewport sizes
+- spacing and alignment
+- hierarchy cleanup
+- responsive defects
+- obvious RTL/LTR defects
+- focus, contrast, and semantic accessibility improvements
+- component-state inconsistency
+- table overflow and action placement
+- loading, empty, and error presentation
+- semantic token corrections
+- logo usage, placement, and contrast
+- typography consistency within the current direction
 
-### High
+## Strategic changes
 
-Examples:
+Follow the user's autonomy mode before broad propagation of:
 
-- frequent workflow causes repeated confusion or errors
-- navigation makes primary destinations hard to find
-- table/form behavior materially slows common work
-- severe RTL/LTR or responsive defect
-
-### Medium
-
-Examples:
-
-- inconsistent hierarchy
-- inefficient interaction
-- component inconsistency
-- weak empty/error state
-- moderate accessibility issue
-
-### Low
-
-Examples:
-
-- cosmetic inconsistency
-- minor spacing/radius/icon polish
-- low-impact visual cleanup
-
-## Step 5 — Decide What Can Be Fixed Automatically
-
-### Safe to fix without a new approval gate
-
-When the user asked for improvement/fixing, normally proceed with well-supported, low-risk changes such as:
-
-- spacing/alignment cleanup
-- typography consistency
-- contrast/focus improvements
-- broken responsive behavior
-- obvious RTL/LTR bugs
-- inconsistent component states
-- duplicate visual styles consolidated into existing patterns
-- accessible labels/semantics
-- table overflow and action-placement fixes
-- loading/empty/error presentation improvements
-- small visual hierarchy improvements
-- palette/token corrections that preserve the approved brand direction
-- logo sizing, spacing, placement, contrast, and correct variant usage
-- typography cleanup within the existing/approved font direction
-- removal of unjustified decoration that does not change workflow
-
-Still preserve existing behavior.
-
-### Require approval before broad propagation
-
-Pause before:
-
-- replacing the navigation model
-- changing core information architecture
-- changing primary workflows
-- changing a global visual direction when no approved profile exists
-- large-scale density change
+- navigation model
+- information architecture
+- primary workflow
 - new design-system foundation
-- changing the actual logo artwork, brand mark, or identity
-- replacing the global color/typography direction
-- introducing a broad visual-personality change
-- changing business-visible terminology
-- introducing a new UI framework
-- major component-library migration
-- changing authentication or permission UX semantics
-- removing features or fields
-- converting a multi-step workflow into a substantially different process
+- global palette or typography direction
+- major density or personality change
+- component-library or framework migration
+- business-visible terminology
+- actual logo or brand identity
 
-## Existing Project Without a Design Profile
+## Existing product without design-profile.md
 
-Do not treat the absence of `design-profile.md` as a reason to block useful improvements.
+Infer an Observed Baseline.
 
-First infer an `Observed Baseline` from the current product:
+Use it as a temporary constraint for corrective work.
 
-- existing visual style
-- brand/logo treatment
-- density
-- typography
-- palette and semantic colors
-- surface treatment
-- navigation
-- themes
-- direction
-- responsive behavior
-- recurring component patterns
+Run Partial Discovery only for strategic decisions that need reconsideration.
 
-Then decide:
+Create `design-profile.md` once a coherent strategic direction is approved or delegated.
 
-### Local / corrective work
-
-Use the Observed Baseline as a temporary constraint.
-
-Fix defects and inconsistencies without forcing full discovery.
-
-### Broad redesign or design-system change
-
-Run Partial or Full Discovery as appropriate.
-
-Recommend a new Design Profile and get approval before broad rollout.
-
-If a coherent system emerges and the user approves it, create `design-profile.md`.
-
-## Representative-Screen Strategy
-
-For medium or large existing products, choose one or more representative surfaces before broad rollout.
-
-Good candidates include:
-
-- main dashboard/home
-- primary operational table
-- create/edit form
-- record/detail page
-- settings page
-- mobile navigation state
-
-Choose screens that exercise the shared components and difficult states.
-
-## Before / After Comparison
-
-For every meaningful redesign or improvement, compare the new result against the baseline.
+## Compare before/after
 
 Evaluate:
 
 - task clarity
-- action discoverability
-- number of steps
-- information hierarchy
+- discoverability
+- steps
+- hierarchy
 - scanability
-- table/form efficiency
+- form and table efficiency
 - error prevention
-- feedback quality
+- feedback
 - responsive behavior
-- RTL/LTR quality
+- RTL/LTR
 - accessibility
-- consistency
+- performance where relevant
+- brand coherence
 - maintainability
 
-Do not claim improvement merely because the UI looks newer.
+Do not use "looks newer" as evidence.
 
-## Regression Review
+## Deliverable
 
-After implementation, verify that the changes did not regress:
+Finish with:
 
-- routing
-- permissions
-- validation
-- form submission
-- keyboard use
-- table interactions
-- filters/search/sort
-- destructive actions
-- responsive layouts
-- theme behavior
-- localization
-- loading/error handling
-- existing tests
-
-Run available tests, linters, type checks, and visual/regression tools when practical.
-
-If a check cannot be run, state that explicitly.
-
-## Deliverable for Audit + Improve
-
-When the user asks for review and improvement, finish with a concise summary containing:
-
-1. major problems found
-2. high-impact changes made
-3. behavior intentionally preserved
-4. validation performed
-5. remaining risks or items needing product approval
-
-Do not overwhelm the user with every minor CSS edit.
+1. audit coverage
+2. major problems found
+3. high-impact changes made
+4. behavior intentionally preserved
+5. validation performed
+6. checks not performed
+7. remaining strategic decisions or risks
