@@ -1,0 +1,26 @@
+name: Sync v1.0.0 Tag
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  retag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Point v1.0.0 to current clean release state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: 0e38035a4e5a1053a9174a6b9e6c21db2dce2eb2
+        run: |
+          set -euo pipefail
+          git init repo
+          cd repo
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch origin "$TARGET_SHA"
+          git tag -f v1.0.0 "$TARGET_SHA"
+          git push origin refs/tags/v1.0.0 --force
