@@ -1,0 +1,56 @@
+name: Bug report
+description: Report incorrect, conflicting, or ineffective skill behavior
+title: "[Bug]: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Production Dashboard UI/UX Skill.
+  - type: input
+    id: version
+    attributes:
+      label: Skill version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Design Discovery
+        - Dashboard patterns
+        - RTL / LTR
+        - Typography / local fonts
+        - Light / Dark themes
+        - Responsive design
+        - Accessibility
+        - Visual QA
+        - Installation / Codex integration
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, and why is it incorrect or unhelpful?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction or example prompt
+      description: Remove credentials, private data, and proprietary project information.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Codex/client, framework, UI library, language/direction, and other relevant context.
