@@ -1,5 +1,28 @@
 # Theme, Responsive, Brand, Icons, and Motion
 
+## Existing Brand Audit
+
+For existing products, do not assume the current brand treatment is correct simply because it already exists.
+
+Audit:
+
+- logo legibility and quality
+- size, placement, clear space, and alignment
+- contrast across Light/Dark surfaces
+- responsive logo variants
+- favicon/app icons
+- palette quality and accessibility
+- semantic color mapping
+- typography/brand fit
+- iconography consistency
+- visual personality and product fit
+
+Classify changes as:
+
+- **Treatment fix** — preserve the identity; improve usage. May proceed when the user requested improvement.
+- **Brand refresh** — change palette, typography, surface language, icon direction, or visual personality. Propose and approve before broad rollout.
+- **Identity redesign** — alter/replace/redraw the actual logo or core mark. Requires explicit approval.
+
 ## Brand Assets
 
 Inspect available variants:
@@ -26,7 +49,13 @@ Validate logo in:
 
 Preserve aspect ratio.
 
-Do not stretch, crop, recolor, redraw, or distort without explicit approval.
+Do not accidentally stretch, crop, recolor, redraw, or distort an approved asset.
+
+If the existing logo file is low quality, poorly suited to the interface, missing required variants, or the user explicitly requests a brand/identity improvement, recommend the needed correction.
+
+Changing logo placement, size, clear space, theme variant, or responsive treatment is not the same as changing the identity and may be fixed as part of UI work.
+
+Changing the actual logo artwork or core brand mark requires explicit approval before replacement.
 
 ## Favicon and App Icons
 
@@ -40,6 +69,24 @@ Where applicable configure:
 - PWA/app icons
 
 If missing, surface the gap instead of inventing unrelated branding.
+
+## Color and Palette Improvement
+
+For existing products, audit whether the palette:
+
+- provides sufficient contrast
+- distinguishes interactive, neutral, and semantic roles
+- works in both enabled themes
+- avoids excessive unrelated accent colors
+- supports charts/tables/forms without ambiguity
+- aligns with the intended brand personality
+
+Do not preserve a weak palette solely because it is existing code.
+
+When the user asks for improvement:
+- correct unsafe/inconsistent semantic colors directly when low risk
+- for a global palette refresh, propose 2–3 directions and get approval
+- migrate approved colors into semantic tokens rather than spreading new raw values
 
 ## Theme Architecture
 
