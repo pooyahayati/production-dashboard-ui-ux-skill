@@ -57,8 +57,7 @@ Use the Production Dashboard UI/UX Skill to redesign this dashboard.
 
 ### Claude.ai / Claude Desktop
 
-1. Download the Claude-ready ZIP from the latest GitHub Release:
-   `production-dashboard-ui-ux-skill-claude-v1.0.0.zip`
+1. Download the Claude-ready ZIP: [production-dashboard-ui-ux-skill-claude-v1.0.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.0.0/production-dashboard-ui-ux-skill-claude-v1.0.0.zip)
 2. In Claude, make sure **Code execution and file creation** is enabled.
 3. Open **Customize → Skills**.
 4. Click **+ → Create skill → Upload a skill**.
@@ -314,7 +313,7 @@ Claude Code can use the skill automatically when relevant, or you can invoke it 
 
 Custom Skills can be uploaded as ZIP files.
 
-1. Download `production-dashboard-ui-ux-skill-claude-v1.0.0.zip` from the [v1.0.0 Release](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/tag/v1.0.0).
+1. Download [production-dashboard-ui-ux-skill-claude-v1.0.0.zip](https://github.com/pooyahayati/production-dashboard-ui-ux-skill/releases/download/v1.0.0/production-dashboard-ui-ux-skill-claude-v1.0.0.zip) from the v1.0.0 Release.
 2. Enable **Code execution and file creation** in Claude if it is not already enabled.
 3. Go to **Customize → Skills**.
 4. Click **+ → Create skill → Upload a skill**.
