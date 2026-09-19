@@ -4,6 +4,28 @@ All notable changes to **Production Dashboard UI/UX Skill** are documented here.
 
 The project follows Semantic Versioning.
 
+## [1.1.0] - 2026-09-19
+
+### Added
+
+- Dedicated existing-product audit and improvement workflow.
+- Explicit support for completed/live projects without an existing `design-profile.md`.
+- Observed Baseline workflow for preserving working product behavior while improving weak presentation.
+- Audit matrix covering workflows, information architecture, visual hierarchy, components, tables, forms, responsive behavior, accessibility, RTL/LTR, and brand quality.
+- Severity, impact, scope, confidence, and fix-type classification for audit findings.
+- Safe-fix vs approval-required decision rules.
+- Before/after comparison and regression review for existing products.
+- Brand and visual-identity audit for logo treatment, palette, typography, iconography, Light/Dark behavior, and product fit.
+- Controlled support for palette refresh, typography refresh, visual-language changes, and approved logo/identity redesign.
+- Partial Rediscovery mode for strategic changes to existing products.
+
+### Changed
+
+- Existing visual styling is no longer preserved by default when it is a source of poor UX or weak product quality.
+- Existing products can be audited and improved without forcing a full Design Discovery flow.
+- Global brand, palette, navigation, and workflow changes now use explicit approval gates.
+- QA now includes baseline/regression checks and brand/palette comparison.
+
 ## [1.0.0] - 2026-09-19
 
 ### Added
