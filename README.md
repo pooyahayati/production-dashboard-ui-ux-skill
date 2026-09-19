@@ -9,6 +9,24 @@ A production-oriented Agent Skill for designing, auditing, redesigning, and impl
 
 Designed for use with **OpenAI Codex** and other tools that support the Agent Skills format.
 
+## Quick start
+
+The fastest way to install and use the skill with Codex is:
+
+```text
+Use $skill-installer to install this skill from:
+https://github.com/pooyahayati/production-dashboard-ui-ux-skill
+Use $production-dashboard-ui-ux-skill to redesign this dashboard.
+```
+
+After installation, you can invoke it explicitly in any dashboard-related task with:
+
+```text
+Use $production-dashboard-ui-ux-skill ...
+```
+
+For a new dashboard or a major redesign, the skill will inspect the project, establish a Design Profile, and then apply the approved UI/UX direction.
+
 ## Why this skill exists
 
 Coding agents can build functional dashboards quickly, but the default result is often visually generic, overly card-based, inconsistent, or weak in production UX.
