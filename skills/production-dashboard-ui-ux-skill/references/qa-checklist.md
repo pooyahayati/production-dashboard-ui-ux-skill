@@ -14,7 +14,9 @@ Record what was actually checked:
 | Themes | Light/Dark |
 | Direction | RTL/LTR |
 | Roles | list or not tested |
-| States | default/loading/empty/error/etc |
+| States | default/loading/empty/error/stale/etc |
+| Personalization | tested / not applicable / not tested |
+| Runtime owner config | tested / not applicable / not tested |
 | Rendered inspection | yes/no |
 | Automated checks | list |
 | Not checked | list |
@@ -29,6 +31,7 @@ Do not imply coverage that was not performed.
 - permissions preserved
 - validation and data meaning preserved
 - routing and deep links preserved
+- saved preferences preserved/migrated
 - before/after comparison performed where meaningful
 
 ## Product and UX
@@ -37,17 +40,78 @@ Do not imply coverage that was not performed.
 - primary action is discoverable
 - hierarchy matches importance
 - unnecessary steps and controls reduced
-- empty, error, and permission states are useful
+- repeated user choices are persisted when beneficial
+- empty, error, stale, and permission states are useful
 - destructive actions communicate consequence
+- role-specific emphasis does not bypass authorization
 
-## Design system
+## Data Trust UX
+
+Where relevant:
+
+- data freshness is understandable
+- last-updated time is accurate
+- timezone/date-range context is clear
+- active filter scope is visible
+- stale/partial/sync-failure states are distinguished
+- important metric definitions are accessible
+- summary-to-record drill-down exists where traceability is required
+
+## Design system and changeability
+
+Read `design-system-architecture.md`.
+
+Verify where applicable:
 
 - semantic tokens used
 - component states consistent
 - uncontrolled variants reduced
+- repeated visual values are centralized
+- common design changes do not require unrelated page edits
+- config schema is typed/versioned
+- precedence is deterministic
+- invalid/missing config has a safe fallback
 - icon family coherent
 - spacing, radius, and elevation intentional
 - no unjustified AI-dashboard clichés
+
+## Runtime Owner Control Center
+
+When implemented, read `runtime-ui-governance.md`.
+
+Verify:
+
+- unauthorized users cannot access or mutate configuration
+- authorization is not UI-only
+- draft changes do not affect published users
+- preview matches intended output
+- invalid values are blocked
+- accessibility validation runs before publish where applicable
+- publish is atomic
+- active version is identifiable
+- version history is retained
+- rollback works
+- reset works
+- audit log records actor/time/change
+- import/export validates schema where supported
+- cache/config invalidation works
+- failed config loading falls back safely
+- tenant scope is isolated
+- user preferences override only allowed fields
+
+## User personalization
+
+When implemented, read `personalization-and-data-ux.md`.
+
+Verify:
+
+- preference persistence
+- reset to defaults
+- migration when fields/options change
+- removed columns/filters degrade safely
+- shared-view permissions
+- user setting cannot grant permission/capability
+- mobile/RTL/LTR behavior
 
 ## Brand and typography
 
@@ -110,6 +174,12 @@ Record automated and manual checks separately.
 
 Read `performance.md` when relevant.
 
+For runtime configuration also consider:
+- configuration-fetch latency
+- theme flash
+- hydration mismatch
+- unnecessary full-app rerenders after local preference changes
+
 Record measurements or inspection evidence rather than unsupported claims.
 
 ## Engineering
@@ -121,6 +191,8 @@ Run available:
 - type check
 - build
 - visual or regression tests
+- configuration schema/migration tests
+- authorization tests for owner settings
 - accessibility tooling
 - performance tooling where relevant
 
@@ -133,8 +205,10 @@ When browser, preview, or screenshot tools are available:
 1. render representative pages
 2. inspect real content
 3. inspect themes, directions, viewports, and states
-4. fix issues
-5. inspect again
+4. inspect owner-configurable variants when implemented
+5. inspect user preferences when implemented
+6. fix issues
+7. inspect again
 
 If rendered QA is unavailable, say so.
 
@@ -148,13 +222,15 @@ For redesigns compare baseline vs result on:
 - hierarchy
 - scanability
 - form and table efficiency
+- repeated-work reduction
 - error prevention
 - feedback
+- data trust
 - responsiveness
 - RTL/LTR
 - accessibility
 - performance where relevant
 - brand coherence
-- maintainability
+- maintainability and changeability
 
 "Looks newer" is not a success criterion.

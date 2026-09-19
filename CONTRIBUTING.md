@@ -18,6 +18,12 @@ Release packages are generated from the canonical folder by `scripts/package_rel
 
 - production dashboard UX patterns
 - existing-product audit and regression behavior
+- design-system architecture and changeability
+- runtime design governance
+- safe owner-only appearance controls
+- user personalization and saved views
+- Data Trust UX
+- role-aware operational UX
 - Persian RTL and bilingual localization edge cases
 - accessibility
 - frontend performance
@@ -42,6 +48,8 @@ Prefer:
 - preserving user intent and functional contracts
 - observable QA criteria
 - explicit trigger boundaries
+- bounded configuration over arbitrary runtime code
+- clear separation of owner defaults, user preferences, and protected constraints
 
 Avoid:
 
@@ -50,6 +58,7 @@ Avoid:
 - duplicating instructions across multiple files
 - large generic UI tutorials
 - framework-specific requirements unless genuinely necessary
+- runtime appearance controls that can bypass authorization or execute arbitrary code
 
 ## Before opening a pull request
 

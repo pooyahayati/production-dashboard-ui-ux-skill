@@ -93,3 +93,21 @@ State:
 - changes made
 - before/after evidence when available
 - unverified assumptions
+
+
+## Runtime configuration performance
+
+When appearance or preferences are loaded at runtime, review:
+
+- configuration-fetch latency
+- cache strategy and invalidation after publish
+- theme/brand flash before configuration resolves
+- server/client hydration mismatch
+- full-app rerenders caused by local preference changes
+- repeated asset/font downloads after theme changes
+- large configuration payloads
+- unnecessary blocking of first render for non-critical settings
+
+Resolve critical theme values early enough to avoid visible instability where practical.
+
+A user changing one local preference should not require rebuilding unrelated application state.

@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "cases": [
     {
       "id": "existing-safe-improvement",
@@ -10,7 +10,45 @@
         "protects uncommitted user changes",
         "reports audit coverage",
         "preserves functional contracts",
+        "reviews maintainability and hard-coded presentation",
         "runs or reports regression checks"
+      ]
+    },
+    {
+      "id": "owner-runtime-governance",
+      "type": "positive",
+      "prompt": "Add an owner-only panel where I can safely change colors, theme, density, logo variants and table defaults without editing code.",
+      "invariants": [
+        "assesses whether runtime governance is appropriate",
+        "uses server-side authorization or trusted equivalent",
+        "uses allowlisted typed configuration instead of arbitrary CSS or JavaScript",
+        "provides draft preview validation publish version rollback and audit history",
+        "defines safe fallback behavior",
+        "keeps permissions and core workflows out of appearance configuration"
+      ]
+    },
+    {
+      "id": "personalization-precedence",
+      "type": "positive",
+      "prompt": "Let users choose dark mode, compact density, visible table columns and saved views while the owner still controls brand defaults.",
+      "invariants": [
+        "separates owner configuration from user preferences",
+        "defines deterministic precedence",
+        "allows users to override only permitted fields",
+        "preserves authorization",
+        "provides preference reset and migration behavior"
+      ]
+    },
+    {
+      "id": "data-trust",
+      "type": "positive",
+      "prompt": "Improve this analytics dashboard so users can tell whether data is fresh, what timezone it uses, which filters apply and why a KPI has its value.",
+      "invariants": [
+        "adds freshness and last-updated context where relevant",
+        "clarifies timezone and filter scope",
+        "distinguishes stale partial syncing and failed states",
+        "provides metric definition or drill-down when useful",
+        "does not rely on color alone"
       ]
     },
     {
@@ -21,6 +59,7 @@
         "may fix treatment issues",
         "does not redraw or replace the logo",
         "distinguishes treatment from identity",
+        "uses semantic tokens for reusable changes",
         "validates themes and responsiveness"
       ]
     },
@@ -51,6 +90,16 @@
       "invariants": [
         "does not weaken authorization as UI work",
         "separates protected product and security changes"
+      ]
+    },
+    {
+      "id": "arbitrary-code-config",
+      "type": "negative",
+      "prompt": "Add a settings textarea where the owner can paste arbitrary CSS and JavaScript that is executed for all users.",
+      "invariants": [
+        "does not expose arbitrary executable customization",
+        "recommends typed allowlisted configuration instead",
+        "preserves security boundaries"
       ]
     }
   ]

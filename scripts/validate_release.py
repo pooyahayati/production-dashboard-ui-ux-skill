@@ -22,21 +22,31 @@ def require(path: str) -> Path:
         error(f"Missing required path: {path}")
     return p
 
-for path in [
-    "README.md", "CHANGELOG.md", "LICENSE", "VERSION", "plugin.json",
-    "assets/logo.svg", "assets/composer-icon.svg",
+required = [
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "VERSION",
+    "plugin.json",
+    "assets/logo.svg",
+    "assets/composer-icon.svg",
     f"skills/{SKILL_NAME}/SKILL.md",
     f"skills/{SKILL_NAME}/agents/openai.yaml",
     f"skills/{SKILL_NAME}/references/discovery-and-profile.md",
     f"skills/{SKILL_NAME}/references/existing-product-audit.md",
     f"skills/{SKILL_NAME}/references/execution-safety.md",
+    f"skills/{SKILL_NAME}/references/design-system-architecture.md",
+    f"skills/{SKILL_NAME}/references/runtime-ui-governance.md",
+    f"skills/{SKILL_NAME}/references/personalization-and-data-ux.md",
     f"skills/{SKILL_NAME}/references/accessibility.md",
     f"skills/{SKILL_NAME}/references/performance.md",
     f"skills/{SKILL_NAME}/references/qa-checklist.md",
     "submission/TEST_CASES.md",
     "submission/SUBMISSION_CHECKLIST.md",
+    "evals/README.md",
     "evals/cases.json",
-]:
+]
+for path in required:
     require(path)
 
 for old in ["SKILL.md", "agents", "references"]:
@@ -63,14 +73,25 @@ else:
             error("Skill description must be 1..1024 characters")
         if "Use " not in description or "Do not use" not in description:
             error("Skill description must say when to use and when not to use it")
+        for term in ["personalization", "runtime design governance"]:
+            if term.casefold() not in description.casefold():
+                error(f"Skill description should cover {term}")
 
 body_lines = skill_text.split("---", 2)[-1].splitlines()
 if len(body_lines) >= 500:
     error(f"SKILL.md body should stay under 500 lines; got {len(body_lines)}")
 
-for ref in re.findall(r"references/[a-z0-9-]+\.md", skill_text):
+for ref in sorted(set(re.findall(r"references/[a-z0-9-]+\.md", skill_text))):
     if not (SKILL / ref).exists():
         error(f"Referenced file missing: {ref}")
+
+for ref in [
+    "references/design-system-architecture.md",
+    "references/runtime-ui-governance.md",
+    "references/personalization-and-data-ux.md",
+]:
+    if ref not in skill_text:
+        error(f"SKILL.md does not route to required v1.3 reference: {ref}")
 
 manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
 if manifest.get("version") != VERSION:
@@ -100,15 +121,28 @@ if author_name and developer and author_name != developer:
     error("plugin author.name and interface.developerName should match")
 
 allowed_categories = {
-    "Productivity", "Creativity", "Developer Tools", "Business & Operations",
-    "Data & Analytics", "Communication", "Education & Research", "Security",
-    "Finance", "Healthcare", "Travel", "Entertainment", "Other",
+    "Productivity",
+    "Creativity",
+    "Developer Tools",
+    "Business & Operations",
+    "Data & Analytics",
+    "Communication",
+    "Education & Research",
+    "Security",
+    "Finance",
+    "Healthcare",
+    "Travel",
+    "Entertainment",
+    "Other",
 }
 if interface.get("category") not in allowed_categories:
     error("Plugin category is missing or unsupported")
 
 caps = interface.get("capabilities", [])
-if len(caps) > 20 or any(not isinstance(x, str) or not x.strip() or len(x) > 120 or "\n" in x for x in caps):
+if len(caps) > 20 or any(
+    not isinstance(x, str) or not x.strip() or len(x) > 120 or "\n" in x
+    for x in caps
+):
     error("Plugin capabilities violate directory limits")
 
 prompts = interface.get("defaultPrompt", [])
@@ -117,7 +151,13 @@ if not isinstance(prompts, list) or len(prompts) > 3:
 else:
     normalized = set()
     for prompt in prompts:
-        if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > 128 or "\n" in prompt or "@" in prompt:
+        if (
+            not isinstance(prompt, str)
+            or not prompt.strip()
+            or len(prompt) > 128
+            or "\n" in prompt
+            or "@" in prompt
+        ):
             error(f"Invalid starter prompt: {prompt!r}")
         key = " ".join(prompt.split()).casefold()
         if key in normalized:
@@ -169,6 +209,16 @@ readme = (ROOT / "README.md").read_text(encoding="utf-8")
 canonical_url = "https://github.com/pooyahayati/production-dashboard-ui-ux-skill/tree/main/skills/production-dashboard-ui-ux-skill"
 if canonical_url not in readme:
     error("README is missing the canonical Codex installer URL")
+if f"Latest release: **v{VERSION}**" not in readme:
+    error("README latest-release label does not match VERSION")
+for term in [
+    "Runtime UI Governance",
+    "Owner-only UI/UX Control Center",
+    "User Personalization",
+    "Data Trust UX",
+]:
+    if term not in readme:
+        error(f"README missing v1.3 section: {term}")
 
 tests = (ROOT / "submission/TEST_CASES.md").read_text(encoding="utf-8")
 positive_section, _, negative_section = tests.partition("## Negative test cases")
@@ -180,15 +230,87 @@ if tests.count("**Expected result format**") != 8:
     error("Every submission test needs Expected result format")
 if tests.count("**Fixtures / test data**") != 8:
     error("Every submission test needs Fixtures / test data")
+if "Owner-only runtime UI/UX control center" not in tests:
+    error("Submission tests do not cover runtime UI governance")
+if "Unsafe owner customization" not in tests:
+    error("Submission tests do not cover unsafe runtime customization")
 
 profile = (SKILL / "references/discovery-and-profile.md").read_text(encoding="utf-8")
-for term in ["profile_version", "skill_version", "status:", "source:", "locked_constraints"]:
+for term in [
+    "profile_version",
+    "skill_version",
+    "status:",
+    "source:",
+    "locked_constraints",
+    "runtime_governance",
+    "owner_configurable",
+    "user_configurable",
+    "code_only",
+    "data_ux",
+]:
     if term not in profile:
-        error(f"Design Profile provenance field missing: {term}")
+        error(f"Design Profile v1.3 field missing: {term}")
+
+architecture = (SKILL / "references/design-system-architecture.md").read_text(encoding="utf-8")
+for term in [
+    "Primitive tokens",
+    "Semantic tokens",
+    "Component tokens",
+    "schemaVersion",
+    "Precedence",
+    "Schema evolution",
+]:
+    if term not in architecture:
+        error(f"Design-system architecture guidance missing: {term}")
+
+governance = (SKILL / "references/runtime-ui-governance.md").read_text(encoding="utf-8")
+for term in [
+    "server-side",
+    "arbitrary CSS",
+    "Preview",
+    "Validate",
+    "Publish",
+    "Version history",
+    "Rollback",
+    "Audit log",
+    "Import and export",
+    "safe fallbacks",
+]:
+    if term.casefold() not in governance.casefold():
+        error(f"Runtime governance guidance missing: {term}")
+
+personalization = (SKILL / "references/personalization-and-data-ux.md").read_text(encoding="utf-8")
+for term in [
+    "Saved views",
+    "Role-aware UX",
+    "Data Trust UX",
+    "last updated",
+    "timezone",
+    "stale",
+    "partial",
+]:
+    if term.casefold() not in personalization.casefold():
+        error(f"Personalization/Data UX guidance missing: {term}")
 
 evals = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
-if evals.get("version") != VERSION or not evals.get("cases"):
-    error("Behavioral eval manifest version or cases are invalid")
+cases = evals.get("cases", [])
+if evals.get("version") != VERSION:
+    error("Behavioral eval manifest version does not match VERSION")
+if len(cases) < 8:
+    error("Behavioral eval manifest should contain at least 8 cases for v1.3")
+ids = {case.get("id") for case in cases}
+for required_id in [
+    "owner-runtime-governance",
+    "personalization-precedence",
+    "data-trust",
+    "arbitrary-code-config",
+]:
+    if required_id not in ids:
+        error(f"Behavioral eval missing v1.3 case: {required_id}")
+if not any(case.get("type") == "positive" for case in cases):
+    error("Behavioral evals need positive cases")
+if not any(case.get("type") == "negative" for case in cases):
+    error("Behavioral evals need negative cases")
 
 if ERRORS:
     print("Release validation failed:")

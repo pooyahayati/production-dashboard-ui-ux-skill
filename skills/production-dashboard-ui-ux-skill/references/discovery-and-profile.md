@@ -22,6 +22,8 @@ Use when only selected strategic fields need reconsideration, such as:
 - theme strategy
 - responsive priority
 - visual personality
+- runtime appearance governance
+- user personalization
 
 ### Reuse Existing Profile
 
@@ -59,10 +61,42 @@ Inspect repository and assets before asking questions.
 - icon system
 - responsive priority
 - navigation
-- date, time, digits, currency, and calendar
+- date, time, digits, currency, timezone, and calendar
 - motion
 - auth and system-page scope
 - accessibility target
+- role-aware UX needs
+- saved views and recurring preference needs
+- data freshness/metric-trust requirements
+- whether runtime owner customization is justified
+- which fields are owner-configurable
+- which fields are user-configurable
+- which fields must remain code-only or locked
+
+## Runtime governance decision
+
+Do not assume every project needs an Owner UI/UX Control Center.
+
+Recommend it only when product value justifies the complexity.
+
+Useful triggers include:
+
+- white-label or multi-tenant product
+- frequent brand/theme changes
+- non-developer owner needs safe presentation controls
+- multiple environments or deployments share design configuration
+- operational defaults need runtime adjustment
+- users need meaningful personalization
+
+If enabled, read:
+
+- `design-system-architecture.md`
+- `runtime-ui-governance.md`
+- `personalization-and-data-ux.md`
+
+Resolve the configuration hierarchy:
+
+`Locked Constraints -> Design System Defaults -> Published Owner Config -> User Preferences`
 
 ## Brand change scope
 
@@ -82,8 +116,8 @@ Use a concise Markdown or YAML-like structure. Include provenance so future work
 Example:
 
 ```yaml
-profile_version: 1
-skill_version: 1.2.0
+profile_version: 2
+skill_version: 1.3.0
 status: approved
 updated_at: 2026-09-20
 
@@ -113,10 +147,36 @@ brand:
 
 theme:
   modes: [light, dark]
+  default: system
 
 responsive:
   priority: desktop-first
   supported: [large-desktop, desktop, laptop, tablet, mobile]
+
+runtime_governance:
+  enabled: true
+  owner_role: system-owner
+  owner_configurable:
+    - theme.default
+    - brand.primary
+    - visual.density
+    - tables.default_page_size
+  user_configurable:
+    - theme.preference
+    - visual.density
+    - tables.visible_columns
+    - saved_views
+  code_only:
+    - navigation.destinations
+    - authentication
+    - permissions
+  preview_publish_rollback: true
+
+data_ux:
+  show_last_updated: true
+  show_filter_scope: true
+  timezone: product-locale
+  saved_views: true
 
 decisions:
   - field: visual.density
@@ -125,10 +185,14 @@ decisions:
   - field: brand.logo_source
     value: existing
     source: observed-baseline
+  - field: runtime_governance.enabled
+    value: true
+    source: delegated-recommendation
 
 locked_constraints:
   - preserve authentication flow
   - do not change brand mark
+  - owner config cannot alter permissions
 
 open_questions: []
 ```
@@ -152,6 +216,17 @@ Useful values:
 
 Do not represent an inferred decision as user-approved.
 
+## Configurability classification
+
+For products with runtime or user configuration, classify design decisions as:
+
+- `locked` — cannot be changed through runtime presentation settings
+- `owner-configurable` — controlled product-wide or tenant-wide setting
+- `user-configurable` — personal preference within allowed bounds
+- `code-only` — requires implementation/deployment
+
+Avoid unclear ownership of configuration.
+
 ## Updates
 
 Before major UI work:
@@ -162,3 +237,4 @@ Before major UI work:
 - update only affected strategic fields
 - preserve provenance
 - update `skill_version` when materially revising the profile with a newer Skill
+- migrate runtime-governance fields carefully when the schema changes

@@ -147,3 +147,18 @@ Use controlled tokens.
 Prefer hierarchy and borders before heavy shadows.
 
 Reserve elevation for genuinely floating layers.
+
+
+## Runtime theme and brand governance
+
+When theme/brand settings are owner-configurable:
+
+- map controls to semantic tokens or approved presets
+- validate Light/Dark compatibility before publish
+- validate contrast/focus/status semantics
+- use allowlisted logo/font assets
+- do not expose raw CSS or unrestricted URLs
+- preserve safe defaults if configuration is invalid or unavailable
+- respect user theme preference only when the owner/product allows it
+
+A runtime palette control should change intended semantic roles consistently rather than patching individual components.

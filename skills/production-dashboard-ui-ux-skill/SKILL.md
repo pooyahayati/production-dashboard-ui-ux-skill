@@ -1,6 +1,6 @@
 ---
 name: production-dashboard-ui-ux-skill
-description: Design, audit, improve, and redesign production dashboards, admin panels, CRM, analytics, and operational product UI. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, or visual QA. Do not use for backend-only work, marketing sites, or unrelated graphic design.
+description: Design, audit, improve, and redesign production dashboards, admin panels, CRM, analytics, and operational product UI. Use for dashboard UI/UX, existing-product reviews, responsive or RTL/LTR work, themes, branding, tables, forms, navigation, accessibility, performance, personalization, runtime design governance, owner-controlled appearance settings, or visual QA. Do not use for backend-only work, marketing sites, or unrelated graphic design.
 ---
 
 # Production Dashboard UI/UX Skill
@@ -22,6 +22,7 @@ Use when there is no established interface.
 Read:
 - `references/discovery-and-profile.md`
 - the relevant domain references
+- `references/design-system-architecture.md` when implementing a reusable product UI
 - `references/qa-checklist.md` before completion
 
 Typical flow:
@@ -45,6 +46,7 @@ Use when the user asks to fix, modernize, improve, polish, or redesign an existi
 Read:
 - `references/existing-product-audit.md`
 - `references/execution-safety.md`
+- `references/design-system-architecture.md` when maintainability or configurability matters
 - relevant visual/domain references
 - `references/qa-checklist.md`
 
@@ -56,7 +58,7 @@ If no approved `design-profile.md` exists, infer an Observed Baseline first. Do 
 
 ### Targeted UI change
 
-Use when the request is narrow, such as a table, form, palette, mobile issue, RTL defect, theme issue, typography problem, or logo treatment.
+Use when the request is narrow, such as a table, form, palette, mobile issue, RTL defect, theme issue, typography problem, logo treatment, personalization feature, or appearance setting.
 
 Inspect the affected surface and read only the relevant references.
 
@@ -78,6 +80,7 @@ Pause before broad changes to:
 - design-system foundation
 - actual logo artwork or brand identity
 - UI framework or component-library migration
+- runtime configuration capabilities that change product-wide behavior
 
 ### Delegated mode
 
@@ -89,6 +92,7 @@ Proceed within the requested scope, but still do not silently:
 - remove product capabilities
 - replace the actual brand identity unless that was requested
 - introduce a major framework migration without a clear need
+- expose arbitrary CSS, JavaScript, HTML, or unsafe runtime customization
 
 Document significant decisions at the end.
 
@@ -107,9 +111,12 @@ Never modify code, configuration, or assets.
 7. Treat Persian RTL and English LTR as native modes, not post-processing.
 8. Treat responsive behavior as product architecture, not a final CSS patch.
 9. Use supplied/local fonts and brand assets responsibly; check licensing before adding third-party assets.
-10. Do not call a major UI task complete without QA of the rendered result when rendering/browser access is available.
-11. Report what was actually inspected and what was not.
-12. Do not claim improvement merely because the interface looks newer.
+10. Prefer semantic design tokens and configuration boundaries over hard-coded presentation when building reusable product UI.
+11. Runtime customization must be constrained, validated, permissioned, previewable, and reversible.
+12. User preferences must not override locked product constraints or security-sensitive behavior.
+13. Do not call a major UI task complete without QA of the rendered result when rendering/browser access is available.
+14. Report what was actually inspected and what was not.
+15. Do not claim improvement merely because the interface looks newer.
 
 ## Reference routing
 
@@ -118,6 +125,9 @@ Read references only when relevant.
 - `references/discovery-and-profile.md` — discovery, design-profile lifecycle, partial rediscovery, provenance
 - `references/existing-product-audit.md` — existing-product baseline, audit matrix, severity, safe vs strategic fixes
 - `references/execution-safety.md` — git/working-tree safety, data/privacy boundaries, scoped implementation
+- `references/design-system-architecture.md` — token layers, configuration boundaries, maintainability, implementation architecture
+- `references/runtime-ui-governance.md` — owner-only appearance controls, preview/publish/version/rollback/audit
+- `references/personalization-and-data-ux.md` — user preferences, saved views, role-aware UX, data trust/freshness
 - `references/design-presets.md` — style vocabulary and visual-direction options
 - `references/dashboard-patterns.md` — dashboard, navigation, table, form, filter, chart, state, auth, system-page patterns
 - `references/rtl-ltr-typography.md` — RTL/LTR, bilingual UI, localization, fonts, mixed-direction content
@@ -139,6 +149,8 @@ Before broad changes, determine enough of the current product to understand:
 - RTL/LTR/localization
 - auth and permission-sensitive surfaces
 - loading, empty, error, partial, disabled, and success states
+- personalization and saved-view behavior where present
+- whether presentation values are centralized or hard-coded
 - tests and available visual/browser tooling
 
 For large products, sample representative surfaces first. Record audit coverage rather than implying the whole application was inspected.
@@ -152,6 +164,35 @@ For existing products:
 - use an Observed Baseline for corrective work when no profile exists
 - use Partial Rediscovery when only selected strategic fields need to change
 
+When runtime customization is appropriate, record which fields are:
+- locked
+- owner-configurable
+- user-configurable
+- code-only
+
+## Runtime configurability decision
+
+Do not add an Owner UI/UX Control Center to every project.
+
+Assess whether runtime design governance is justified by:
+- white-label or multi-tenant needs
+- frequent brand/theme changes
+- non-developer owners who need safe appearance controls
+- operational need for density/table/default adjustments
+- multiple deployments that should share/import design configuration
+- meaningful user personalization needs
+
+If justified, read:
+- `references/design-system-architecture.md`
+- `references/runtime-ui-governance.md`
+- `references/personalization-and-data-ux.md`
+
+Prefer:
+
+`Locked Constraints -> Design System Defaults -> Published Owner Config -> User Preferences`
+
+Do not allow lower layers to override protected constraints.
+
 ## Product-first decisions
 
 Before designing a screen, establish:
@@ -160,6 +201,7 @@ Before designing a screen, establish:
 - what they must know
 - what they must do
 - what happens next
+- which decisions repeat often enough to deserve saved state or personalization
 
 Prefer hierarchy, typography, spacing, grouping, and alignment before adding containers.
 
@@ -200,6 +242,8 @@ Keep changes scoped and reviewable.
 
 For existing products, preserve functional contracts while improving the presentation layer.
 
+For configurable products, prefer a token/configuration architecture over scattered page-level values.
+
 ## Final validation
 
 Before completion:
@@ -208,6 +252,7 @@ Before completion:
 3. test representative viewports, themes, directions, and states
 4. run available tests, lint, type checks, accessibility checks, and relevant performance checks
 5. compare meaningful redesigns against the baseline
-6. report coverage, limitations, changes made, preserved behavior, and remaining approval items
+6. if runtime UI governance exists, test preview, validation, publish, permission, rollback, fallback, and user-preference precedence
+7. report coverage, limitations, changes made, preserved behavior, and remaining approval items
 
 If rendered inspection or a required check cannot be performed, say so explicitly.

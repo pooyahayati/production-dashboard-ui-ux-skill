@@ -2,6 +2,25 @@
 
 All notable changes to this project are documented here.
 
+## [1.3.0] - 2026-09-20
+
+### Product Design and Runtime Governance
+
+- Added a dedicated Design System Architecture reference for token layering, configuration schemas, precedence, migrations, and maintainable changeability.
+- Added Runtime UI Governance with an optional Owner-only UI/UX Control Center.
+- Defined safe owner configuration through allowlisted semantic tokens rather than arbitrary CSS, JavaScript, or HTML.
+- Added Draft → Preview → Validate → Publish lifecycle, version history, rollback, audit log, reset, import/export, tenant isolation, and failure fallback guidance.
+- Added explicit server-side authorization requirements for privileged appearance controls.
+- Added deterministic precedence: Locked Constraints → Design System Defaults → Published Owner Config → User Preferences.
+- Added user personalization guidance for density, theme, sidebar state, table preferences, saved filters, saved views, and optional dashboard layouts.
+- Added role-aware UX and power-user patterns.
+- Added Data Trust UX for last-updated time, freshness, source, timezone, active filter scope, stale/partial/sync states, metric definitions, and drill-down traceability.
+- Expanded dashboard patterns for saved views, shared-view permissions, role-aware landing experiences, onboarding, and recurring user preferences.
+- Expanded existing-product audits to cover maintainability, hard-coded presentation, token architecture, runtime governance, personalization, and data trust.
+- Expanded QA to cover configuration authorization, preview/publish/rollback, migrations, cache invalidation, preference precedence, stale data, and runtime fallback.
+- Extended Design Profile schema with runtime governance, owner/user/code-only classification, and Data UX fields.
+- Added new behavioral evals and public submission coverage for runtime governance and personalization.
+
 ## [1.2.0] - 2026-09-20
 
 ### Hardening

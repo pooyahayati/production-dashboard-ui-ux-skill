@@ -85,3 +85,19 @@ Report:
 - tests/checks run
 - checks not run
 - remaining risks
+
+
+## Runtime configuration changes
+
+When adding or changing owner/user configuration:
+
+- inspect existing authorization and tenancy boundaries first
+- do not store permission/security decisions in appearance configuration
+- version configuration schemas
+- provide migration/default behavior before removing or renaming fields
+- preserve existing user preferences when compatible
+- avoid destructive config rewrites without backup/version history
+- test rollback/fallback before production rollout
+- do not introduce arbitrary executable CSS/JavaScript/HTML as a shortcut for configurability
+
+Treat configuration migration as production data migration when persisted records already exist.

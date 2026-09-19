@@ -89,3 +89,17 @@ For representative workflows, test:
 - RTL/LTR semantic order where relevant
 
 Report what was actually tested.
+
+
+## Runtime configuration accessibility
+
+If owners or users can change appearance:
+
+- accessibility constraints remain higher priority than preference
+- block or correct configurations that make required contrast/focus unusable
+- test owner-configurable Light/Dark and density presets
+- respect reduced-motion preferences even when owner defaults enable motion
+- ensure typography/density controls do not create unusable zoom/reflow or target sizes
+- keep status meaning available beyond color across configurable palettes
+
+Do not allow an appearance setting to publish a known accessibility blocker merely because a privileged user selected it.

@@ -1,6 +1,6 @@
 # OpenAI Public Plugin Submission Checklist
 
-Prepared for Production Dashboard UI/UX Skill v1.2.0.
+Prepared for Production Dashboard UI/UX Skill v1.3.0.
 
 ## Package
 
@@ -17,10 +17,17 @@ Prepared for Production Dashboard UI/UX Skill v1.2.0.
 - [x] Developer Tools category
 - [x] Public-directory-safe display name and short description
 - [x] Three starter prompts within final-directory length limits
-- [x] Five positive test cases
-- [x] Three negative test cases
-- [x] Expected result format for every test
-- [x] Fixture and test-data requirements for every test
+- [x] Five positive submission test cases
+- [x] Three negative submission test cases
+- [x] Expected result format for every submission test
+- [x] Fixture and test-data requirements for every submission test
+- [x] Existing-product audit and regression guidance
+- [x] Design-system architecture and changeability guidance
+- [x] Runtime owner UI governance guidance
+- [x] Personalization and Data Trust UX guidance
+- [x] Safe runtime-config boundaries that prohibit arbitrary executable customization
+- [x] Behavioral eval definitions
+- [ ] Forward behavioral eval run recorded against the final candidate in Codex/Claude
 - [x] Automated structural validation
 - [x] Official OpenAI Skill quick validation in CI
 - [x] Codex skill-installer smoke test in CI
@@ -75,4 +82,5 @@ These cannot be completed by repository automation:
 - [ ] Final plugin ZIP uploaded
 - [ ] Country or region availability selected
 - [ ] Compliance declarations completed
+- [ ] Submission Portal validation/security scan passed
 - [ ] Submission sent for OpenAI review
