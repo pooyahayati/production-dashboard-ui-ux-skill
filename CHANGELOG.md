@@ -36,3 +36,6 @@ The project follows Semantic Versioning.
 - Accessibility target based on WCAG 2.2 AA where practical.
 - Final visual, UX, directionality, responsive, theme, accessibility, and engineering QA checklist.
 - Codex UI metadata in `agents/openai.yaml`.
+- Portable Agent Plugin manifest and mirrored `skills/` package.
+- Privacy, terms, support, and public submission test materials.
+- Automated validation for standalone-skill and plugin-package consistency.
