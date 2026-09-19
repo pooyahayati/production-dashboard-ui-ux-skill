@@ -73,6 +73,37 @@ These test cases are prepared for the OpenAI public plugin submission review.
 - Avoids solving the problem only by reducing font sizes.
 - Reviews representative responsive states before completion.
 
+
+### 6. Existing completed product audit and improvement
+
+**Prompt**
+
+> This dashboard is already built and in use. Review the whole UI/UX and improve it where needed, but do not break business logic.
+
+**Expected behavior**
+
+- Establishes an Observed Baseline from the existing product.
+- Audits UX, information architecture, visual hierarchy, responsive behavior, accessibility, RTL/LTR where applicable, and implementation consistency.
+- Classifies findings by severity, impact, scope, confidence, and fix type.
+- Implements safe corrective improvements without forcing a full discovery flow.
+- Preserves routing, permissions, validation, API/data semantics, and primary business workflows.
+- Performs before/after and regression-aware QA.
+
+### 7. Existing brand and visual-system refresh
+
+**Prompt**
+
+> The product works, but the design feels dated. Review and improve the colors, typography, logo treatment, Light/Dark themes, icons, and overall visual system. If the logo itself needs redesign, show me the direction before replacing it.
+
+**Expected behavior**
+
+- Audits current palette, semantic colors, typography, logo usage, iconography, surfaces, themes, and responsive brand behavior.
+- May directly fix low-risk logo treatment issues such as sizing, placement, spacing, contrast, and correct variant usage.
+- May improve semantic palette/token issues when low risk.
+- Uses Partial Rediscovery for broad palette, typography, or visual-language changes.
+- Requires explicit approval before replacing or redrawing the actual logo/brand mark.
+- Validates brand changes across Light/Dark and representative responsive sizes.
+
 ## Negative test cases
 
 ### 1. Backend-only optimization
