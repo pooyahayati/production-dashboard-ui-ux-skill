@@ -1,0 +1,87 @@
+name: Validate Skill
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate skill structure
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          import sys
+
+          root = Path(".")
+          skill = root / "SKILL.md"
+
+          errors = []
+
+          if not skill.exists():
+              errors.append("Missing SKILL.md")
+          else:
+              text = skill.read_text(encoding="utf-8")
+
+              if not text.startswith("---\n"):
+                  errors.append("SKILL.md must start with YAML frontmatter")
+              else:
+                  parts = text.split("---", 2)
+                  if len(parts) < 3:
+                      errors.append("SKILL.md frontmatter is not closed")
+                  else:
+                      frontmatter = parts[1]
+                      name_match = re.search(r"^name:\s*(.+)$", frontmatter, re.M)
+                      description_match = re.search(r"^description:\s*(.+)$", frontmatter, re.M)
+
+                      if not name_match:
+                          errors.append("Frontmatter is missing name")
+                      elif name_match.group(1).strip() != "production-dashboard-ui-ux-skill":
+                          errors.append("Unexpected skill name")
+
+                      if not description_match or not description_match.group(1).strip():
+                          errors.append("Frontmatter is missing description")
+
+              referenced = re.findall(r"`(references/[^`]+\.md)`", text)
+              for ref in referenced:
+                  if not (root / ref).exists():
+                      errors.append(f"Missing referenced file: {ref}")
+
+          required = [
+              "README.md",
+              "CHANGELOG.md",
+              "LICENSE",
+              "VERSION",
+              "agents/openai.yaml",
+              "references/discovery-and-profile.md",
+              "references/design-presets.md",
+              "references/dashboard-patterns.md",
+              "references/rtl-ltr-typography.md",
+              "references/theme-responsive-brand.md",
+              "references/qa-checklist.md",
+          ]
+
+          for path in required:
+              if not (root / path).exists():
+                  errors.append(f"Missing required file: {path}")
+
+          version = (root / "VERSION").read_text(encoding="utf-8").strip() if (root / "VERSION").exists() else ""
+          if version and version != "1.0.0":
+              errors.append(f"VERSION is {version!r}; expected 1.0.0 for this release branch")
+
+          if errors:
+              print("Skill validation failed:")
+              for error in errors:
+                  print(f"- {error}")
+              sys.exit(1)
+
+          print("Skill validation passed.")
