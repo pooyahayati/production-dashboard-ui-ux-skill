@@ -145,6 +145,26 @@ Check:
 - inconsistent action hierarchy
 - oversized headers or sidebars
 
+### Brand and Visual Identity
+
+Check:
+
+- logo quality and legibility at real interface sizes
+- logo placement, clear space, and responsive variants
+- favicon/app icon consistency
+- brand color suitability
+- palette contrast and semantic-role clarity
+- typography fit for the product and supported languages
+- visual personality alignment with product/user context
+- iconography consistency
+- Light/Dark brand behavior
+- whether legacy branding materially weakens usability or perceived quality
+
+Distinguish between:
+- **brand treatment fixes** — sizing, placement, contrast, spacing, variants, palette/token cleanup; usually safe when requested
+- **brand refresh** — meaningful palette/typography/visual-language change; use a design approval gate
+- **identity redesign** — changing or redrawing the actual logo/mark/name; always require explicit approval before replacement
+
 ### Components and Design System
 
 Check:
@@ -311,6 +331,9 @@ When the user asked for improvement/fixing, normally proceed with well-supported
 - table overflow and action-placement fixes
 - loading/empty/error presentation improvements
 - small visual hierarchy improvements
+- palette/token corrections that preserve the approved brand direction
+- logo sizing, spacing, placement, contrast, and correct variant usage
+- typography cleanup within the existing/approved font direction
 - removal of unjustified decoration that does not change workflow
 
 Still preserve existing behavior.
@@ -325,7 +348,9 @@ Pause before:
 - changing a global visual direction when no approved profile exists
 - large-scale density change
 - new design-system foundation
-- changing brand identity
+- changing the actual logo artwork, brand mark, or identity
+- replacing the global color/typography direction
+- introducing a broad visual-personality change
 - changing business-visible terminology
 - introducing a new UI framework
 - major component-library migration
@@ -340,9 +365,10 @@ Do not treat the absence of `design-profile.md` as a reason to block useful impr
 First infer an `Observed Baseline` from the current product:
 
 - existing visual style
+- brand/logo treatment
 - density
 - typography
-- palette
+- palette and semantic colors
 - surface treatment
 - navigation
 - themes
